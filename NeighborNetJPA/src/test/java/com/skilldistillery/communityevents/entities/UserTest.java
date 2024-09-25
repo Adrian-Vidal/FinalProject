@@ -1,9 +1,14 @@
 package com.skilldistillery.communityevents.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -18,7 +23,7 @@ class UserTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("TodoJPA");
+		emf = Persistence.createEntityManagerFactory("NeighborNetJPA");
 	}
 
 	@AfterAll
@@ -31,7 +36,7 @@ class UserTest {
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
         // Initialize the user object from the database
-        user = em.find(User.class, 1);
+        user = em.find(User.class, 1); 
 		}
 
 	@AfterEach
@@ -39,5 +44,12 @@ class UserTest {
 		em.close();	
 		}
 
+	@Test
+	void test_User_basic_mappings() {
+		assertNotNull(user);
+		assertEquals("test", user.getUsername());
+		assertEquals("standard", user.getRole());
+		assertTrue(user.isEnabled());
+	}
 
 }
