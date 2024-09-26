@@ -1,7 +1,7 @@
 package com.skilldistillery.communityevents.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,11 +12,12 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class ReportImageTest {
+class AddressTest {
 
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
-	private ReportImage reportImage;
+	private Address address;
+	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,19 +32,22 @@ class ReportImageTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		reportImage = em.find(ReportImage.class, 1);
-	}
+		em.getTransaction().begin();
+        // Initialize the user object from the database
+        address = em.find(Address.class, 1); 
+		}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		em.close();
-	}
+		em.close();	
+		}
 
 	@Test
-	void test_ReportImage_ManyToOne_with_Report() { 
-		assertNotNull(reportImage);
-		assertNotNull(reportImage.getReport());
-		assertEquals(1, reportImage.getId());
+	void test_User_basic_mappings() {
+		assertNotNull(address);
+		assertEquals("McDonald's", address.getName());
+		assertEquals("2214 W 76 Country Blvd", address.getStreet());
+		
 	}
 
 }
