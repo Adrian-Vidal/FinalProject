@@ -1,5 +1,6 @@
 package com.skilldistillery.communityevents.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,18 +8,29 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "report_tag")
 public class ReportTag {
-
+//----------FIELDS--------------------------------------------------------------------------
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "tag_name")
 	private String tagName;
+	
+	@ManyToMany
+	@JoinTable(name="report_has_report_tag",
+	joinColumns=@JoinColumn(name="report_tag_id"),
+	inverseJoinColumns=@JoinColumn(name="report_id")
+	)
+	private List<Report> reports;
+//----------CONSTRUCTOR--------------------------------------------------------------------------
 
 	public ReportTag() {
 	}
@@ -28,9 +40,21 @@ public class ReportTag {
 		this.id = id;
 		this.tagName = tagName;
 	}
+//----------Getters and Setters--------------------------------------------------------------------------
+
+	
+	
 
 	public int getId() {
 		return id;
+	}
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
 	}
 
 	public void setId(int id) {
