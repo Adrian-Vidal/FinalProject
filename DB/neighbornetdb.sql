@@ -325,6 +325,7 @@ USE `neighbornetdb`;
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `first_name`, `last_name`, `email`, `create_date`, `modified_date`, `image_url`, `address_id`) VALUES (1, 'test', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'standard', 1, 'John', 'Doe', 'jdoe@gmail.com', '2024-09-26 11:50:00', NULL, NULL, 6);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `first_name`, `last_name`, `email`, `create_date`, `modified_date`, `image_url`, `address_id`) VALUES (2, 'jdoe', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'admin', 1, 'Jane', 'Doe', 'janedoe@gmail.com', '2024-09-26 11:51:00', NULL, NULL, 7);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `first_name`, `last_name`, `email`, `create_date`, `modified_date`, `image_url`, `address_id`) VALUES (3, 'janon', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'standard', 1, 'John', 'Anon', 'janon@gmail.com', '2024-09-26 11:52:00', NULL, NULL, 8);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `first_name`, `last_name`, `email`, `create_date`, `modified_date`, `image_url`, `address_id`) VALUES (4, 'mcdonalds', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'standard', 1, 'McDonalds', 'McDonalds', 'mc@example.com', '2024-09-26 16:00:00', NULL, NULL, 1);
 
 COMMIT;
 
