@@ -93,7 +93,14 @@ public class DirectMessage {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	///------------------------HASH CODE AND TO STRING------------------------------------------------------------------------------------------
+
+
+
+	@Override
+	public String toString() {
+		return "DirectMessage [id=" + id + ", name=" + name + ", body=" + body + ", createDate=" + createDate
+				+ ", modifiedDate=" + modifiedDate + ", enabled=" + enabled + "]";
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -105,12 +112,6 @@ public class DirectMessage {
 			return false;
 		DirectMessage other = (DirectMessage) obj;
 		return id == other.id;
-	}
-
-	@Override
-	public String toString() {
-		return "DirectMessage [id=" + id + ", name=" + name + ", body=" + body + ", createDate=" + createDate
-				+ ", modifiedDate=" + modifiedDate + ", enabled=" + enabled + "]";
 	}
 
 	
