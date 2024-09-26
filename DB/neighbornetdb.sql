@@ -243,24 +243,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `user_has_user_event`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_has_user_event` ;
-
-CREATE TABLE IF NOT EXISTS `user_has_user_event` (
-  `user_id` INT NOT NULL,
-  `user_event_id` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `user_event_id`),
-  INDEX `fk_user_has_user_event_user1_idx` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_user_has_user_event_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `report_has_report_tag`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `report_has_report_tag` ;
