@@ -37,7 +37,7 @@ public class ReportImage {
 	@Column(name = "modified_date")
 	private LocalDateTime modifiedDate;
 
-	private boolean enabled;
+	private Boolean enabled;
 
 	// FOREIGN
 	@ManyToOne
@@ -49,7 +49,7 @@ public class ReportImage {
 	}
 
 	public ReportImage(int id, String name, String description, String imageUrl, LocalDateTime createDate,
-			LocalDateTime modifiedDate, boolean enabled, Report report) {
+			LocalDateTime modifiedDate, Boolean enabled, Report report) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -109,11 +109,11 @@ public class ReportImage {
 		this.modifiedDate = modifiedDate;
 	}
 
-	public boolean isEnabled() {
+	public Boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 

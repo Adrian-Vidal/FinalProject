@@ -43,6 +43,7 @@ class ReportImageTest {
 	void test_ReportImage_ManyToOne_with_Report() { 
 		assertNotNull(reportImage);
 		assertNotNull(reportImage.getReport());
+		assertEquals(1, reportImage.getId());
 	}
 
 }
