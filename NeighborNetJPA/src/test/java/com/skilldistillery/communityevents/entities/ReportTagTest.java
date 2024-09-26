@@ -17,7 +17,6 @@ class ReportTagTest {
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
 	private ReportTag reportTag;
-	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,21 +31,19 @@ class ReportTagTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		em.getTransaction().begin();
-        // Initialize the user object from the database
-        reportTag = em.find(ReportTag.class, 1); 
-		}
+		reportTag = em.find(ReportTag.class, 1);
+	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		em.close();	
-		}
+		em.close();
+	}
 
 	@Test
 	void test_reportCategory_basic_mappings() {
 		assertNotNull(reportTag);
 		assertEquals("Tornado", reportTag.getTagName());
-		
+
 	}
 
 }
