@@ -3,44 +3,62 @@ package com.skilldistillery.communityevents.entities;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "address")
 public class Address {
-	///------------------------FIELDS------------------------------------------------------------------------------------------
+	/// ------------------------FIELDS------------------------------------------------------------------------------------------
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	private String name;
-	
-	private String street;
-	
-	private String city;
-	
-	private String state;
-	
-	private String country;
-	
-	private Boolean enabled;
-	
-	@OneToMany(mappedBy="address")
-	private List<User> users;
-	///----------------------------CONSTRUCTOR--------------------------------------------------------------------------------------
 
+	private String name;
+
+	private String street;
+
+	private String city;
+
+	private String state;
+
+	@Column(name = "postal_code")
+	private String postalCode;
+
+	private String country;
+
+	private Boolean enabled;
+
+	@OneToMany(mappedBy = "address")
+	private List<User> users;
+	/// ----------------------------CONSTRUCTOR--------------------------------------------------------------------------------------
 
 	public Address() {
 	}
-	///-----------------------------------GETTERS AND SETTERS-------------------------------------------------------------------------------
 
-	
-	
+	public Address(int id, String name, String street, String city, String state, String postalCode, String country,
+			Boolean enabled, List<User> users) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.postalCode = postalCode;
+		this.country = country;
+		this.enabled = enabled;
+		this.users = users;
+	}
+
+	/// -----------------------------------GETTERS AND
+	/// SETTERS-------------------------------------------------------------------------------
+
 	public int getId() {
 		return id;
 	}
@@ -49,19 +67,13 @@ public class Address {
 		return users;
 	}
 
-
-
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
 
-
-
 	public Boolean getEnabled() {
 		return enabled;
 	}
-
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -115,6 +127,14 @@ public class Address {
 		this.enabled = enabled;
 	}
 
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -136,11 +156,10 @@ public class Address {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Address [id=").append(id).append(", name=").append(name).append(", street=").append(street)
-				.append(", city=").append(city).append(", state=").append(state).append(", country=").append(country)
-				.append(", enabled=").append(enabled).append("]");
+				.append(", city=").append(city).append(", state=").append(state).append(", postalCode=")
+				.append(postalCode).append(", country=").append(country).append(", enabled=").append(enabled)
+				.append("]");
 		return builder.toString();
 	}
-	
-	
-	
+
 }

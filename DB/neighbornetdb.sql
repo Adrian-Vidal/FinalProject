@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `street` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
   `state` VARCHAR(45) NOT NULL,
-  `postal_code` INT NOT NULL,
+  `postal_code` VARCHAR(15) NOT NULL,
   `country` VARCHAR(45) NULL,
   `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`))
@@ -305,14 +305,14 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `neighbornetdb`;
-INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (1, 'McDonald\'s', '2214 W 76 Country Blvd', 'Branson', 'MO', 65616, 'United States', 1);
-INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (2, 'McDonald\'s', '515 W Main St', 'Branson', 'MO', 65616, 'United States', 1);
-INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (3, 'McDonald\'s', '1209 Branson Hills Pkwy', 'Branson ', 'MO', 65616, 'United States', 1);
-INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (4, 'Starbucks', '201 E Main St', 'Branson', 'MO', 65616, 'United States', 1);
-INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (5, 'Starbucks', '3460 W 76 Country Blvd', 'Branson ', 'MO', 65616, 'United States', 1);
-INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (6, 'John\'s home', '176 Fremont St', 'Branson', 'MO', 65616, 'United States', 1);
-INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (7, 'Jane\'s home', '651 Taneycomo Rd', 'Branson', 'MO', 65616, 'United States', 1);
-INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (8, 'Mr. Anon\'s home', '491 Compton Ridge Rd', 'Branson', 'MO', 65616, 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (1, 'McDonald\'s', '2214 W 76 Country Blvd', 'Branson', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (2, 'McDonald\'s', '515 W Main St', 'Branson', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (3, 'McDonald\'s', '1209 Branson Hills Pkwy', 'Branson ', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (4, 'Starbucks', '201 E Main St', 'Branson', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (5, 'Starbucks', '3460 W 76 Country Blvd', 'Branson ', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (6, 'John\'s home', '176 Fremont St', 'Branson', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (7, 'Jane\'s home', '651 Taneycomo Rd', 'Branson', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (8, 'Mr. Anon\'s home', '491 Compton Ridge Rd', 'Branson', 'MO', '65616', 'United States', 1);
 
 COMMIT;
 

@@ -12,6 +12,7 @@
 	<class>com.skilldistillery.communityevents.entities.DirectMessage</class> 
 	<class>com.skilldistillery.communityevents.entities.Report</class> 
 	<class>com.skilldistillery.communityevents.entities.ReportCategory</class> 
+	<class>com.skilldistillery.communityevents.entities.ReportTag</class> 
 	<class>com.skilldistillery.communityevents.entities.Severity</class> 
 	
 

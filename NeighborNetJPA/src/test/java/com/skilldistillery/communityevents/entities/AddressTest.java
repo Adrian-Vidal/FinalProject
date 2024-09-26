@@ -19,7 +19,6 @@ class AddressTest {
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
 	private Address address;
-	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,31 +33,31 @@ class AddressTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		em.getTransaction().begin();
-        // Initialize the user object from the database
-        address = em.find(Address.class, 1); 
-		}
+		address = em.find(Address.class, 1);
+	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		em.close();	
-		}
+		em.close();
+	}
 
 	@Test
 	void test_User_basic_mappings() {
 		assertNotNull(address);
 		assertEquals("McDonald's", address.getName());
 		assertEquals("2214 W 76 Country Blvd", address.getStreet());
-		
+		assertEquals("65616", address.getPostalCode());
+
 	}
+
 	@Test
 	void test_address_has_many_Users() {
 		assertNotNull(address.getUsers());
 		System.out.println(address.getUsers().size());
 		System.out.println(address.getUsers());
 		System.out.println(address);
-		assertTrue(address.getUsers().size()>0);
-		
+		assertTrue(address.getUsers().size() > 0);
+
 	}
 
 }
