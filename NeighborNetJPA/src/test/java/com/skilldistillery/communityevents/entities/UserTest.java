@@ -67,5 +67,13 @@ class UserTest {
 		
 		
 	}
+	
+	@Test
+	void test_user_has_report_liked_manyToMany() {
+		assertNotNull(user);
+		assertNotNull(user.getReports());
+		assertTrue(user.getReports().size() == 0);
+		
+	}
 
 }

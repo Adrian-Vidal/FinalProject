@@ -1,11 +1,11 @@
 package com.skilldistillery.communityevents.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,6 +13,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -40,6 +42,9 @@ public class Report {
 	@Column(name="event_date")
 	private LocalDateTime eventDate;
 	
+	@Column(name="event_date_end")
+	private LocalDateTime eventDateEnd;
+	
 	@ManyToOne
 	@JoinColumn(name = "report_category_id")
 	private ReportCategory reportCategory;
@@ -47,6 +52,16 @@ public class Report {
 	private Boolean resolved;
 	
 	private Boolean enabled;
+	
+	
+	@ManyToMany
+	@JoinTable(
+			name = "user_has_report_liked",
+			joinColumns = @JoinColumn(name = "report_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id")
+	)
+	private List <User> users;
+	
 
 //	@OneToMany
 //	@JoinColumn(name = "comment_id")
@@ -57,19 +72,21 @@ public class Report {
 	}
 
 	public Report(int id, String name, String description, LocalDateTime createDate, LocalDateTime modifiedDate,
-		String imageUrl, LocalDateTime eventDate, ReportCategory reportCategory, Boolean resolved, Boolean enabled) {
-	super();
-	this.id = id;
-	this.name = name;
-	this.description = description;
-	this.createDate = createDate;
-	this.modifiedDate = modifiedDate;
-	this.imageUrl = imageUrl;
-	this.eventDate = eventDate;
-	this.reportCategory = reportCategory;
-	this.resolved = resolved;
-	this.enabled = enabled;
-}
+			String imageUrl, LocalDateTime eventDate, ReportCategory reportCategory, Boolean resolved, Boolean enabled,
+			List<User> users) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.createDate = createDate;
+		this.modifiedDate = modifiedDate;
+		this.imageUrl = imageUrl;
+		this.eventDate = eventDate;
+		this.reportCategory = reportCategory;
+		this.resolved = resolved;
+		this.enabled = enabled;
+		this.users = users;
+	}
 
 	public int getId() {
 		return id;
@@ -149,6 +166,14 @@ public class Report {
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	@Override

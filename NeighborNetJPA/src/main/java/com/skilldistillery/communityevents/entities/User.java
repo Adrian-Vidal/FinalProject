@@ -4,12 +4,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -56,6 +59,10 @@ public class User {
 	@OneToMany(mappedBy="recipient")
 	private List<DirectMessage> recievedMessages;
 	
+	@JsonIgnore
+	@ManyToMany(mappedBy="users")
+	private List<Report> reports;
+	
 	///----------------------------CONSTRUCTOR--------------------------------------------------------------------------------------
 
 	
@@ -63,9 +70,31 @@ public class User {
 		super();
 	}
 	
+	public User(int id, String username, String password, boolean enabled, String role, String firstName,
+			String lastName, String email, LocalDateTime createDate, LocalDateTime modifiedDate, String imageUrl,
+			Address address, List<DirectMessage> sentMessages, List<DirectMessage> recievedMessages,
+			List<Report> reports) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.role = role;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.createDate = createDate;
+		this.modifiedDate = modifiedDate;
+		this.imageUrl = imageUrl;
+		this.address = address;
+		this.sentMessages = sentMessages;
+		this.recievedMessages = recievedMessages;
+		this.reports = reports;
+	}
 	///-----------------------------------GETTERS AND SETTERS-------------------------------------------------------------------------------
 
 	
+
 
 	public String getFirstName() {
 		return firstName;
@@ -178,6 +207,16 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
+	
 	///------------------------------------------------------------------------------------------------------------------
 
 	@Override
