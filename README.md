@@ -24,7 +24,7 @@ A separate privilege level that can perform C.R.U.D. on data a non-privileged us
 
 ### **MySQL Workbench - Schema**
 
-<!-- ![Database Schema](./images/event_tracker_schema_recurring_addition.png) -->
+![Database Schema](./images/ERD_NeighborNet.png)
 <!-- INSERT SCHEMA PNG -->
 
 
