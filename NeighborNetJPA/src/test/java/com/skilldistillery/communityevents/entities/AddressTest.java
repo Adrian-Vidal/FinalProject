@@ -2,6 +2,8 @@ package com.skilldistillery.communityevents.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -47,6 +49,15 @@ class AddressTest {
 		assertNotNull(address);
 		assertEquals("McDonald's", address.getName());
 		assertEquals("2214 W 76 Country Blvd", address.getStreet());
+		
+	}
+	@Test
+	void test_address_has_many_Users() {
+		assertNotNull(address.getUsers());
+		System.out.println(address.getUsers().size());
+		System.out.println(address.getUsers());
+		System.out.println(address);
+		assertTrue(address.getUsers().size()>0);
 		
 	}
 

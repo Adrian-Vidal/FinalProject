@@ -1,14 +1,18 @@
 package com.skilldistillery.communityevents.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Address {
+	///------------------------FIELDS------------------------------------------------------------------------------------------
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +29,39 @@ public class Address {
 	private String country;
 	
 	private Boolean enabled;
+	
+	@OneToMany(mappedBy="address")
+	private List<User> users;
+	///----------------------------CONSTRUCTOR--------------------------------------------------------------------------------------
+
 
 	public Address() {
 	}
+	///-----------------------------------GETTERS AND SETTERS-------------------------------------------------------------------------------
 
+	
+	
 	public int getId() {
 		return id;
 	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+
 
 	public void setId(int id) {
 		this.id = id;
