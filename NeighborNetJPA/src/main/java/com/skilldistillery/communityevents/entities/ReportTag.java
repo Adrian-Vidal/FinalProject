@@ -10,17 +10,23 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="report_tag")
+@Table(name = "report_tag")
 public class ReportTag {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="tag_name")
+
+	@Column(name = "tag_name")
 	private String tagName;
 
 	public ReportTag() {
+	}
+
+	public ReportTag(int id, String tagName) {
+		super();
+		this.id = id;
+		this.tagName = tagName;
 	}
 
 	public int getId() {
@@ -62,7 +68,5 @@ public class ReportTag {
 		builder.append("ReportTag [id=").append(id).append(", tagName=").append(tagName).append("]");
 		return builder.toString();
 	}
-	
-	
 
 }

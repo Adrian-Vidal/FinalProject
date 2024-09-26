@@ -51,5 +51,21 @@ class UserTest {
 		assertEquals("standard", user.getRole());
 		assertTrue(user.isEnabled());
 	}
+	@Test
+	void test_User_has_an_address() {
+		assertNotNull(user.getAddress());		
+		assertEquals("Branson", user.getAddress().getCity());
+		
+	}
+	@Test
+	void test_User_has_many_sentMessages() {
+//		assertNotNull(user.getSentMessages());	
+////		assertTrue(user.getSentMessages().size()>0);
+////		assertNotNull(user.getRecievedMessages());	
+////		assertTrue(user.getRecievedMessages().size()>0);
+//		
+		
+		
+	}
 
 }
