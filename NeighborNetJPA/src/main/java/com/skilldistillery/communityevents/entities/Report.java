@@ -1,11 +1,11 @@
 package com.skilldistillery.communityevents.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,11 +13,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Report {
-
+	//----------FIELDS--------------------------------------------------------------------------
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -47,11 +48,15 @@ public class Report {
 	private Boolean resolved;
 	
 	private Boolean enabled;
+	
+	@ManyToMany(mappedBy="reports")
+	private List<ReportTag> reportTags;
 
 //	@OneToMany
 //	@JoinColumn(name = "comment_id")
 //	private List<Comment> comments;
 	
+	//----------CONSTRUCTOR and HASHCODE--------------------------------------------------------------------------
 	public Report() {
 		
 	}
@@ -70,9 +75,24 @@ public class Report {
 	this.resolved = resolved;
 	this.enabled = enabled;
 }
-
+	//----------Getters and Setters--------------------------------------------------------------------------
+	
+	
+	
 	public int getId() {
 		return id;
+	}
+
+	public List<ReportTag> getReportTags() {
+		return reportTags;
+	}
+
+	public void setReportTags(List<ReportTag> reportTags) {
+		this.reportTags = reportTags;
+	}
+
+	public Boolean getResolved() {
+		return resolved;
 	}
 
 	public void setId(int id) {

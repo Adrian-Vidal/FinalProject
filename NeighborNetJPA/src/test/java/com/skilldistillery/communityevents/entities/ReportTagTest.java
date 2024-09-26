@@ -2,6 +2,8 @@ package com.skilldistillery.communityevents.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -44,6 +46,12 @@ class ReportTagTest {
 		assertNotNull(reportTag);
 		assertEquals("Tornado", reportTag.getTagName());
 
+	}
+	@Test
+	void test_reportTag_has_reports() {
+		assertNotNull(reportTag.getReports());
+		assertTrue(reportTag.getReports().size()==0);//TODO: change to > 0 when data is input
+		
 	}
 
 }
