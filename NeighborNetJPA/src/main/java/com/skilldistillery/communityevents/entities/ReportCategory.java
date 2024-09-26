@@ -1,12 +1,16 @@
 package com.skilldistillery.communityevents.entities;
 
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +27,10 @@ public class ReportCategory {
 	
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="reportCategory")
+	private List<Report> reports;
 
 	public ReportCategory() {
 		
@@ -58,6 +66,14 @@ public class ReportCategory {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
 	}
 
 	@Override

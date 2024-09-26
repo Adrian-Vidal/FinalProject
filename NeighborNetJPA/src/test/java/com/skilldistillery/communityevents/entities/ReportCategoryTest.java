@@ -2,6 +2,8 @@ package com.skilldistillery.communityevents.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -48,6 +50,13 @@ class ReportCategoryTest {
 		assertEquals("Weather", reportCategory.getName());
 		assertEquals("Reports related to weather events", reportCategory.getDescription());
 		
+	}
+	
+	@Test
+	void test_reportCategory_reports_oneToMany() {
+		assertNotNull(reportCategory.getReports());
+		assertTrue(reportCategory.getReports().size() == 0);
+		// Make greater than one once we start populating more data
 	}
 
 }

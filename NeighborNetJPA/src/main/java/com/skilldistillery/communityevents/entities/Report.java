@@ -1,11 +1,11 @@
 package com.skilldistillery.communityevents.entities;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Report {
@@ -39,6 +39,10 @@ public class Report {
 	
 	@Column(name="event_date")
 	private LocalDateTime eventDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "report_category_id")
+	private ReportCategory reportCategory;
 	
 	private Boolean resolved;
 
@@ -112,6 +116,14 @@ public class Report {
 
 	public void setResolved(Boolean resolved) {
 		this.resolved = resolved;
+	}
+
+	public ReportCategory getReportCategory() {
+		return reportCategory;
+	}
+
+	public void setReportCategory(ReportCategory reportCategory) {
+		this.reportCategory = reportCategory;
 	}
 
 	@Override
