@@ -51,5 +51,11 @@ class UserTest {
 		assertEquals("standard", user.getRole());
 		assertTrue(user.isEnabled());
 	}
+	@Test
+	void test_User_has_an_address() {
+		assertNotNull(user.getAddress());		
+		assertEquals("Branson", user.getAddress().getCity());
+		
+	}
 
 }

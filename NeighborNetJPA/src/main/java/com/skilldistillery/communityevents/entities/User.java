@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class User {
@@ -41,6 +42,10 @@ public class User {
 	
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	@ManyToOne
+	private Address address;
+	
 	///----------------------------CONSTRUCTOR--------------------------------------------------------------------------------------
 
 	
@@ -50,9 +55,18 @@ public class User {
 	
 	///-----------------------------------GETTERS AND SETTERS-------------------------------------------------------------------------------
 
+	
 
 	public String getFirstName() {
 		return firstName;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public void setFirstName(String firstName) {
@@ -164,5 +178,7 @@ public class User {
 				.append(password).append(", enabled=").append(enabled).append(", role=").append(role).append("]");
 		return builder.toString();
 	}
+	
+	
 
 }
