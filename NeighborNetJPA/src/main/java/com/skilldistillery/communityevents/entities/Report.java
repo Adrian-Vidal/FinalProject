@@ -45,6 +45,8 @@ public class Report {
 	private ReportCategory reportCategory;
 	
 	private Boolean resolved;
+	
+	private Boolean enabled;
 
 //	@OneToMany
 //	@JoinColumn(name = "comment_id")
@@ -53,6 +55,21 @@ public class Report {
 	public Report() {
 		
 	}
+
+	public Report(int id, String name, String description, LocalDateTime createDate, LocalDateTime modifiedDate,
+		String imageUrl, LocalDateTime eventDate, ReportCategory reportCategory, Boolean resolved, Boolean enabled) {
+	super();
+	this.id = id;
+	this.name = name;
+	this.description = description;
+	this.createDate = createDate;
+	this.modifiedDate = modifiedDate;
+	this.imageUrl = imageUrl;
+	this.eventDate = eventDate;
+	this.reportCategory = reportCategory;
+	this.resolved = resolved;
+	this.enabled = enabled;
+}
 
 	public int getId() {
 		return id;
@@ -124,6 +141,14 @@ public class Report {
 
 	public void setReportCategory(ReportCategory reportCategory) {
 		this.reportCategory = reportCategory;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Override
