@@ -370,6 +370,18 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `report_image`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `neighbornetdb`;
+INSERT INTO `report_image` (`id`, `name`, `description`, `image_url`, `create_date`, `modified_date`, `enabled`, `report_id`) VALUES (1, 'jam', NULL, 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Trafficjamoninterstate5atpyramidlake.jpg/440px-Trafficjamoninterstate5atpyramidlake.jpg', '2024-09-26 11:55:00', NULL, 1, 1);
+INSERT INTO `report_image` (`id`, `name`, `description`, `image_url`, `create_date`, `modified_date`, `enabled`, `report_id`) VALUES (2, NULL, NULL, 'https://ca-times.brightspotcdn.com/dims4/default/f759d43/2147483647/strip/true/crop/2048x1365+0+0/resize/1200x800!/format/webp/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Ff5%2Fa6%2Ff55c5143daf286a04f2d2c6ae9a6%2Fla-2419392-me-california-commute-5-ajs-jpg-20150209', '2024-09-26 11:55:00', NULL, 1, 1);
+INSERT INTO `report_image` (`id`, `name`, `description`, `image_url`, `create_date`, `modified_date`, `enabled`, `report_id`) VALUES (3, 'block party', NULL, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Block_party_%28Manhattan%2C_October_4_2008%29.jpg/440px-Block_party_%28Manhattan%2C_October_4_2008%29.jpg', '2024-09-26 11:59:00', NULL, 1, 3);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `comment`
 -- -----------------------------------------------------
 START TRANSACTION;
