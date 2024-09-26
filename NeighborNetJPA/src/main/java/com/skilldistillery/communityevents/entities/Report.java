@@ -37,7 +37,7 @@ public class Report {
 	@Column(name="event_date")
 	private LocalDateTime eventDate;
 	
-	private boolean resolved;
+	private Boolean resolved;
 
 	public Report() {
 		
@@ -99,11 +99,11 @@ public class Report {
 		this.eventDate = eventDate;
 	}
 
-	public boolean isResolved() {
+	public Boolean isResolved() {
 		return resolved;
 	}
 
-	public void setResolved(boolean resolved) {
+	public void setResolved(Boolean resolved) {
 		this.resolved = resolved;
 	}
 
