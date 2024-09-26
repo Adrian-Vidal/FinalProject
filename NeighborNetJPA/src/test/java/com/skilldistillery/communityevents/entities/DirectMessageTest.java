@@ -49,7 +49,7 @@ class DirectMessageTest {
 		
 
 		assertNotNull(directMessage);
-		assertEquals("test", directMessage.getBody());
+		assertEquals("I had a quick follow up question regarding your post the other day.", directMessage.getBody());
 
 	}
 

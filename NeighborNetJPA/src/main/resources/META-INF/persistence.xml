@@ -7,6 +7,14 @@
 
 	<class>com.skilldistillery.communityevents.entities.User</class> 
 	<class>com.skilldistillery.communityevents.entities.ReportImage</class>
+	<class>com.skilldistillery.communityevents.entities.Address</class> 
+	<class>com.skilldistillery.communityevents.entities.Comment</class> 
+	<class>com.skilldistillery.communityevents.entities.DirectMessage</class> 
+	<class>com.skilldistillery.communityevents.entities.Report</class> 
+	<class>com.skilldistillery.communityevents.entities.ReportCategory</class> 
+	<class>com.skilldistillery.communityevents.entities.Severity</class> 
+	
+
 	
 
     <properties>
