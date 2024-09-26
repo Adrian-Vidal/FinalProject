@@ -51,11 +51,18 @@ class ReportTest {
 	}
 	
 	@Test
+
 	void test_report_has_many_users_manyToMany () {
 		assertNotNull(report);
 		assertNotNull(report.getUsers());
 		assertTrue(report.getUsers().size() > 0);
+	}
 		
+
+	void test_has_many_ReportTags() {
+		assertNotNull(report.getReportTags());
+		assertTrue(report.getReportTags().size()==0);//change this to > 1 when more data is input
+
 	}
 
 }

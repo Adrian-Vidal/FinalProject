@@ -366,6 +366,7 @@ USE `neighbornetdb`;
 INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date`, `image_url`, `event_date`, `event_date_end`, `resolved`, `enabled`, `address_id`, `user_id`, `report_category_id`, `severity_id`) VALUES (1, 'Traffic jam!', 'Congested traffic due to road closure.', '2024-09-26 11:55:00', NULL, NULL, '2024-09-26 11:54:00', NULL, NULL, 1, 2, 1, 3, 2);
 INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date`, `image_url`, `event_date`, `event_date_end`, `resolved`, `enabled`, `address_id`, `user_id`, `report_category_id`, `severity_id`) VALUES (2, 'Suspicous person...', 'Person loitering outside of McDonald\'s', '2024-09-26 11:58:00', NULL, NULL, '2024-09-26 11:57:00', NULL, NULL, 1, 1, 1, 2, 3);
 INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date`, `image_url`, `event_date`, `event_date_end`, `resolved`, `enabled`, `address_id`, `user_id`, `report_category_id`, `severity_id`) VALUES (3, 'Block party on Sunday!', 'Block party - invite your friends!', '2024-09-26 11:59:00', NULL, NULL, '2024-09-29 14:00:00', NULL, NULL, 1, 6, 1, 5, null);
+INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date`, `image_url`, `event_date`, `event_date_end`, `resolved`, `enabled`, `address_id`, `user_id`, `report_category_id`, `severity_id`) VALUES (4, 'Crazy tornado!', 'Displaced vehicles and flying animals.', '2024-09-26 17:00:00', NULL, NULL, '2024-09-26 17:00:00', NULL, NULL, 1, 1, 1, 1, 1);
 
 COMMIT;
 

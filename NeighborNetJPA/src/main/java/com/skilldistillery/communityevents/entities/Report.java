@@ -19,59 +19,59 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Report {
-
+	// ----------FIELDS--------------------------------------------------------------------------
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	private String description;
-	
+
 	@CreationTimestamp
-	@Column(name="create_date")
+	@Column(name = "create_date")
 	private LocalDateTime createDate;
-	
+
 	@UpdateTimestamp
-	@Column(name="modified_date")
+	@Column(name = "modified_date")
 	private LocalDateTime modifiedDate;
-	
-	@Column(name="image_url")
+
+	@Column(name = "image_url")
 	private String imageUrl;
-	
-	@Column(name="event_date")
+
+	@Column(name = "event_date")
 	private LocalDateTime eventDate;
-	
-	@Column(name="event_date_end")
+
+	@Column(name = "event_date_end")
 	private LocalDateTime eventDateEnd;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "report_category_id")
 	private ReportCategory reportCategory;
-	
+
 	private Boolean resolved;
-	
+
 	private Boolean enabled;
-	
-	
+
 	@ManyToMany
-	@JoinTable(
-			name = "user_has_report_liked",
-			joinColumns = @JoinColumn(name = "report_id"),
-			inverseJoinColumns = @JoinColumn(name = "user_id")
-	)
-	private List <User> users;
-	
+	@JoinTable(name = "user_has_report_liked", joinColumns = @JoinColumn(name = "report_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> users;
+
+	@ManyToMany(mappedBy = "reports")
+	private List<ReportTag> reportTags;
 
 //	@OneToMany
 //	@JoinColumn(name = "comment_id")
 //	private List<Comment> comments;
-	
+
+	// ----------CONSTRUCTOR and
+	// HASHCODE--------------------------------------------------------------------------
 	public Report() {
-		
+
 	}
 
 	public Report(int id, String name, String description, LocalDateTime createDate, LocalDateTime modifiedDate,
+
 			String imageUrl, LocalDateTime eventDate, ReportCategory reportCategory, Boolean resolved, Boolean enabled,
 			List<User> users) {
 		super();
@@ -88,8 +88,23 @@ public class Report {
 		this.users = users;
 	}
 
+	// ----------Getters and
+	// Setters--------------------------------------------------------------------------
+
 	public int getId() {
 		return id;
+	}
+
+	public List<ReportTag> getReportTags() {
+		return reportTags;
+	}
+
+	public void setReportTags(List<ReportTag> reportTags) {
+		this.reportTags = reportTags;
+	}
+
+	public Boolean getResolved() {
+		return resolved;
 	}
 
 	public void setId(int id) {
@@ -202,7 +217,5 @@ public class Report {
 				.append(", resolved=").append(resolved).append("]");
 		return builder.toString();
 	}
-	
-	
-	
+
 }
