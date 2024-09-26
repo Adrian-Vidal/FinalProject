@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,6 +36,14 @@ public class DirectMessage {
 	
 	
 	private boolean enabled;
+	
+	@ManyToOne
+	@JoinColumn(name="sender_id")
+	private User sender;
+	
+	@ManyToOne
+	@JoinColumn(name="recipient_id")
+	private User recipient;
 	///------------------------CONSTRUCTOR------------------------------------------------------------------------------------------
 
 	public DirectMessage() {
@@ -41,9 +51,47 @@ public class DirectMessage {
 	}
 	///------------------------GETTERS AND SETTERS ------------------------------------------------------------------------------------------
 
+	
+	
 	public int getId() {
 		return id;
 	}
+
+	public String getTitle() {
+		return title;
+	}
+
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+
+	public User getSender() {
+		return sender;
+	}
+
+
+
+	public void setSender(User sender) {
+		this.sender = sender;
+	}
+
+
+
+	public User getRecipient() {
+		return recipient;
+	}
+
+
+
+	public void setRecipient(User recipient) {
+		this.recipient = recipient;
+	}
+
+
 
 	public void setId(int id) {
 		this.id = id;

@@ -47,9 +47,16 @@ class DirectMessageTest {
 	@Test
 	void test_User_basic_mappings() {
 		
-
 		assertNotNull(directMessage);
 		assertEquals("I had a quick follow up question regarding your post the other day.", directMessage.getBody());
+
+	}
+	@Test
+	void test_directmessage_has_a_sender_and_recipient() {
+		assertNotNull(directMessage.getSender());
+		assertEquals("John",directMessage.getSender().getFirstName());
+		assertEquals("test",directMessage.getRecipient().getUsername());
+		
 
 	}
 

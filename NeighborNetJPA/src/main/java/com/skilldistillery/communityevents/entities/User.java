@@ -1,6 +1,7 @@
 package com.skilldistillery.communityevents.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -8,7 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -44,7 +47,14 @@ public class User {
 	private String imageUrl;
 	
 	@ManyToOne
+	@JoinColumn(name="address_id")
 	private Address address;
+	
+	@OneToMany(mappedBy="sender")
+	private List<DirectMessage> sentMessages;
+	
+	@OneToMany(mappedBy="recipient")
+	private List<DirectMessage> recievedMessages;
 	
 	///----------------------------CONSTRUCTOR--------------------------------------------------------------------------------------
 
@@ -59,6 +69,22 @@ public class User {
 
 	public String getFirstName() {
 		return firstName;
+	}
+
+	public List<DirectMessage> getSentMessages() {
+		return sentMessages;
+	}
+
+	public void setSentMessages(List<DirectMessage> sentMessages) {
+		this.sentMessages = sentMessages;
+	}
+
+	public List<DirectMessage> getRecievedMessages() {
+		return recievedMessages;
+	}
+
+	public void setRecievedMessages(List<DirectMessage> recievedMessages) {
+		this.recievedMessages = recievedMessages;
 	}
 
 	public Address getAddress() {

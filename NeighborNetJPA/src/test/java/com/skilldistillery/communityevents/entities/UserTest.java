@@ -57,5 +57,15 @@ class UserTest {
 		assertEquals("Branson", user.getAddress().getCity());
 		
 	}
+	@Test
+	void test_User_has_many_sentMessages() {
+//		assertNotNull(user.getSentMessages());	
+////		assertTrue(user.getSentMessages().size()>0);
+////		assertNotNull(user.getRecievedMessages());	
+////		assertTrue(user.getRecievedMessages().size()>0);
+//		
+		
+		
+	}
 
 }
