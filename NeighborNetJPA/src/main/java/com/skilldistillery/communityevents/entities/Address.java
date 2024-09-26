@@ -24,7 +24,7 @@ public class Address {
 	
 	private String country;
 	
-	private boolean enabled;
+	private Boolean enabled;
 
 	public Address() {
 	}
@@ -77,11 +77,11 @@ public class Address {
 		this.country = country;
 	}
 
-	public boolean isEnabled() {
+	public Boolean isEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
