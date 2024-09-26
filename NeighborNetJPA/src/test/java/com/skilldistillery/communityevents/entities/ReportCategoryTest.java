@@ -55,7 +55,7 @@ class ReportCategoryTest {
 	@Test
 	void test_reportCategory_reports_oneToMany() {
 		assertNotNull(reportCategory.getReports());
-		assertTrue(reportCategory.getReports().size() == 0);
+		assertTrue(reportCategory.getReports().size() > 0);
 		// Make greater than one once we start populating more data
 	}
 
