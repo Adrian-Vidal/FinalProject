@@ -33,9 +33,9 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public Report create(String username, Report report) {
 		User user = userRepo.findByUsername(username);
-		if (user != null) {
-			// report.set
-		}
+		// if (user != null) {
+			//report.setU
+		// }
 		return null;
 	}
 
