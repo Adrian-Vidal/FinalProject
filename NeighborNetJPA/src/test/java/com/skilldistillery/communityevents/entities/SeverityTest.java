@@ -17,7 +17,6 @@ class SeverityTest {
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
 	private Severity severity;
-	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,22 +31,19 @@ class SeverityTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		em.getTransaction().begin();
-        // Initialize the user object from the database
-        severity = em.find(Severity.class, 1); 
-		}
+		severity = em.find(Severity.class, 1);
+	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		em.close();	
-		}
+		em.close();
+	}
 
 	@Test
 	void test_User_basic_mappings() {
 		assertNotNull(severity);
 		assertEquals("Extreme", severity.getName());
 		assertEquals(10, severity.getLevel());
-		
 	}
 
 }
