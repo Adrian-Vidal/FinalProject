@@ -10,15 +10,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="direct_message")
 public class DirectMessage {
 	///------------------------FIELDS------------------------------------------------------------------------------------------
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private String name;
+	private String title;
 	
 	private String body;
 	
@@ -47,12 +49,12 @@ public class DirectMessage {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String gettitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void settitle(String title) {
+		this.title = title;
 	}
 
 	public String getBody() {
@@ -98,7 +100,7 @@ public class DirectMessage {
 
 	@Override
 	public String toString() {
-		return "DirectMessage [id=" + id + ", name=" + name + ", body=" + body + ", createDate=" + createDate
+		return "DirectMessage [id=" + id + ", title=" + title + ", body=" + body + ", createDate=" + createDate
 				+ ", modifiedDate=" + modifiedDate + ", enabled=" + enabled + "]";
 	}
 

@@ -47,7 +47,7 @@ class CommentTest {
 	@Test
 	void test_User_basic_mappings() {
 		assertNotNull(comment);
-		assertEquals("test", comment.getBody());
+		assertEquals("Thanks for the heads up!", comment.getBody());
 	}
 
 }
