@@ -7,23 +7,32 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "severity")
 public class Severity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
-	private int level;
-	
-	@Column(name="image_url")
+	private Integer level;
+
+	@Column(name = "image_url")
 	private String imageUrl;
 
 	public Severity() {
-		
+
+	}
+
+	public Severity(int id, String name, Integer level, String imageUrl) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.level = level;
+		this.imageUrl = imageUrl;
 	}
 
 	public int getId() {
@@ -42,11 +51,11 @@ public class Severity {
 		this.name = name;
 	}
 
-	public int getLevel() {
+	public Integer getLevel() {
 		return level;
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(Integer level) {
 		this.level = level;
 	}
 
@@ -82,6 +91,5 @@ public class Severity {
 				.append(", imageUrl=").append(imageUrl).append("]");
 		return builder.toString();
 	}
-	
-	
+
 }

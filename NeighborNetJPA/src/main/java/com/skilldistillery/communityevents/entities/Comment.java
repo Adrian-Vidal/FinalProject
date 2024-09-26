@@ -1,6 +1,7 @@
 package com.skilldistillery.communityevents.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,35 +11,72 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "comment")
 public class Comment {
-	///------------------------FIELDS------------------------------------------------------------------------------------------
+
+	// == FIELDS ==
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	private String body;
-	
-	@CreationTimestamp
-	@Column(name="create_date")
-	private LocalDateTime createDate;
-	
-	@CreationTimestamp
-	@Column(name="modified_date")
-	private LocalDateTime modifiedDate;
-	
-	@Column(name="image_url")
-	private String imageUrl;
-	
-	private boolean enabled;
-	///------------------------Constructors------------------------------------------------------------------------------------------
 
+	private String body;
+
+	@CreationTimestamp
+	@Column(name = "create_date")
+	private LocalDateTime createDate;
+
+	@CreationTimestamp
+	@Column(name = "modified_date")
+	private LocalDateTime modifiedDate;
+
+	@Column(name = "image_url")
+	private String imageUrl;
+
+	private boolean enabled;
+
+	// FOREIGN
+	@ManyToOne
+	@JoinColumn(name = "report_id")
+	private Report report;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "in_reply_to_id")
+	private Comment inReplyTo;
+
+	@OneToMany(mappedBy = "inReplyTo")
+	private List<Comment> replies;
+
+	// == CONSTRUCTORS ==
 	public Comment() {
 		super();
 	}
-	///------------------------GETTERS AND SETTERS------------------------------------------------------------------------------------------
 
+	public Comment(int id, String body, LocalDateTime createDate, LocalDateTime modifiedDate, String imageUrl,
+			boolean enabled, Report report, User user, Comment inReplyTo, List<Comment> replies) {
+		super();
+		this.id = id;
+		this.body = body;
+		this.createDate = createDate;
+		this.modifiedDate = modifiedDate;
+		this.imageUrl = imageUrl;
+		this.enabled = enabled;
+		this.report = report;
+		this.user = user;
+		this.inReplyTo = inReplyTo;
+		this.replies = replies;
+	}
+
+	// == GETTERS & SETTERS ==
 	public int getId() {
 		return id;
 	}
@@ -86,8 +124,40 @@ public class Comment {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	///------------------------HASHCODE AND EQUALS------------------------------------------------------------------------------------------
 
+	public Report getReport() {
+		return report;
+	}
+
+	public void setReport(Report report) {
+		this.report = report;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Comment getInReplyTo() {
+		return inReplyTo;
+	}
+
+	public void setInReplyTo(Comment inReplyTo) {
+		this.inReplyTo = inReplyTo;
+	}
+
+	public List<Comment> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<Comment> replies) {
+		this.replies = replies;
+	}
+
+	// == HASHCODE & EQUALS ==
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -104,14 +174,14 @@ public class Comment {
 		Comment other = (Comment) obj;
 		return id == other.id;
 	}
-	///------------------------TOSTRING------------------------------------------------------------------------------------------
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", body=" + body + ", createDate=" + createDate + ", modifiedDate=" + modifiedDate
-				+ ", imageUrl=" + imageUrl + ", enabled=" + enabled + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Comment [id=").append(id).append(", body=").append(body).append(", createDate=")
+				.append(createDate).append(", modifiedDate=").append(modifiedDate).append(", imageUrl=")
+				.append(imageUrl).append(", enabled=").append(enabled).append("]");
+		return builder.toString();
 	}
 
-	
-	
 }

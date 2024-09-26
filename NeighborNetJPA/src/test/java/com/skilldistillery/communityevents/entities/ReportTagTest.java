@@ -12,11 +12,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class SeverityTest {
+class ReportTagTest {
 
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
-	private Severity severity;
+	private ReportTag reportTag;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,7 +31,7 @@ class SeverityTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		severity = em.find(Severity.class, 1);
+		reportTag = em.find(ReportTag.class, 1);
 	}
 
 	@AfterEach
@@ -40,10 +40,10 @@ class SeverityTest {
 	}
 
 	@Test
-	void test_User_basic_mappings() {
-		assertNotNull(severity);
-		assertEquals("Extreme", severity.getName());
-		assertEquals(10, severity.getLevel());
+	void test_reportCategory_basic_mappings() {
+		assertNotNull(reportTag);
+		assertEquals("Tornado", reportTag.getTagName());
+
 	}
 
 }

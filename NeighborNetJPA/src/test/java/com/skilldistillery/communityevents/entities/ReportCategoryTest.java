@@ -12,11 +12,12 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class SeverityTest {
+class ReportCategoryTest {
 
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
-	private Severity severity;
+	private ReportCategory reportCategory;
+	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,19 +32,22 @@ class SeverityTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		severity = em.find(Severity.class, 1);
-	}
+		em.getTransaction().begin();
+        // Initialize the user object from the database
+        reportCategory = em.find(ReportCategory.class, 1); 
+		}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		em.close();
-	}
+		em.close();	
+		}
 
 	@Test
-	void test_User_basic_mappings() {
-		assertNotNull(severity);
-		assertEquals("Extreme", severity.getName());
-		assertEquals(10, severity.getLevel());
+	void test_reportCategory_basic_mappings() {
+		assertNotNull(reportCategory);
+		assertEquals("Weather", reportCategory.getName());
+		assertEquals("Reports related to weather events", reportCategory.getDescription());
+		
 	}
 
 }
