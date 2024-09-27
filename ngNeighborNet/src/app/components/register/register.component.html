@@ -7,6 +7,17 @@
   First Name: <input type="text" name="firstName" [(ngModel)]="newUser.firstName"><br>
   Last Name: <input type="text" name="lastName" [(ngModel)]="newUser.lastName"><br>
   Image URL: <input type="text" name="email" [(ngModel)]="newUser.imageUrl"><br>
+  <br>
+  <br>
+
+  Address:
+  Name: <input type="text" name="name" [(ngModel)]="newUser.address.name"><br>
+  Street:<input type="text" name="name" [(ngModel)]="newUser.address.street"><br>
+  City:<input type="text" name="name" [(ngModel)]="newUser.address.city"><br>
+  State:<input type="text" name="name" [(ngModel)]="newUser.address.state"><br>
+  Postal Code:<input type="text" name="name" [(ngModel)]="newUser.address.postalCode"><br>
+  Country:<input type="text" name="name" [(ngModel)]="newUser.address.country"><br>
+
   <!-- Address: <input type="text" name="address" [(ngModel)]="newUser.address"><br> -->
   Submit: <input (click)="register(newUser)" type="text" type="submit" value="Submit"><br>
 </form>

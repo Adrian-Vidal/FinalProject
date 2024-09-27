@@ -11,6 +11,8 @@ export class User {
   firstName: string;
   lastName: string;
   imageUrl: string;
+  address: Address;
+
 
   // addressL Address;  //Probably should implmeent later
   // address: Address | null;
@@ -26,6 +28,9 @@ export class User {
     lastName: string='',
     imageUrl: string='',
 
+    address: Address = new Address()
+
+
     // address: Address = new Address()
   ){
     this.id=id;
@@ -37,6 +42,7 @@ export class User {
     this.firstName = firstName;
     this.lastName=lastName;
     this.imageUrl=imageUrl;
+    this.address=address;
 
     // this.address = address;
   }

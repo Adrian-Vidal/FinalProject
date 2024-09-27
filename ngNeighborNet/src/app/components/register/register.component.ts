@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { Address } from '../../models/address';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,7 @@ export class RegisterComponent {
   // newUser: User = new User();
   newUser: User = new User();
 
+
   constructor(
     private auth: AuthService,
     private router: Router
@@ -24,6 +26,7 @@ export class RegisterComponent {
 
   }
   register(user: User) : void {
+
     console.log("Registering User:" + user);
     console.log(user);
     this.auth.register(user).subscribe({
