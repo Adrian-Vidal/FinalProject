@@ -24,6 +24,7 @@ public class AuthServiceImpl implements AuthService {
 	public User register(User user) {
 		//encode pw, set enabled,etc.
 		String encryptedPw = encoder.encode(user.getPassword());
+		
 		user.setPassword(encryptedPw);
 		user.setEnabled(true);
 		user.setRole("standard");
