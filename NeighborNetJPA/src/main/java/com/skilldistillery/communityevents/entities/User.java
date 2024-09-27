@@ -18,58 +18,55 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class User {
-	///------------------------FIELDS------------------------------------------------------------------------------------------
 
+	// == FIELDS ==
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String username;
-
 	private String password;
-
+	private String role;
 	private boolean enabled;
 
-	private String role;
-	
-	@Column(name="first_name")
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name="last_name")
-	private String lastName;
-	
-	private String email;
-	
-	@Column(name="create_date")
-	private LocalDateTime createDate;
-	
-	@Column(name="modified_date")
-	private LocalDateTime modifiedDate;
-	
-	@Column(name="image_url")
-	private String imageUrl;
-	
-	@ManyToOne
-	@JoinColumn(name="address_id")
-	private Address address;
-	
-	@OneToMany(mappedBy="sender")
-	private List<DirectMessage> sentMessages;
-	
-	@OneToMany(mappedBy="recipient")
-	private List<DirectMessage> recievedMessages;
-	
-	@JsonIgnore
-	@ManyToMany(mappedBy="users")
-	private List<Report> reports;
-	
-	///----------------------------CONSTRUCTOR--------------------------------------------------------------------------------------
 
-	
+	@Column(name = "last_name")
+	private String lastName;
+
+	private String email;
+
+	@Column(name = "create_date")
+	private LocalDateTime createDate;
+
+	@Column(name = "modified_date")
+	private LocalDateTime modifiedDate;
+
+	@Column(name = "image_url")
+	private String imageUrl;
+
+	// == FOREIGN ==
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	@OneToMany(mappedBy = "sender")
+	private List<DirectMessage> sentMessages;
+
+	@OneToMany(mappedBy = "recipient")
+	private List<DirectMessage> recievedMessages;
+
+	@JsonIgnore
+	@ManyToMany(mappedBy = "users")
+	private List<Report> reports;
+
+	// == CONSTRUCTORS ==
+
 	public User() {
 		super();
 	}
-	
+
 	public User(int id, String username, String password, boolean enabled, String role, String firstName,
 			String lastName, String email, LocalDateTime createDate, LocalDateTime modifiedDate, String imageUrl,
 			Address address, List<DirectMessage> sentMessages, List<DirectMessage> recievedMessages,
@@ -91,11 +88,8 @@ public class User {
 		this.recievedMessages = recievedMessages;
 		this.reports = reports;
 	}
-	///-----------------------------------GETTERS AND SETTERS-------------------------------------------------------------------------------
 
-	
-
-
+	// == GETTERS & SETTERS ==
 	public String getFirstName() {
 		return firstName;
 	}
@@ -207,7 +201,6 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
 
 	public List<Report> getReports() {
 		return reports;
@@ -216,9 +209,8 @@ public class User {
 	public void setReports(List<Report> reports) {
 		this.reports = reports;
 	}
-	
-	///------------------------------------------------------------------------------------------------------------------
 
+	// == HASHCODE & EQUALS ==
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -236,6 +228,7 @@ public class User {
 		return id == other.id;
 	}
 
+	// == TO-STRING ==
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -243,7 +236,5 @@ public class User {
 				.append(password).append(", enabled=").append(enabled).append(", role=").append(role).append("]");
 		return builder.toString();
 	}
-	
-	
 
 }

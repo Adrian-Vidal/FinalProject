@@ -19,13 +19,13 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Report {
-	// ----------FIELDS--------------------------------------------------------------------------
+
+	// == FIELDS ==
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String name;
-
 	private String description;
 
 	@CreationTimestamp
@@ -45,27 +45,30 @@ public class Report {
 	@Column(name = "event_date_end")
 	private LocalDateTime eventDateEnd;
 
+	private Boolean resolved;
+	private Boolean enabled;
+
+	// == FOREIGN ==
+
+	// Address?
+	// Single user vs List? -- ex:
+		// private User user; 
+		
+
+	@ManyToMany
+	@JoinTable(name = "user_has_report_liked", 
+	joinColumns = @JoinColumn(name = "report_id"), 
+	inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> users;
+
 	@ManyToOne
 	@JoinColumn(name = "report_category_id")
 	private ReportCategory reportCategory;
 
-	private Boolean resolved;
-
-	private Boolean enabled;
-
-	@ManyToMany
-	@JoinTable(name = "user_has_report_liked", joinColumns = @JoinColumn(name = "report_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-	private List<User> users;
-
 	@ManyToMany(mappedBy = "reports")
 	private List<ReportTag> reportTags;
 
-//	@OneToMany
-//	@JoinColumn(name = "comment_id")
-//	private List<Comment> comments;
-
-	// ----------CONSTRUCTOR and
-	// HASHCODE--------------------------------------------------------------------------
+	// == CONSTRUCTORS ==
 	public Report() {
 
 	}
@@ -88,9 +91,7 @@ public class Report {
 		this.users = users;
 	}
 
-	// ----------Getters and
-	// Setters--------------------------------------------------------------------------
-
+	// == GETTERS & SETTERS ==
 	public int getId() {
 		return id;
 	}
