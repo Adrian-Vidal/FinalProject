@@ -3,6 +3,8 @@ package com.skilldistillery.communityevents.entities;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +37,7 @@ public class Address {
 
 	private Boolean enabled;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "address")
 	private List<User> users;
 	/// ----------------------------CONSTRUCTOR--------------------------------------------------------------------------------------
