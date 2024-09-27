@@ -12,7 +12,10 @@ export class User {
   lastName: string;
   imageUrl: string;
   address: Address;
+
+
   // addressL Address;  //Probably should implmeent later
+  // address: Address | null;
 
   constructor(
     id: number=0,
@@ -24,7 +27,11 @@ export class User {
     firstName: string='',
     lastName: string='',
     imageUrl: string='',
+
     address: Address = new Address()
+
+
+    // address: Address = new Address()
   ){
     this.id=id;
     this.email=email;
@@ -36,6 +43,8 @@ export class User {
     this.lastName=lastName;
     this.imageUrl=imageUrl;
     this.address=address;
+
+    // this.address = address;
   }
 
 
