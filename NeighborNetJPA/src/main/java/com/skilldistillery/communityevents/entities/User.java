@@ -51,9 +51,11 @@ public class User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "sender")
 	private List<DirectMessage> sentMessages;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "recipient")
 	private List<DirectMessage> recievedMessages;
 
@@ -61,6 +63,7 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Report> reports;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "usersLiked")
 	private List<Report> likedReports;
 
@@ -242,13 +245,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("User [id=").append(id).append(", username=").append(username).append(", password=")
-				.append(password).append(", role=").append(role).append(", enabled=").append(enabled)
-				.append(", firstName=").append(firstName).append(", lastName=").append(lastName).append(", email=")
-				.append(email).append(", createDate=").append(createDate).append(", modifiedDate=").append(modifiedDate)
-				.append(", imageUrl=").append(imageUrl).append("]");
-		return builder.toString();
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enabled="
+				+ enabled + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", createDate="
+				+ createDate + ", modifiedDate=" + modifiedDate + ", imageUrl=" + imageUrl + "]";
 	}
 
 	// == TO-STRING ==

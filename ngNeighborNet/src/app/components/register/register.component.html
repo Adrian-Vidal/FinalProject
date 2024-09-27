@@ -1,1 +1,11 @@
-<p>register works!</p>
+<h1>REGISTER</h1>
+
+<form>
+  Email: <input type="text" name="email" [(ngModel)]="newUser.email"><br>
+  Username: <input type="text" name="userName" [(ngModel)]="newUser.username"><br>
+  Password: <input type="text" name="password" [(ngModel)]="newUser.password"><br>
+  First Name: <input type="text" name="firstName" [(ngModel)]="newUser.firstName"><br>
+  Last Name: <input type="text" name="lastName" [(ngModel)]="newUser.lastName"><br>
+  Image URL: <input type="text" name="email" [(ngModel)]="newUser.imageUrl"><br>
+  Submit: <input (click)="register(newUser)" type="text" type="submit" value="Submit"><br>
+</form>
