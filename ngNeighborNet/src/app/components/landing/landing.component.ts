@@ -1,8 +1,10 @@
+
 import { Report } from './../../models/report';
 import { ReportService } from './../../services/report.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-landing',
@@ -14,8 +16,10 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })
+
 export class LandingComponent implements OnInit{
 reports: Report [] = [];
+
 
 constructor (
   private reportService: ReportService,
