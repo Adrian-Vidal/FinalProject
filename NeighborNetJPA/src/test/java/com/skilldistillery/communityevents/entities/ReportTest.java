@@ -54,8 +54,8 @@ class ReportTest {
 
 	void test_report_has_many_users_manyToMany () {
 		assertNotNull(report);
-		assertNotNull(report.getUsers());
-		assertTrue(report.getUsers().size() > 0);
+		assertNotNull(report.getUsersLiked());
+		assertTrue(report.getUsersLiked().size() > 0);
 	}
 		
 

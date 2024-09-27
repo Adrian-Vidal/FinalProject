@@ -19,7 +19,6 @@ class UserTest {
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
 	private User user;
-	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,15 +33,13 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		em.getTransaction().begin();
-        // Initialize the user object from the database
-        user = em.find(User.class, 1); 
-		}
+		user = em.find(User.class, 1);
+	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		em.close();	
-		}
+		em.close();
+	}
 
 	@Test
 	void test_User_basic_mappings() {
@@ -51,29 +48,30 @@ class UserTest {
 		assertEquals("standard", user.getRole());
 		assertTrue(user.isEnabled());
 	}
+
 	@Test
 	void test_User_has_an_address() {
-		assertNotNull(user.getAddress());		
+		assertNotNull(user.getAddress());
 		assertEquals("Branson", user.getAddress().getCity());
-		
+
 	}
+
 	@Test
 	void test_User_has_many_sentMessages() {
 //		assertNotNull(user.getSentMessages());	
 //		assertTrue(user.getSentMessages().size()>0);
-		assertNotNull(user.getRecievedMessages());	
-		assertTrue(user.getRecievedMessages().size()>0);
+		assertNotNull(user.getRecievedMessages());
+		assertTrue(user.getRecievedMessages().size() > 0);
 //		
-		
-		
+
 	}
-	
+
 	@Test
 	void test_user_has_report_liked_manyToMany() {
 		assertNotNull(user);
 		assertNotNull(user.getReports());
-		assertTrue(user.getReports().size() == 0);
-		
+		assertTrue(user.getReports().size() > 0);
+
 	}
 
 }
