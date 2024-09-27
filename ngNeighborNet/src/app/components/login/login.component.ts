@@ -20,7 +20,19 @@ export class LoginComponent {
   ){}
 
   login(user: User){
-    console.log(user);
-  }
+        this.auth.login(user.username, user.password).subscribe({
+          next: (loggedInUser) => {
+            this.router.navigateByUrl('/landing');
+          },
+          error: (problem) => {
+            console.error('LoginComponent.login(): Error logging in user: ');
+            console.error(problem);
+          }
+        })
+      }
+    }
 
-}
+
+
+
+
