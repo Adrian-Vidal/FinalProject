@@ -16,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Report {
@@ -50,16 +51,17 @@ public class Report {
 
 	// == FOREIGN ==
 
-	// Address?
-	// Single user vs List? -- ex:
-		// private User user; 
-		
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	@ManyToOne()
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	@ManyToMany
-	@JoinTable(name = "user_has_report_liked", 
-	joinColumns = @JoinColumn(name = "report_id"), 
-	inverseJoinColumns = @JoinColumn(name = "user_id"))
-	private List<User> users;
+	@JoinTable(name = "user_has_report_liked", joinColumns = @JoinColumn(name = "report_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> usersLiked;
 
 	@ManyToOne
 	@JoinColumn(name = "report_category_id")
@@ -74,9 +76,9 @@ public class Report {
 	}
 
 	public Report(int id, String name, String description, LocalDateTime createDate, LocalDateTime modifiedDate,
-
-			String imageUrl, LocalDateTime eventDate, ReportCategory reportCategory, Boolean resolved, Boolean enabled,
-			List<User> users) {
+			String imageUrl, LocalDateTime eventDate, LocalDateTime eventDateEnd, Boolean resolved, Boolean enabled,
+			Address address, User user, List<User> usersLiked, ReportCategory reportCategory,
+			List<ReportTag> reportTags) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -85,10 +87,14 @@ public class Report {
 		this.modifiedDate = modifiedDate;
 		this.imageUrl = imageUrl;
 		this.eventDate = eventDate;
-		this.reportCategory = reportCategory;
+		this.eventDateEnd = eventDateEnd;
 		this.resolved = resolved;
 		this.enabled = enabled;
-		this.users = users;
+		this.address = address;
+		this.user = user;
+		this.usersLiked = usersLiked;
+		this.reportCategory = reportCategory;
+		this.reportTags = reportTags;
 	}
 
 	// == GETTERS & SETTERS ==
@@ -184,12 +190,36 @@ public class Report {
 		this.enabled = enabled;
 	}
 
-	public List<User> getUsers() {
-		return users;
+	public List<User> getUsersLiked() {
+		return usersLiked;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUsersLiked(List<User> users) {
+		this.usersLiked = users;
+	}
+
+	public LocalDateTime getEventDateEnd() {
+		return eventDateEnd;
+	}
+
+	public void setEventDateEnd(LocalDateTime eventDateEnd) {
+		this.eventDateEnd = eventDateEnd;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
@@ -215,7 +245,8 @@ public class Report {
 		builder.append("Report [id=").append(id).append(", name=").append(name).append(", description=")
 				.append(description).append(", createDate=").append(createDate).append(", modifiedDate=")
 				.append(modifiedDate).append(", imageUrl=").append(imageUrl).append(", eventDate=").append(eventDate)
-				.append(", resolved=").append(resolved).append("]");
+				.append(", eventDateEnd=").append(eventDateEnd).append(", resolved=").append(resolved)
+				.append(", enabled=").append(enabled).append("]");
 		return builder.toString();
 	}
 

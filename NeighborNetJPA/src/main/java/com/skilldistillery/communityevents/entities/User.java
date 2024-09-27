@@ -58,8 +58,11 @@ public class User {
 	private List<DirectMessage> recievedMessages;
 
 	@JsonIgnore
-	@ManyToMany(mappedBy = "users")
+	@OneToMany(mappedBy = "user")
 	private List<Report> reports;
+
+	@ManyToMany(mappedBy = "usersLiked")
+	private List<Report> likedReports;
 
 	// == CONSTRUCTORS ==
 
@@ -67,16 +70,16 @@ public class User {
 		super();
 	}
 
-	public User(int id, String username, String password, boolean enabled, String role, String firstName,
+	public User(int id, String username, String password, String role, boolean enabled, String firstName,
 			String lastName, String email, LocalDateTime createDate, LocalDateTime modifiedDate, String imageUrl,
 			Address address, List<DirectMessage> sentMessages, List<DirectMessage> recievedMessages,
-			List<Report> reports) {
+			List<Report> reports, List<Report> likedReports) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.enabled = enabled;
 		this.role = role;
+		this.enabled = enabled;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -87,6 +90,7 @@ public class User {
 		this.sentMessages = sentMessages;
 		this.recievedMessages = recievedMessages;
 		this.reports = reports;
+		this.likedReports = likedReports;
 	}
 
 	// == GETTERS & SETTERS ==
@@ -210,6 +214,14 @@ public class User {
 		this.reports = reports;
 	}
 
+	public List<Report> getLikedReports() {
+		return likedReports;
+	}
+
+	public void setLikedReports(List<Report> likedReports) {
+		this.likedReports = likedReports;
+	}
+
 	// == HASHCODE & EQUALS ==
 	@Override
 	public int hashCode() {
@@ -228,13 +240,17 @@ public class User {
 		return id == other.id;
 	}
 
-	// == TO-STRING ==
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("User [id=").append(id).append(", username=").append(username).append(", password=")
-				.append(password).append(", enabled=").append(enabled).append(", role=").append(role).append("]");
+				.append(password).append(", role=").append(role).append(", enabled=").append(enabled)
+				.append(", firstName=").append(firstName).append(", lastName=").append(lastName).append(", email=")
+				.append(email).append(", createDate=").append(createDate).append(", modifiedDate=").append(modifiedDate)
+				.append(", imageUrl=").append(imageUrl).append("]");
 		return builder.toString();
 	}
+
+	// == TO-STRING ==
 
 }
