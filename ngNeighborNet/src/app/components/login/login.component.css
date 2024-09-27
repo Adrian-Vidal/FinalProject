@@ -1,0 +1,15 @@
+.title {
+  font-size: 60px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+
+  .login-form {
+    background-color: rgb(94, 91, 91);
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
