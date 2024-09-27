@@ -1,7 +1,10 @@
+
+import { Report } from './../../models/report';
+import { ReportService } from './../../services/report.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-landing',
@@ -13,20 +16,27 @@ import { Router } from '@angular/router';
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })
-export class LandingComponent implements OnInit {
 
-  constructor(
-    // private
-    private router: Router
-  ){}
-
-  ngOnInit(): void {
-    this.reload();
-  }
-
-  reload(): void {
-
-  }
+export class LandingComponent implements OnInit{
+reports: Report [] = [];
 
 
+constructor (
+  private reportService: ReportService,
+){}
+
+ngOnInit(): void {
+  this.reload();
+}
+
+reload() {
+  this.reportService.index().subscribe({
+    next: (reports) => {
+      this.reports = reports;
+    },
+    error: (err) => {
+      console.error('Error loading reports: ', err);
+    }
+  });
+}
 }
