@@ -1,3 +1,5 @@
+import { Address } from "./address";
+
 export class User {
   //------------------------------FIELDS--------------------------------
   id: number;
@@ -9,7 +11,9 @@ export class User {
   firstName: string;
   lastName: string;
   imageUrl: string;
+
   // addressL Address;  //Probably should implmeent later
+  // address: Address | null;
 
   constructor(
     id: number=0,
@@ -21,6 +25,8 @@ export class User {
     firstName: string='',
     lastName: string='',
     imageUrl: string='',
+
+    // address: Address = new Address()
   ){
     this.id=id;
     this.email=email;
@@ -31,6 +37,8 @@ export class User {
     this.firstName = firstName;
     this.lastName=lastName;
     this.imageUrl=imageUrl;
+
+    // this.address = address;
   }
 
 
