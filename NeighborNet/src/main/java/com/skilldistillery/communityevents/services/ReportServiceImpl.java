@@ -34,7 +34,6 @@ public class ReportServiceImpl implements ReportService {
 	public Report create(String username, Report report) {
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
-			report.setUser(user);
 		    return reportRepo.saveAndFlush(report);
 		} else {
 		  return null;
