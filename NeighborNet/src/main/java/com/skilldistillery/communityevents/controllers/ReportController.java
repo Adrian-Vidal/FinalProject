@@ -39,6 +39,8 @@ public class ReportController {
 	
 	@PostMapping("reports")
 	public Report create(Principal principal, HttpServletRequest req, HttpServletResponse res, @RequestBody Report report) {
+		
+		
 		Report createdReport = reportService.create(principal.getName(), report);
 		if (createdReport == null) {
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
