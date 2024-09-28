@@ -12,7 +12,20 @@ export class ReportService {
 
   private url = environment.baseUrl + 'api/reports'
 
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService
+  ) { }
+
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
+  }
 
   index(): Observable<Report[]> {
     return this.http.get<Report[]>(this.url, this.getHttpOptions()).pipe(
@@ -25,15 +38,20 @@ export class ReportService {
     );
   }
 
-  getHttpOptions() {
-    let options = {
-      headers: {
-        Authorization: 'Basic ' + this.auth.getCredentials(),
-        'X-Requested-With': 'XMLHttpRequest',
-      },
-    };
-    return options;
+  create(report: Report): Observable<Report> {
+    return this.http.post<Report>(this.url, report, this.getHttpOptions()).pipe(
+      catchError(
+        (err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error('report.service.ts - create () : error creating report: ' + err)
+          );
+        }
+      )
+    );
   }
+
+
 
 
 

@@ -17,8 +17,9 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class LandingComponent implements OnInit{
-reports: Report [] = [];
 
+  reports: Report [] = [];
+  newReport: Report = new Report();
 
 constructor (
   private reportService: ReportService,
@@ -38,4 +39,18 @@ reload() {
     }
   });
 }
+
+addReport(report: Report): void {
+  this.reportService.create(report).subscribe({
+    next: (createdReport) => {
+      this.reload();
+      this.newReport = new Report();
+    },
+    error: (err) => {
+      console.error('landing.component - addReport(): Error adding report', err);
+    }
+  });
+}
+
+
 }
