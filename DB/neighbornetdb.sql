@@ -313,6 +313,13 @@ INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `
 INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (6, 'John\'s home', '176 Fremont St', 'Branson', 'MO', '65616', 'United States', 1);
 INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (7, 'Jane\'s home', '651 Taneycomo Rd', 'Branson', 'MO', '65616', 'United States', 1);
 INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (8, 'Mr. Anon\'s home', '491 Compton Ridge Rd', 'Branson', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (9, NULL, '1009 Shawnee Ave', 'Branson', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (10, NULL, '117 Ridge Crest', 'Branson', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (11, NULL, '160 Glory Rd', 'Branson', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (12, NULL, '671 Cannon Ball Loop', 'Branson', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (13, NULL, '202 Palmer Dr', 'Branson', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (14, NULL, '180 Garner Dr', 'Branson', 'MO', '65616', 'United States', 1);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state`, `postal_code`, `country`, `enabled`) VALUES (15, NULL, '215 Cliff Dr', 'Branson', 'MO', '65616', 'United States', 0);
 
 COMMIT;
 
@@ -326,6 +333,9 @@ INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `first_name
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `first_name`, `last_name`, `email`, `create_date`, `modified_date`, `image_url`, `address_id`) VALUES (2, 'jdoe', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'admin', 1, 'Jane', 'Doe', 'janedoe@gmail.com', '2024-09-26 11:51:00', NULL, NULL, 7);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `first_name`, `last_name`, `email`, `create_date`, `modified_date`, `image_url`, `address_id`) VALUES (3, 'janon', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'standard', 1, 'John', 'Anon', 'janon@gmail.com', '2024-09-26 11:52:00', NULL, NULL, 8);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `first_name`, `last_name`, `email`, `create_date`, `modified_date`, `image_url`, `address_id`) VALUES (4, 'mcdonalds', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'standard', 1, 'McDonalds', 'McDonalds', 'mc@example.com', '2024-09-26 16:00:00', NULL, NULL, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `first_name`, `last_name`, `email`, `create_date`, `modified_date`, `image_url`, `address_id`) VALUES (5, 'bob', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, 13);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `first_name`, `last_name`, `email`, `create_date`, `modified_date`, `image_url`, `address_id`) VALUES (6, 'mike', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 'standard', 0, 'Mike', 'Mike', 'mike@gmail.com', NULL, NULL, NULL, 14);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `first_name`, `last_name`, `email`, `create_date`, `modified_date`, `image_url`, `address_id`) VALUES (7, 'nn', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', NULL, 0, 'nn', 'nn', 'nn@gmail.com', NULL, NULL, NULL, 15);
 
 COMMIT;
 
