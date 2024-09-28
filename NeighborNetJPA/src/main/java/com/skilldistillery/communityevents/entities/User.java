@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -36,10 +39,12 @@ public class User {
 	private String lastName;
 
 	private String email;
-
+	
+	@CreationTimestamp
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
 
+	@UpdateTimestamp
 	@Column(name = "modified_date")
 	private LocalDateTime modifiedDate;
 
