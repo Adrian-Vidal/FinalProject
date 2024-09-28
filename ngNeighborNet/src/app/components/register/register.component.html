@@ -26,46 +26,36 @@
       <input type="text" name="email" placeholder="Profile Image" [(ngModel)]="newUser.imageUrl">
     </div>
 
-    <div class="form-group row">
+    <br>
 
+    <div class="form-group row">
+      <input type="text" name="name" placeholder="Name of Location" [(ngModel)]="newUser.address.name"><br>
     </div>
 
     <div class="form-group row">
-
+      <input type="text" name="name" placeholder="Street" [(ngModel)]="newUser.address.street">
     </div>
 
+    <div class="form-group row">
+      <input type="text" name="name" placeholder="City" [(ngModel)]="newUser.address.city">
+    </div>
 
+    <div class="form-group row">
+      <input type="text" name="name" placeholder="State" [(ngModel)]="newUser.address.state">
+    </div>
 
+    <div class="form-group row">
+      <input type="text" name="name" placeholder="Postal Code" [(ngModel)]="newUser.address.postalCode">
+    </div>
 
-
-
-
-
+    <div class="form-group row">
+      <input type="text" name="name" placeholder="Country" [(ngModel)]="newUser.address.country">
+    </div>
 
   <br>
 
-  <!-- <div class="container text-center">
-    <div class="row row-cols-2">
-      <div class="col">Email</div>
-      <div class="col">
-        <input type="text" name="email" [(ngModel)]="newUser.email">
-      </div>
-      <div class="col">Column</div>
-      <div class="col">Column</div>
-    </div>
-  </div> -->
+  <input (click)="register(newUser)" type="text" type="submit" value="Submit">
 
-  <br>
-
-
-  Name of Location: <input type="text" name="name" [(ngModel)]="newUser.address.name"><br>
-  Street:<input type="text" name="name" [(ngModel)]="newUser.address.street"><br>
-  City:<input type="text" name="name" [(ngModel)]="newUser.address.city"><br>
-  State:<input type="text" name="name" [(ngModel)]="newUser.address.state"><br>
-  Postal Code:<input type="text" name="name" [(ngModel)]="newUser.address.postalCode"><br>
-  Country:<input type="text" name="name" [(ngModel)]="newUser.address.country"><br>
-
-  <!-- Address: <input type="text" name="address" [(ngModel)]="newUser.address"><br> -->
-  Submit: <input (click)="register(newUser)" type="text" type="submit" value="Submit"><br>
 </form>
+
 </div>
