@@ -6,6 +6,8 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,6 +36,17 @@ public class ReportController {
 //		return todoService.index(username);
 		return reportService.index(principal.getName());
 	}
+	
+	@PostMapping("reports")
+	public Report create(Principal principal, HttpServletRequest req, HttpServletResponse res, @RequestBody Report report) {
+		Report createdReport = reportService.create(principal.getName(), report);
+		if (createdReport == null) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		} else {
+		    res.setStatus(HttpServletResponse.SC_CREATED);
+		}
+		return createdReport;
+	 	}
 	
 	
 
