@@ -14,7 +14,7 @@ import com.skilldistillery.communityevents.services.AuthService;
 
 import jakarta.servlet.http.HttpServletResponse;
 
-@RestController
+@RestController 
 @CrossOrigin({ "*", "http://localhost/" })
 public class AuthController {
 
