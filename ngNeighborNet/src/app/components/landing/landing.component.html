@@ -46,18 +46,39 @@
     </div>
 
     <!-- [ object Object ]  TODO -->
+    <!-- <div class="form-group row">
+      <input type="text" name="userId" placeholder="User Id" [(ngModel)]="newReport.user.id">
+    </div> -->
+
 
     <div class="form-group row">
-      <input type="text" name="address" [(ngModel)]="newReport.address">
+      <input type="text" name="name" placeholder="Location Name" [(ngModel)]="newReport.address.name">
+    </div>
+
+    <div class="form-group row">
+      <input type="text" name="street" placeholder="Street" [(ngModel)]="newReport.address.street">
+    </div>
+
+    <div class="form-group row">
+      <input type="text" name="city" placeholder="City" [(ngModel)]="newReport.address.city">
+    </div>
+
+    <div class="form-group row">
+      <input type="text" name="state" placeholder="State" [(ngModel)]="newReport.address.state">
+    </div>
+
+    <div class="form-group row">
+      <input type="text" name="postalCode" placeholder="Postal Code" [(ngModel)]="newReport.address.postalCode">
+    </div>
+
+    <div class="form-group row">
+      <input type="text" name="country" placeholder="Country" [(ngModel)]="newReport.address.country">
     </div>
 
     <!-- == Will need to update ADD POST div, user would not see this UNLESS logged-in == -->
 
     <div class="form-group row">
-      <input type="text" name="user" [(ngModel)]="newReport.user">
-    </div>
-    <div class="form-group row">
-      <input type="text" name="reportCategory" [(ngModel)]="newReport.reportCategory">
+      <input type="text" name="reportCategory" placeholder="Category"[(ngModel)]="newReport.reportCategory.id">
     </div>
 
     <input (click)="addReport(newReport)" type="text" type="submit" value="Submit">
