@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,7 +31,7 @@ public class DirectMessage {
 	@Column(name="create_date")
 	private LocalDateTime createDate;
 	
-	@CreationTimestamp
+	@UpdateTimestamp
 	@Column(name="modified_date")
 	private LocalDateTime modifiedDate;
 	
