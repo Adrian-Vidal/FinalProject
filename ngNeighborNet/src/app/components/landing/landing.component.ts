@@ -1,4 +1,3 @@
-
 import { Report } from './../../models/report';
 import { ReportService } from './../../services/report.service';
 import { CommonModule } from '@angular/common';
