@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { LogoutComponent } from "../logout/logout.component";
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -11,18 +12,23 @@ import { AuthService } from '../../services/auth.service';
   imports: [
     RouterLink,
     CommonModule,
-    FormsModule
-    // NgbModule
-  ],
+    FormsModule,
+    LogoutComponent,
+],
   templateUrl: './navigationbar.component.html',
   styleUrl: './navigationbar.component.css'
 })
 export class NavigationbarComponent {
 
-  // collapsible
+  // isCollapsed = false;
 
   constructor(
     private auth: AuthService
   ){}
+
+  loggedIn(): boolean {
+    return this.auth.checkLogin();
+  }
+
 
 }

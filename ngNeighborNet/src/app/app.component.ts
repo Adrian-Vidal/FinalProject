@@ -11,27 +11,29 @@ import { NavigationbarComponent } from "./components/navigationbar/navigationbar
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
   title = 'ngNeighborNet';
 
-  constructor(
-    private auth: AuthService
-  ) {}
+  // constructor(
+  //   private auth: AuthService
+  // ) {}
 
-  ngOnInit() {
-    this.tempTestDeleteMeLater(); // DELETE LATER!!!
-  }
+  // ngOnInit() {
+  //   this.tempTestDeleteMeLater(); // DELETE LATER!!!
 
-  tempTestDeleteMeLater() {
-    this.auth.login('test','test').subscribe({ // change username to match DB
-      next: (data) => {
-        console.log('Logged in:');
-        console.log(data);
-      },
-      error: (fail) => {
-        console.error('Error authenticating:')
-        console.error(fail);
-      }
-    });
-  }
+  // }
+
+  // tempTestDeleteMeLater() {
+  //   this.auth.login('test','test').subscribe({ // change username to match DB
+  //     next: (data) => {
+  //       console.log('Logged in:');
+  //       console.log(data);
+  //     },
+  //     error: (fail) => {
+  //       console.error('Error authenticating:')
+  //       console.error(fail);
+  //     }
+  //   });
+  // }
 
 }

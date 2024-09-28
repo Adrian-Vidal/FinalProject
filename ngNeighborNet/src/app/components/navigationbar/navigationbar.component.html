@@ -15,20 +15,20 @@
         <a class="nav-link active" aria-current="page" [routerLink]="['/home']">Home</a>
       </li>
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" [routerLink]="['/login']">Login</a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/register']">Register</a>
+      </li> -->
+
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/landing']">Landing (TODO: rename)</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/landing']">Landing (map or user's posts, or community)</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/map']">Map - Testing</a>
+        <a class="nav-link" [routerLink]="['/map']">Map (TODO: rename)</a>
       </li>
 
       <!-- <li class="nav-item">
@@ -39,10 +39,15 @@
 
     <!-- Update div class once login/logout if logic has been added. -->
     <!-- <div class="nav justify-content-end"> -->
-    <div class="d-flex">
+    <div *ngIf="!loggedIn()" class="d-flex">
       <a class="navbar-link" [routerLink]="['/login']">Login</a>
       <a class="navbar-link ms-3" [routerLink]="['/register']">Register</a>
     </div>
+
+    <div *ngIf="loggedIn()">
+      <app-logout></app-logout>
+    </div>
+
 
   </div>
 
