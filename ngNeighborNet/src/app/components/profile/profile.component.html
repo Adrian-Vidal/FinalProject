@@ -1,38 +1,145 @@
 <!-- TODO $customize w/ users name, etc-->
 <h1>Profile</h1>
 
+<div format_align_right>
+  <button> Edit (profile) </button>
+</div>
+
 <!-- <button class="btn btn-outline-danger" (click)="delete()">Delete</button> -->
 <!-- <button (click)="disable()">Remove</button>  -->
 <!-- <button>Remove</button> -->
- <button>Create Post (placeholder) </button>
+ <button (click)="displayCreateForm()">Create Post (placeholder) </button>
  <br>
- <button>Edit (profile) (placeholder) </button>
+
 
 <!-- CARD - Displaying a user's report -->
-<div class="container text-center">
+
   <div class="row d-flex flex-column align-items-center">
-<div class="card" *ngFor="let report of reports" style="width: 18rem;">
+<!-- <div class="card" *ngFor="let report of reports" style="width: 18rem;"> -->
+  <div class="card w-75" *ngFor="let report of reports" >
   <!-- <img src="..." class="card-img-top" alt="..."> -->
   <div class="card-body">
     <!-- <h5 class="card-title">Card title</h5> -->
-    <h5 class="card-title" >{{report.name}}</h5>
-    <p class="card-text">{{report.description}}</p>
+    <div class="row">
+      <div class="col">
+        <h5 class="card-title" >{{report.name}}</h5>
+      </div>
+
+      <div class="col">
+        <!-- PLACEHOLDER -->
+      </div>
+
+      <div class="col ">
+        <a class="list-group-item">Author: {{report.user.firstName}}</a>
+      </div>
+
+      <div class="row">
+        <p class="card-text">{{report.description}}</p>
+      </div>
+
+
+      <div class="row">
+        <div class="col">
+          <a class="list-group-item">Posted: {{report.createDate | date: 'full'  }}</a>
+        </div>
+
+        <div class="col">
+          <!-- PLACEHOLDER -->
+        </div>
+
+        <div class="col">
+          <a class="list-group-item">Happened: {{report.eventDate | date: 'full' }}</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <a class="list-group-item">Category: {{report.reportCategory.name}}</a>
+        </div>
+
+        <div class="col">
+          <a class="list-group-item">PLACEHOLDER for tag {{report.reportCategory.name}}</a>
+        </div>
+
+        <div class="col">
+          <a class="list-group-item">Location:
+            {{report.address.street}}, {{report.address.city}},
+            {{report.address.postalCode}}
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button>Edit</button>
+        </div>
+          <!-- <button (click)="disable()">Remove</button>  -->
+        <div class="col">
+          <button>Remove</button>
+        </div>
+          <!-- <button>Delete</button> -->
+        <div class="col">
+          <button>Comment</button>
+        </div>
+          <br>
+      </div>
+    </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">createDate: (to be changed) {{report.createDate}}</li>
-    <li class="list-group-item">eventDate: (to be changed) {{report.eventDate}}</li>
-    <li class="list-group-item">reportCategory: (to be changed) {{report.reportCategory}}</li>
-  </ul>
-  <!-- <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div> -->
-  <!-- <button (click)="edit()">Edit</button> -->
-  <button>Edit</button>
-  <!-- <button (click)="disable()">Remove</button>  -->
-  <button>Remove</button>
-  <button>Delete</button>
-    <br>
+</div>
+
+<div class="container text-center" *ngIf="showCreateForm">
+  <div class="row d-flex flex-column align-items-center">
+    <div class="card" style="width: 18rem;">
+      <p>Create</p>
+      <form>
+        <div class="form-group row">
+          <input type="text" name="name" placeholder="Title" [(ngModel)]="newReport.name">
+        </div>
+        <div class="form-group row">
+          <input type="text" name="description" placeholder="Description" [(ngModel)]="newReport.description">
+        </div>
+        <div class="form-group row">
+          <input type="text" name="imageUrl" placeholder="Link image URL" [(ngModel)]="newReport.imageUrl">
+        </div>
+
+    <!-- [ object Object ]  TODO -->
+    <!-- <div class="form-group row">
+      <input type="text" name="userId" placeholder="User Id" [(ngModel)]="newReport.user.id">
+    </div> -->
+
+        <div class="form-group row">
+          <input type="text" name="name" placeholder="Location Name" [(ngModel)]="newReport.address.name">
+        </div>
+
+        <div class="form-group row">
+          <input type="text" name="street" placeholder="Street" [(ngModel)]="newReport.address.street">
+        </div>
+
+        <div class="form-group row">
+          <input type="text" name="city" placeholder="City" [(ngModel)]="newReport.address.city">
+        </div>
+
+        <div class="form-group row">
+          <input type="text" name="state" placeholder="State" [(ngModel)]="newReport.address.state">
+        </div>
+
+        <div class="form-group row">
+          <input type="text" name="postalCode" placeholder="Postal Code" [(ngModel)]="newReport.address.postalCode">
+        </div>
+
+        <div class="form-group row">
+          <input type="text" name="country" placeholder="Country" [(ngModel)]="newReport.address.country">
+        </div>
+
+    <!-- == Will need to update ADD POST div, user would not see this UNLESS logged-in == -->
+
+        <div class="form-group row">
+          <input type="text" name="reportCategory" placeholder="Category"[(ngModel)]="newReport.reportCategory.name">
+        </div>
+
+        <input (click)="addReport(newReport)" type="text" type="submit" value="Submit">
+
+      </form>
     </div>
   </div>
 </div>

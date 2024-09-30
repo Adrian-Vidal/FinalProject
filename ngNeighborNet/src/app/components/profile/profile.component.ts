@@ -23,16 +23,19 @@ export class ProfileComponent implements OnInit {
   reports: Report [] = [];
   newReport: Report = new Report();
   loggedInUser: User | null = null;
+  showCreateForm = false;
 
 constructor (
   private AuthService: AuthService,
   private reportService: ReportService
+  // private dialogExample: diaglo // TODO - look up prompt dialog > MatDialogRef
 ){}
 
 ngOnInit(): void {
   this.reload();
 }
 
+// Rather than index -> showAllUserReportEnabled
 reload() {
   this.reportService.showAllUserReportEnabled().subscribe({
     next: (reports) => {
@@ -56,5 +59,11 @@ addReport(report: Report): void {
     }
   });
 }
+
+displayCreateForm(){
+  this.showCreateForm = !this.showCreateForm;
+}
+
+
 
 }
