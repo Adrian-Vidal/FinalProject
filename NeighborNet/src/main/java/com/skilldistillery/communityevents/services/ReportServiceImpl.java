@@ -1,6 +1,10 @@
 package com.skilldistillery.communityevents.services;
 
+
+import java.util.Optional;
+
 import java.util.List;
+
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,9 +64,18 @@ public class ReportServiceImpl implements ReportService {
 
 	
 	@Override
-	public Report update(String username, int id, Report report) {
-		
-		return null;
+	public Report update(String username, int id, Report updatedReport) {
+		Optional<Report> reportOpt = reportRepo.findById(id);
+		Report managedReport = null;
+		if (reportOpt.isPresent()) {
+			managedReport = reportOpt.get();
+			managedReport.setName(updatedReport.getName());
+			managedReport.setDescription(updatedReport.getDescription());
+			managedReport.setImageUrl(updatedReport.getImageUrl());
+			managedReport.setEnabled(updatedReport.getEnabled());
+			reportRepo.saveAndFlush(managedReport);
+		}
+		return managedReport;
 	}
 
 	@Override
@@ -77,7 +90,7 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 
-	
+
 	
 	
 
