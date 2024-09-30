@@ -76,6 +76,16 @@ export class ReportService {
     );
   }
 
+  // disableReport(report: Report): Observable<Report> {
+  //   return this.http.put<Report>(this.url).pipe(
+  //     catchError((err: any) => {
+  //       console.error(err);
+  //       return throwError(
+  //          () => new Error( 'ReportService.disableReport(): error disabling report: ' + err )
+  //       );
+  //     })
+  //   );
+
 
   update(report: Report): Observable<Report> {
     return this.http.put<Report>(`${this.url}/${report.user.id}`, report, this.getHttpOptions()).pipe(

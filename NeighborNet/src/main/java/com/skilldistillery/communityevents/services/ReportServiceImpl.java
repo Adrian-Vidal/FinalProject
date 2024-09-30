@@ -77,6 +77,19 @@ public class ReportServiceImpl implements ReportService {
 		}
 		return managedReport;
 	}
+	
+	@Override
+	public Report disable(String username, int id, Report updatedReport) {
+		Optional<Report> reportOpt = reportRepo.findById(id);
+		Report managedReport = null;
+		if (reportOpt.isPresent()) {
+			managedReport = reportOpt.get();
+			managedReport.setEnabled(false);
+			reportRepo.saveAndFlush(managedReport);
+			return managedReport;
+		}
+		return null;
+	}
 
 	@Override
 	public boolean destroy(String username, int id) {
