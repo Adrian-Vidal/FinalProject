@@ -6,6 +6,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { NavigationbarComponent } from './components/navigationbar/navigationbar.component';
 import { MapReportsComponent } from './components/map-reports/map-reports.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { TestingComponent } from './components/testing/testing.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -13,7 +14,10 @@ export const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'landing', component: LandingComponent},
   {path: 'map', component: MapReportsComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent},
+  {path: 'testing', component: TestingComponent},
+
+
 
 
 ];
