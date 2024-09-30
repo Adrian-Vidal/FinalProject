@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { MapReportService } from '../../services/map-report.service';
 import { Address } from '../../models/address';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
+import { ReportService } from '../../services/report.service';
+import { AuthService } from '../../services/auth.service';
+import { Report } from './../../models/report';
+
 
 @Component({
   selector: 'app-testing',
@@ -23,11 +27,37 @@ export class TestingComponent {
   zoom = 4;
   markerOptions: google.maps.MarkerOptions = {draggable: false};
   markerPositions: google.maps.LatLngLiteral[] = [];
+  //reports: Report [] = [];
+  reports: Report [] =[];
+  newReport: Report = new Report();
+
 
   constructor(
-    private mapReportService : MapReportService
+    private mapReportService : MapReportService,
+    private reportService: ReportService,
+    private authService: AuthService,
+
   ){}
 
+  ngOnInit(): void{
+    //  this.mapMarker({lat: 27, lng: 23});
+    this.reload();
+    console.log("Hello???")
+    console.log(this.reports)
+    // this.mapMarker(this.markerPositions);
+
+
+  }
+  reload() {
+    this.reportService.showAllEnabled().subscribe({
+      next: (reports) => {
+        this.reports=reports;
+      },
+      error: (err) => {
+        console.error('Error loading reports: ', err);
+      }
+    });
+  }
 
 
    //132 Cape Cod Dr, Branson, MO 65616
@@ -38,19 +68,33 @@ export class TestingComponent {
      this.testAddress.city = "Branson";
      this.testAddress.state = "MO";
    }
+  //  markerPositions: google.maps.LatLngLiteral[] = [];
 
-  showLongLat(){
+  showLongLat(address : Address){
     this.makeTestAddress();
-    this.mapReportService.getLongAndLat(this.testAddress).subscribe({
+    this.mapReportService.getLongAndLat(address).subscribe({
       next: (geoResponse) => {
         console.log(geoResponse.results[0].geometry.location.lat());
+
+        this.markerPositions.push({lat: geoResponse.results[0].geometry.location.lat(), lng: geoResponse.results[0].geometry.location.lng()});
+
         console.log(geoResponse.results[0].geometry.location.lng());
       }
     });
   }
 
-  mapMarker(event: google.maps.MapMouseEvent){
-    this.markerPositions = this.mapReportService.addMarker(event);
+  // reports: Report [] =[];
+  //markerPositions: google.maps.LatLngLiteral[] = [];
+
+
+  mapMarker(markerPosition: google.maps.LatLngLiteral[]){
+
+    for (let marker of markerPosition){
+
+      this.markerPositions = this.mapReportService.addMarker({lat: marker.lat, lng: marker.lng});
+
+    }
+
 
   }
 

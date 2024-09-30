@@ -26,17 +26,29 @@ export class MapReportService {
   }
 
 
-  center: google.maps.LatLngLiteral = {lat: 24, lng: 12}
-  zoom = 4;
-  markerOptions: google.maps.MarkerOptions = {draggable: false};
+  // center: google.maps.LatLngLiteral = {lat: 24, lng: 12}
+  // zoom = 4;
+  // markerOptions: google.maps.MarkerOptions = {draggable: false};
   markerPositions: google.maps.LatLngLiteral[] = [];
 
 
-  addMarker(event: google.maps.MapMouseEvent) : google.maps.LatLngLiteral[]{
-    if(event.latLng){
-     this.markerPositions.push(event.latLng.toJSON());
+  addMarker({lat, lng}: {lat:number, lng:number}) : google.maps.LatLngLiteral[]{
 
+    let newLongLat = {
+      lat: 27,
+      lng: 23
     }
+    this.markerPositions.push(newLongLat);
+
+
+    ////---------old
+    // /////////////////
+    // if(event.latLng){
+    //  this.markerPositions.push(event.latLng.toJSON());
+    //  console.log(event.latLng.toJSON());
+    // }
+    //-------old
+
     return this.markerPositions;
 }
 }
