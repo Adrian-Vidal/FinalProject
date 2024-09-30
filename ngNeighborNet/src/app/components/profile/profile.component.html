@@ -1,46 +1,88 @@
 <!-- TODO $customize w/ users name, etc-->
 <h1>Profile</h1>
 
+<div format_align_right>
+  <button> Edit (profile) </button>
+</div>
+
 <!-- <button class="btn btn-outline-danger" (click)="delete()">Delete</button> -->
 <!-- <button (click)="disable()">Remove</button>  -->
 <!-- <button>Remove</button> -->
  <button (click)="displayCreateForm()">Create Post (placeholder) </button>
  <br>
- <button>Edit (profile) (placeholder) </button>
+
 
 <!-- CARD - Displaying a user's report -->
-<div class="container text-center">
+
   <div class="row d-flex flex-column align-items-center">
-<div class="card" *ngFor="let report of reports" style="width: 18rem;">
+<!-- <div class="card" *ngFor="let report of reports" style="width: 18rem;"> -->
+  <div class="card w-75" *ngFor="let report of reports" >
   <!-- <img src="..." class="card-img-top" alt="..."> -->
   <div class="card-body">
     <!-- <h5 class="card-title">Card title</h5> -->
-    <h5 class="card-title" >{{report.name}}</h5>
-    <p class="card-text">{{report.description}}</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Posted: {{report.createDate | date: 'full'  }}</li>
-    <li class="list-group-item">Happened: {{report.eventDate | date: 'full' }}</li>
+    <div class="row">
+      <div class="col">
+        <h5 class="card-title" >{{report.name}}</h5>
+      </div>
 
-    <!-- [(ngModel)]="newReport.reportCategory.name" -->
-    <li class="list-group-item">Location:
-      {{report.address.street}}, {{report.address.city}},
-      {{report.address.postalCode}}
-    </li>
+      <div class="col">
+        <!-- PLACEHOLDER -->
+      </div>
 
-    <li class="list-group-item">Author: {{report.user.firstName}}</li>
-    <li class="list-group-item">Category: {{report.reportCategory.name}}</li>
-  </ul>
-  <!-- <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div> -->
-  <!-- <button (click)="edit()">Edit</button> -->
-  <button>Edit</button>
-  <!-- <button (click)="disable()">Remove</button>  -->
-  <button>Remove</button>
-  <button>Delete</button>
-    <br>
+      <div class="col ">
+        <a class="list-group-item">Author: {{report.user.firstName}}</a>
+      </div>
+
+      <div class="row">
+        <p class="card-text">{{report.description}}</p>
+      </div>
+
+
+      <div class="row">
+        <div class="col">
+          <a class="list-group-item">Posted: {{report.createDate | date: 'full'  }}</a>
+        </div>
+
+        <div class="col">
+          <!-- PLACEHOLDER -->
+        </div>
+
+        <div class="col">
+          <a class="list-group-item">Happened: {{report.eventDate | date: 'full' }}</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <a class="list-group-item">Category: {{report.reportCategory.name}}</a>
+        </div>
+
+        <div class="col">
+          <a class="list-group-item">PLACEHOLDER for tag {{report.reportCategory.name}}</a>
+        </div>
+
+        <div class="col">
+          <a class="list-group-item">Location:
+            {{report.address.street}}, {{report.address.city}},
+            {{report.address.postalCode}}
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button>Edit</button>
+        </div>
+          <!-- <button (click)="disable()">Remove</button>  -->
+        <div class="col">
+          <button>Remove</button>
+        </div>
+          <!-- <button>Delete</button> -->
+        <div class="col">
+          <button>Comment</button>
+        </div>
+          <br>
+      </div>
     </div>
   </div>
 </div>

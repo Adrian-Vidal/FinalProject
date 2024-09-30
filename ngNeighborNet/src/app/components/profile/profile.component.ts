@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
 constructor (
   private AuthService: AuthService,
   private reportService: ReportService
+  // private dialogExample: diaglo // TODO - look up prompt dialog > MatDialogRef
 ){}
 
 ngOnInit(): void {
