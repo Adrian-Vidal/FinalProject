@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { GoogleMap, GoogleMapsModule, MapGeocoder, MapGeocoderResponse } from '@angular/google-maps';
+import { Component, Injectable } from '@angular/core';
+import { GoogleMap, GoogleMapsModule, MapGeocoder, MapGeocoderResponse, MapMarker } from '@angular/google-maps';
 import { Address } from '../models/address';
 import { AuthService } from './auth.service';
 import { Observable, of } from 'rxjs';
@@ -18,23 +18,26 @@ export class MapReportService {
 
   getLongAndLat(address : Address) : Observable <MapGeocoderResponse>  {
     let longLat: number[]=[];
-    console.log(address);
-
     let addr = `${address.street}, ${address.city}, ${address.state}, ${address.postalCode}`;
-    console.log(addr);
-
+    // console.log(addr);
     return this.geocoder.geocode({
       address: addr
     });
-    // .subscribe(({results}) => {
-    //   console.log("still working?");
-    //   let loc = results[0].geometry.location;
-    //   longLat.push(loc.lat());
-    //   longLat.push(loc.lng());
-    // }))
-
   }
 
 
+  center: google.maps.LatLngLiteral = {lat: 24, lng: 12}
+  zoom = 4;
+  markerOptions: google.maps.MarkerOptions = {draggable: false};
+  markerPositions: google.maps.LatLngLiteral[] = [];
 
+
+  addMarker(event: google.maps.MapMouseEvent) : google.maps.LatLngLiteral[]{
+    if(event.latLng){
+     this.markerPositions.push(event.latLng.toJSON());
+
+    }
+    return this.markerPositions;
 }
+}
+
