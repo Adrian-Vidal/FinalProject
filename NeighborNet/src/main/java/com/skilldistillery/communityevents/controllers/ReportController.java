@@ -67,6 +67,19 @@ public class ReportController {
 		
 	}
 	
+	@PutMapping("reports/user/{id}/disable")
+	public Report disable(Principal principal, 
+			HttpServletRequest req, HttpServletResponse res, 
+			@PathVariable("id") int id, @RequestBody Report report) {
+		Report disableReport = reportService.disable(principal.getName(), id, report);
+		if(disableReport == null) {
+			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		} else {
+			res.setStatus(HttpServletResponse.SC_OK);
+		}
+		return disableReport;
+		
+	}
 	
 
 	@GetMapping("reports")
