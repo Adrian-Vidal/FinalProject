@@ -1,36 +1,29 @@
 <h1>Landing</h1>
 
-<table class="table tables-striped">
-  <thead class="table-dark">
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody class="tbody">
-    <tr *ngFor="let report of reports">
-      <td>{{report.name}}</td>
-    </tr>
+<!-- Bootstrap - card - "Kitchen Sink example"-->
+<div class="card" *ngFor="let report of reports" style="width: 18rem;">
+  <!-- TODO , check if image url present before including on card -->
+  <!-- <img src="..." class="card-img-top" alt="..."> -->
+  <div class="card-body">
+    <!-- <h5 class="card-title">Card title</h5> -->
+    <h5 class="card-title" >{{report.name}}</h5>
+    <p class="card-text">{{report.description}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <!-- TODO card layout and items to include / handle edits inline or send elsewhere? -->
+    <li class="list-group-item">createDate: (to be changed) {{report.createDate}}</li>
+    <li class="list-group-item">eventDate: (to be changed) {{report.eventDate}}</li>
+    <li class="list-group-item">reportCategory: (to be changed) {{report.reportCategory}}</li>
+  </ul>
+  <!-- <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div> -->
 
-  </tbody>
-</table>
-
-<!-- {
-  "name": "Test!!!!",
-  "description": "Test.",
-  "imageUrl": null,
-  "resolved": null,
-  "enabled": true,
-  "address": {
-      "id": 2
-  },
-  "user": {
-      "id": 1
-  },
-  "reportCategory": {
-      "id": 3
-  }
-} -->
+  <!-- TODO - ngIf - user is post's user, can EDIT, otherwise -> comment -->
+  <!-- <button (click)="edit()">Edit</button> -->
+  <button>Edit</button>
+</div>
 
 <div class="container-md">
   <h1>Add Post</h1>

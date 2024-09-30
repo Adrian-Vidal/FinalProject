@@ -1,0 +1,22 @@
+<!-- TODO $customize w/ users name, etc-->
+<h1>Profile</h1>
+
+<div class="card" *ngFor="let report of reports" style="width: 18rem;">
+  <!-- <img src="..." class="card-img-top" alt="..."> -->
+  <div class="card-body">
+    <!-- <h5 class="card-title">Card title</h5> -->
+    <h5 class="card-title" >{{report.name}}</h5>
+    <p class="card-text">{{report.description}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">createDate: (to be changed) {{report.createDate}}</li>
+    <li class="list-group-item">eventDate: (to be changed) {{report.eventDate}}</li>
+    <li class="list-group-item">reportCategory: (to be changed) {{report.reportCategory}}</li>
+  </ul>
+  <!-- <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div> -->
+  <!-- <button (click)="edit()">Edit</button> -->
+  <button>Edit</button>
+</div>
