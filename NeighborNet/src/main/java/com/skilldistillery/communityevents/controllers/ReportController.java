@@ -34,6 +34,7 @@ public class ReportController {
 	@GetMapping("reports")
 	public Set<Report> index(Principal principal, HttpServletRequest req, HttpServletResponse res) { 
 //		return todoService.index(username);
+		System.out.println("ReportController Firing!!!!");
 		return reportService.index(principal.getName());
 	}
 	

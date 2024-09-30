@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.communityevents.entities.Report;
 import com.skilldistillery.communityevents.entities.User;
+import com.skilldistillery.communityevents.repositories.AddressRepository;
+import com.skilldistillery.communityevents.repositories.ReportCategoryRepository;
 import com.skilldistillery.communityevents.repositories.ReportRepository;
 import com.skilldistillery.communityevents.repositories.UserRepository;
 
@@ -18,6 +20,12 @@ public class ReportServiceImpl implements ReportService {
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private AddressRepository addrRepo;
+	
+	@Autowired
+	private ReportCategoryRepository reportCategoryRepo;
 
 	@Override
 	public Set<Report> index(String username) {
@@ -35,6 +43,11 @@ public class ReportServiceImpl implements ReportService {
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
 			report.setUser(user);
+			report.setEnabled(true);
+			System.out.println("Is this firing");
+			System.out.println(report);
+			reportCategoryRepo.saveAndFlush(report.getReportCategory());
+			addrRepo.saveAndFlush(report.getAddress());
 		    return reportRepo.saveAndFlush(report);
 		} else {
 		  return null;

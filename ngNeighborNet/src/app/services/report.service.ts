@@ -39,6 +39,8 @@ export class ReportService {
   }
 
   create(report: Report): Observable<Report> {
+    console.log("report.service.ts Firing!!?!?!?");
+    console.log(report);
     return this.http.post<Report>(this.url, report, this.getHttpOptions()).pipe(
       catchError(
         (err: any) => {

@@ -36,9 +36,16 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public User getUserByUsername(String username) {
-		
-//		return userRepo.findByUsername(username);
-		return userRepo.findByUsernameAndEnabled(username, true);
+		User user = userRepo.findByUsername(username);
+		System.out.println(user.isEnabled());
+		System.out.println(user.isEnabled());
+		System.out.println(user.isEnabled());
+		System.out.println(user.isEnabled());
+		System.out.println(user.isEnabled());
+
+		return user;
+//		return userRepo.findByUsername(username);	//OG
+//		return userRepo.findByUsernameAndEnabled(username, true);		//Mine
 	}
 
 }
