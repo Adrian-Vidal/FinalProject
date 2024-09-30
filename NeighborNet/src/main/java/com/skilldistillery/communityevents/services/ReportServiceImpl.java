@@ -42,18 +42,21 @@ public class ReportServiceImpl implements ReportService {
 	public Report create(String username, Report report) {
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
+
 			report.setUser(user);
 			report.setEnabled(true);
 			System.out.println("Is this firing");
 			System.out.println(report);
 			reportCategoryRepo.saveAndFlush(report.getReportCategory());
 			addrRepo.saveAndFlush(report.getAddress());
+
 		    return reportRepo.saveAndFlush(report);
 		} else {
 		  return null;
 		}
 	}
 
+	
 	@Override
 	public Report update(String username, int id, Report report) {
 		

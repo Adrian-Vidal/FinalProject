@@ -1,8 +1,11 @@
+import { User } from './../../models/user';
 import { Report } from './../../models/report';
 import { ReportService } from './../../services/report.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+
 
 
 @Component({
@@ -23,6 +26,8 @@ export class LandingComponent implements OnInit{
 
 constructor (
   private reportService: ReportService,
+  private authService: AuthService,
+  // private userService: UserService,
 ){}
 
 ngOnInit(): void {
@@ -39,6 +44,8 @@ reload() {
     }
   });
 }
+
+
 
 addReport(report: Report): void {
   console.log("addReport!!?!?!?");
