@@ -1,0 +1,16 @@
+<p>testing works!</p>
+
+botton <input (click)="showLongLat()" type="submit" value="Submit">
+
+
+<!-- google-map-demo.component.html -->
+<google-map
+  height="400px"
+  width="750px"
+  [center]="center"
+  [zoom]="zoom"
+  (mapClick)="mapMarker($event)">
+    @for (position of markerPositions; track position) {
+      <map-marker [position]="position" [options]="markerOptions" />
+    }
+</google-map>
