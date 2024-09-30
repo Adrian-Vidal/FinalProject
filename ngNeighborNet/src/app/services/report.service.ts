@@ -38,6 +38,17 @@ export class ReportService {
     );
   }
 
+  showAllUserReportEnabled(): Observable<Report[]> {
+    return this.http.get<Report[]>(this.url + '/user', this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(
+           () => new Error( 'ReportService.index(): error retrieving reports: ' + err )
+        );
+      })
+    );
+  }
+
   create(report: Report): Observable<Report> {
     console.log("report.service.ts Firing!!?!?!?");
     console.log(report);
