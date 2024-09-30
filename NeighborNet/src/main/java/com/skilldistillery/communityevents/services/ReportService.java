@@ -14,6 +14,8 @@ public interface ReportService {
 	public Report create(String username, Report report);
 
 	public Report update(String username, int id, Report report);
+	
+	public Report disable(String username, int id, Report report);
 
 	public boolean destroy(String username, int id);
 	
