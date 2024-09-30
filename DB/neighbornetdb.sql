@@ -377,6 +377,11 @@ INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date
 INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date`, `image_url`, `event_date`, `event_date_end`, `resolved`, `enabled`, `address_id`, `user_id`, `report_category_id`, `severity_id`) VALUES (2, 'Suspicous person...', 'Person loitering outside of McDonald\'s', '2024-09-26 11:58:00', NULL, NULL, '2024-09-26 11:57:00', NULL, NULL, 1, 1, 1, 2, 3);
 INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date`, `image_url`, `event_date`, `event_date_end`, `resolved`, `enabled`, `address_id`, `user_id`, `report_category_id`, `severity_id`) VALUES (3, 'Block party on Sunday!', 'Block party - invite your friends!', '2024-09-26 11:59:00', NULL, NULL, '2024-09-29 14:00:00', NULL, NULL, 1, 6, 1, 5, null);
 INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date`, `image_url`, `event_date`, `event_date_end`, `resolved`, `enabled`, `address_id`, `user_id`, `report_category_id`, `severity_id`) VALUES (4, 'Crazy tornado!', 'Displaced vehicles and flying animals.', '2024-09-26 17:00:00', NULL, NULL, '2024-09-26 17:00:00', NULL, NULL, 1, 1, 1, 1, 1);
+INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date`, `image_url`, `event_date`, `event_date_end`, `resolved`, `enabled`, `address_id`, `user_id`, `report_category_id`, `severity_id`) VALUES (5, 'Power Outage!', 'Reported power outage in the neighborhood.', '2024-09-27 13:00:00', NULL, NULL, '2024-09-27 13:00:00', NULL, NULL, 1, 2, 2, 5, 3);
+INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date`, `image_url`, `event_date`, `event_date_end`, `resolved`, `enabled`, `address_id`, `user_id`, `report_category_id`, `severity_id`) VALUES (6, 'Loud music!!', 'Loud music at night!!!', '2024-09-27 20:30:00', NULL, NULL, '2024-09-27 20:30:00', NULL, NULL, 1, 4, 3, 5, 4);
+INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date`, `image_url`, `event_date`, `event_date_end`, `resolved`, `enabled`, `address_id`, `user_id`, `report_category_id`, `severity_id`) VALUES (7, 'Tree branch blocking road', 'Large tree branch fell and is blocking the road', '2024-09-28 16:30:00', NULL, NULL, '2024-09-28 16:30:00', NULL, NULL, 1, 6, 4, 1, 3);
+INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date`, `image_url`, `event_date`, `event_date_end`, `resolved`, `enabled`, `address_id`, `user_id`, `report_category_id`, `severity_id`) VALUES (8, 'Suspicous package', 'Package left near my mailbox', '2024-09-29 15:00:00', NULL, NULL, '2024-09-29 15:00:00', NULL, NULL, 1, 13, 5, 2, 4);
+INSERT INTO `report` (`id`, `name`, `description`, `create_date`, `modified_date`, `image_url`, `event_date`, `event_date_end`, `resolved`, `enabled`, `address_id`, `user_id`, `report_category_id`, `severity_id`) VALUES (9, 'Car break-in', 'Several cars broken into last night in the parking lot', '2024-09-30 08:00:00', NULL, NULL, '2024-09-29 20:45:00', NULL, NULL, 0, 1, 4, 4, 3);
 
 COMMIT;
 
@@ -402,6 +407,8 @@ INSERT INTO `comment` (`id`, `body`, `create_date`, `modified_date`, `image_url`
 INSERT INTO `comment` (`id`, `body`, `create_date`, `modified_date`, `image_url`, `enabled`, `report_id`, `user_id`, `in_reply_to_id`) VALUES (2, 'I think I have seen them before..', '2024-09-26 12:50:00', NULL, NULL, 1, 2, 2, NULL);
 INSERT INTO `comment` (`id`, `body`, `create_date`, `modified_date`, `image_url`, `enabled`, `report_id`, `user_id`, `in_reply_to_id`) VALUES (3, 'Can\'t wait! We might not get there until 3PM.', '2024-09-26 13:30:00', NULL, NULL, 1, 3, 2, NULL);
 INSERT INTO `comment` (`id`, `body`, `create_date`, `modified_date`, `image_url`, `enabled`, `report_id`, `user_id`, `in_reply_to_id`) VALUES (4, 'No problem!', '2024-09-26 14:30:00', NULL, NULL, 1, 1, 1, 1);
+INSERT INTO `comment` (`id`, `body`, `create_date`, `modified_date`, `image_url`, `enabled`, `report_id`, `user_id`, `in_reply_to_id`) VALUES (5, 'Disabled Comment 1', '2024-09-30 08:00:00', NULL, NULL, 0, 5, 4, NULL);
+INSERT INTO `comment` (`id`, `body`, `create_date`, `modified_date`, `image_url`, `enabled`, `report_id`, `user_id`, `in_reply_to_id`) VALUES (6, 'Disabled Comment 2', '2024-09-30 09:00:00', NULL, NULL, 0, 4, 5, NULL);
 
 COMMIT;
 
@@ -412,6 +419,8 @@ COMMIT;
 START TRANSACTION;
 USE `neighbornetdb`;
 INSERT INTO `direct_message` (`id`, `title`, `body`, `create_date`, `modified_date`, `enabled`, `sender_id`, `recipient_id`) VALUES (1, 'Hey Neighbor', 'I had a quick follow up question regarding your post the other day.', '2024-09-26 16:50:00', NULL, 1, 3, 1);
+INSERT INTO `direct_message` (`id`, `title`, `body`, `create_date`, `modified_date`, `enabled`, `sender_id`, `recipient_id`) VALUES (2, 'Disabled Message 1', 'Disabled Message 1', '2024-09-30 08:00:00', NULL, 0, 1, 2);
+INSERT INTO `direct_message` (`id`, `title`, `body`, `create_date`, `modified_date`, `enabled`, `sender_id`, `recipient_id`) VALUES (3, 'Disabled Message 2', 'Disabled Message 2', '2024-09-30 08:30:00', NULL, 0, 3, 4);
 
 COMMIT;
 
