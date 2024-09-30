@@ -6,7 +6,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,7 +52,24 @@ public class ReportController {
 		}
 		return createdReport;
 	 	}
+
+
+	
+	
+	@PutMapping("reports/user/{id}")
+	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, @RequestBody Report report) {
+		Report updatedReport = reportService.update(principal.getName(), id, report);
+		if(updatedReport == null) {
+			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		}
+		return updatedReport;
+		
+	}
+	
+	
+	
+}
 	
 	
 
-}
+
