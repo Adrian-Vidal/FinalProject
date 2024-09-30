@@ -53,6 +53,16 @@ export class ReportService {
     );
   }
 
+  showAllEnabled(): Observable<Report[]> {
+    return this.http.get<Report[]>(this.url).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(
+           () => new Error( 'ReportService.showAllEnabled(): error retrieving all enabled reports: ' + err )
+        );
+      })
+    );
+  }
 
 
 
