@@ -1,6 +1,7 @@
 package com.skilldistillery.communityevents.controllers;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,8 @@ public class ReportController {
 //		return "pong";
 //	}
 	
-	// GET reports
-	@GetMapping("reports")
+	// GET reports --- PROFILE (on front end) // user / {reports}
+	@GetMapping("reports/user")
 	public Set<Report> index(Principal principal, HttpServletRequest req, HttpServletResponse res) { 
 //		return todoService.index(username);
 		System.out.println("ReportController Firing!!!!");
@@ -67,7 +68,14 @@ public class ReportController {
 	}
 	
 	
-	
+
+	@GetMapping("reports")
+	public List<Report> showAllEnabledReports(HttpServletRequest req, HttpServletResponse res){
+		List<Report> enabledReports = reportService.showAllEnabledReports();
+		return enabledReports; // May need to a
+	}
+
+
 }
 	
 	

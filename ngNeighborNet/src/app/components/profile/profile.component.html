@@ -1,6 +1,16 @@
 <!-- TODO $customize w/ users name, etc-->
 <h1>Profile</h1>
 
+<!-- <button class="btn btn-outline-danger" (click)="delete()">Delete</button> -->
+<!-- <button (click)="disable()">Remove</button>  -->
+<!-- <button>Remove</button> -->
+ <button>Create Post (placeholder) </button>
+ <br>
+ <button>Edit (profile) (placeholder) </button>
+
+<!-- CARD - Displaying a user's report -->
+<div class="container text-center">
+  <div class="row d-flex flex-column align-items-center">
 <div class="card" *ngFor="let report of reports" style="width: 18rem;">
   <!-- <img src="..." class="card-img-top" alt="..."> -->
   <div class="card-body">
@@ -19,4 +29,10 @@
   </div> -->
   <!-- <button (click)="edit()">Edit</button> -->
   <button>Edit</button>
+  <!-- <button (click)="disable()">Remove</button>  -->
+  <button>Remove</button>
+  <button>Delete</button>
+    <br>
+    </div>
+  </div>
 </div>
