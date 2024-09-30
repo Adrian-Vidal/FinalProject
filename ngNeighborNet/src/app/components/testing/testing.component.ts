@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MapReportService } from '../../services/map-report.service';
 import { Address } from '../../models/address';
@@ -21,14 +21,13 @@ import { Report } from './../../models/report';
   templateUrl: './testing.component.html',
   styleUrl: './testing.component.css'
 })
-export class TestingComponent {
+export class TestingComponent implements OnInit {
+  reports: Report [] =[];
 
-  center: google.maps.LatLngLiteral = {lat: 24, lng: 12};
+  center: google.maps.LatLngLiteral = {lat: 40, lng: 140};
   zoom = 4;
   markerOptions: google.maps.MarkerOptions = {draggable: false};
   markerPositions: google.maps.LatLngLiteral[] = [];
-  //reports: Report [] = [];
-  reports: Report [] =[];
   newReport: Report = new Report();
 
 
@@ -36,29 +35,42 @@ export class TestingComponent {
     private mapReportService : MapReportService,
     private reportService: ReportService,
     private authService: AuthService,
-
   ){}
 
   ngOnInit(): void{
-    //  this.mapMarker({lat: 27, lng: 23});
-    this.reload();
-    console.log("Hello???")
-    console.log(this.reports)
-    // this.mapMarker(this.markerPositions);
+    this.reload();        ////  STEP 1
 
+    console.log("line46")
+    console.log(this.reports);
 
   }
+
+
   reload() {
-    this.reportService.showAllEnabled().subscribe({
-      next: (reports) => {
-        this.reports=reports;
+    this.reportService.index().subscribe({
+      next: (recievedReports) => {
+        this.reports=recievedReports;
+        this.reloadMarkerPositions();
+        this.mapMarker(this.markerPositions);   ////  STEP 1
+
+
       },
       error: (err) => {
         console.error('Error loading reports: ', err);
       }
     });
   }
+  reloadMarkerPositions(){
+    for (let report of this.reports){
+      console.log(report.address)
+      this.mapReportService.getLongAndLat(report.address).subscribe({
+        next:(geoResponse) => {
+          this.markerPositions.push({lat: geoResponse.results[0].geometry.location.lat(), lng: geoResponse.results[0].geometry.location.lng()});        }
 
+      })
+
+    }
+  }
 
    //132 Cape Cod Dr, Branson, MO 65616
    testAddress: Address = new Address();
@@ -70,8 +82,9 @@ export class TestingComponent {
    }
   //  markerPositions: google.maps.LatLngLiteral[] = [];
 
+
+
   showLongLat(address : Address){
-    this.makeTestAddress();
     this.mapReportService.getLongAndLat(address).subscribe({
       next: (geoResponse) => {
         console.log(geoResponse.results[0].geometry.location.lat());
