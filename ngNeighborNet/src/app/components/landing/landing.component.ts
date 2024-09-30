@@ -38,6 +38,7 @@ reload() {
   this.reportService.index().subscribe({
     next: (reports) => {
       this.reports = reports;
+      console.log(this.reports)
     },
     error: (err) => {
       console.error('Error loading reports: ', err);
