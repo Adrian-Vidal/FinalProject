@@ -34,7 +34,7 @@ ngOnInit(): void {
 }
 
 reload() {
-  this.reportService.index().subscribe({
+  this.reportService.showAllUserReportEnabled().subscribe({
     next: (reports) => {
       this.reports = reports;
     },

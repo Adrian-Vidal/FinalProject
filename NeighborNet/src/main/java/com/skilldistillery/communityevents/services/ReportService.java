@@ -1,5 +1,6 @@
 package com.skilldistillery.communityevents.services;
 
+import java.util.List;
 import java.util.Set;
 
 import com.skilldistillery.communityevents.entities.Report;
@@ -15,5 +16,7 @@ public interface ReportService {
 	public Report update(String username, int id, Report report);
 
 	public boolean destroy(String username, int id);
+	
+	public List<Report> showAllEnabledReports();
 
 }

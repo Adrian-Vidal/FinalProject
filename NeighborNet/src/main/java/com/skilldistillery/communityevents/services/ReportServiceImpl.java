@@ -1,5 +1,6 @@
 package com.skilldistillery.communityevents.services;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public Set<Report> index(String username) {
-		return reportRepo.findByUser_Username(username);
+//		return reportRepo.findByUser_Username(username);
+		return reportRepo.findByUser_UsernameAndEnabledTrue(username);
 	}
 
 	@Override
@@ -67,6 +69,11 @@ public class ReportServiceImpl implements ReportService {
 	public boolean destroy(String username, int id) {
 		
 		return false;
+	}
+
+	@Override
+	public List<Report> showAllEnabledReports() {
+		return reportRepo.findByEnabled(true);
 	}
 
 
