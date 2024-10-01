@@ -88,7 +88,7 @@ export class ReportService {
 
 
   update(report: Report): Observable<Report> {
-    return this.http.put<Report>(`${this.url}/${report.user.id}`, report, this.getHttpOptions()).pipe(
+    return this.http.put<Report>(`${this.url}/${report.id}`, report, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

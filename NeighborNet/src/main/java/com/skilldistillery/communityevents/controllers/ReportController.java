@@ -57,7 +57,7 @@ public class ReportController {
 
 	
 	
-	@PutMapping("reports/user/{id}")
+	@PutMapping("reports/{id}")
 	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, @RequestBody Report report) {
 		Report updatedReport = reportService.update(principal.getName(), id, report);
 		if(updatedReport == null) {

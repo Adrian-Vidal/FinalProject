@@ -23,7 +23,7 @@ export class LandingComponent implements OnInit{
   reports: Report [] = [];
   newReport: Report = new Report();
   showUpdateForm: Report | null = null;
-  editReport: any;
+  editReport: Report = new Report();
 
 
 constructor (
@@ -99,6 +99,11 @@ setEditEvent(): void {
 
 cancelEdit(): void {
   this.editReport;
+}
+
+checkReportUser(){
+  if(this.authService.checkLogin()){
+  }
 }
 
 
