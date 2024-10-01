@@ -3,8 +3,9 @@ import { ReportService } from './../../services/report.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Address } from '../../models/address';
-import { Reportcategory } from '../../models/reportcategory';
+import { AuthService } from '../../services/auth.service';
+
+
 
 @Component({
   selector: 'app-landing',
@@ -21,29 +22,25 @@ export class LandingComponent implements OnInit{
 
   reports: Report [] = [];
   newReport: Report = new Report();
+  showUpdateForm: Report | null = null;
+  editReport: any;
+
 
 constructor (
   private reportService: ReportService,
+  private authService: AuthService,
+  // private userService: UserService,
 ){}
 
 ngOnInit(): void {
   this.reload();
 }
 
-// reload() {
-//   this.reportService.index().subscribe({
-//     next: (reports) => {
-//       this.reports = reports;
-//     },
-//     error: (err) => {
-//       console.error('Error loading reports: ', err);
-//     }
-//   });
-// }
 reload() {
-  this.reportService.showAllEnabled().subscribe({
+  this.reportService.index().subscribe({
     next: (reports) => {
       this.reports = reports;
+      console.log(this.reports)
     },
     error: (err) => {
       console.error('Error loading reports: ', err);
@@ -51,23 +48,57 @@ reload() {
   });
 }
 
-// loadForeign(){
-//   this.newReport = new Report();
-//   this.newReport.address = new Address();
-//   this.newReport.reportCategory = new Reportcategory();
-// }
+
 
 addReport(report: Report): void {
-  this.reportService.create(report).subscribe({
+  console.log("addReport!!?!?!?");
+
+  this.reportService.create(this.newReport).subscribe({
     next: (createdReport) => {
       this.reload();
       this.newReport = new Report();
-      // this.loadForeign();
     },
     error: (err) => {
       console.error('landing.component - addReport(): Error adding report', err);
     }
   });
+}
+
+
+displayLandingPage(): void {
+  this.showUpdateForm = null;
+}
+
+
+displayUpdateForm(report: Report): void {
+  this.showUpdateForm = report;
+  this.setEditEvent;
+}
+
+updateReport(): void{
+  if (this.editReport) {
+    this.reportService.update(this.editReport).subscribe({
+      next: () => {
+        this.reload();
+        this.editReport;
+        this.showUpdateForm = null;
+
+      },
+
+    });
+  }
+}
+
+
+
+setEditEvent(): void {
+  if (this.showUpdateForm) {
+    this.editReport = Object.assign({}, this.showUpdateForm);
+  }
+}
+
+cancelEdit(): void {
+  this.editReport;
 }
 
 
