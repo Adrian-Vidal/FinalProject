@@ -58,8 +58,11 @@ public class ReportController {
 
 	
 	
-	@PutMapping("reports/{tid}")
-	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable("tid") int id, @RequestBody Report report) {
+
+	@PutMapping("reports/{id}")
+	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, @RequestBody Report report) {
+//	@PutMapping("reports/{tid}")
+//	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable("tid") int id, @RequestBody Report report) {
 		Report updatedReport = reportService.update(principal.getName(), id, report);
 		if(updatedReport == null) {
 			res.setStatus(HttpServletResponse.SC_NOT_FOUND);

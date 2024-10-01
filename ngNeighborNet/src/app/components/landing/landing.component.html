@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 <h1>Landing</h1>
 <!--------------------------------------------- Reports -----------------------------------------v----------------->
+=======
+>>>>>>> 9eb83edd64914e4b2693917da4483e1fb1211e1f
 <div *ngIf="!showUpdateForm">
+<h1>Landing</h1>
 <!-- Bootstrap - card - "Kitchen Sink example"-->
 <div class="card" *ngFor="let report of reports" style="width: 18rem;">
   <!-- TODO , check if image url present before including on card -->
@@ -23,8 +27,17 @@
 
   <!-- TODO - ngIf - user is post's user, can EDIT, otherwise -> comment -->
   <!-- <button (click)="edit()">Edit</button> -->
+
   <button type="button" class="edit-report" (click)="displayUpdateForm(report)">Edit</button>
+<<<<<<< HEAD
   <button type="button" class="delete-report" (click)="deleteReport(report.id)">Delete</button>
+=======
+
+  <!-- NEEDS REWORK -->
+  <!-- <app-report-buttons></app-report-buttons> -->
+
+</div>
+>>>>>>> 9eb83edd64914e4b2693917da4483e1fb1211e1f
 
 </div>
 <!-------------------------------------------- add new Form ------------------------------------------------------------>
@@ -86,42 +99,47 @@
 <div *ngIf="showUpdateForm" class="update-form">
   <h1>Update Report</h1>
   <form *ngIf="editReport">
+    <h1>Update Form</h1>
   <div class="form-group row">
+<<<<<<< HEAD
     Name????: <input type="text" name="name" placeholder="Name" [(ngModel)]="editReport.name">
+=======
+    Name: <input type="text" name="name" [(ngModel)]="editReport.name">
+>>>>>>> 9eb83edd64914e4b2693917da4483e1fb1211e1f
   </div>
   <div class="form-group row">
-    Description: <input type="text" name="description" placeholder="Description" [(ngModel)]="editReport.description">
+    Description: <input type="text" name="description" [(ngModel)]="editReport.description">
   </div>
   <div class="form-group row">
-    Image URL: <input type="text" name="imageUrl" placeholder="Link image URL" [(ngModel)]="editReport.imageUrl">
-  </div>
-
-  <div class="form-group row">
-    Address Name: <input type="text" name="name" placeholder="Location Name" [(ngModel)]="editReport.address.name">
-  </div>
-
-  <div class="form-group row">
-    Street: <input type="text" name="street" placeholder="Street" [(ngModel)]="editReport.address.street">
+    Image URL: <input type="text" name="imageUrl" [(ngModel)]="editReport.imageUrl">
   </div>
 
   <div class="form-group row">
-    City: <input type="text" name="city" placeholder="City" [(ngModel)]="editReport.address.city">
+    Address Name: <input type="text" name="addressname" [(ngModel)]="editReport.address.name">
   </div>
 
   <div class="form-group row">
-    State: <input type="text" name="state" placeholder="State" [(ngModel)]="editReport.address.state">
+    Street: <input type="text" name="street" [(ngModel)]="editReport.address.street">
   </div>
 
   <div class="form-group row">
-    Zip: <input type="text" name="postalCode" placeholder="Postal Code" [(ngModel)]="editReport.address.postalCode">
+    City: <input type="text" name="city" [(ngModel)]="editReport.address.city">
   </div>
 
   <div class="form-group row">
-    Country: <input type="text" name="country" placeholder="Country" [(ngModel)]="editReport.address.country">
+    State: <input type="text" name="state" [(ngModel)]="editReport.address.state">
   </div>
 
   <div class="form-group row">
-    Category: <input type="text" name="reportCategory" placeholder="Category"[(ngModel)]="editReport.reportCategory.name">
+    Zip: <input type="text" name="postalCode" [(ngModel)]="editReport.address.postalCode">
+  </div>
+
+  <div class="form-group row">
+    Country: <input type="text" name="country" [(ngModel)]="editReport.address.country">
+  </div>
+
+  <div class="form-group row">
+    Category: <input type="text" name="reportCategory" [(ngModel)]="editReport.reportCategory.name">
   </div>
   <br>
   <button (click)="displayLandingPage()">Cancel</button>
