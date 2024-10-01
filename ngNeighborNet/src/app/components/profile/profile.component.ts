@@ -77,6 +77,7 @@ displayUpdateForm(report: Report): void {
   this.selected = report;
   this.showUpdateForm = report;
   this.editReport = Object.assign({}, this.selected);
+  this.reload();
 
   console.log("displayUpdateForm????")
   console.log(this.selected)
@@ -86,7 +87,6 @@ displayUpdateForm(report: Report): void {
 updateReport(report: Report): void{
   console.log("IN UPDATE REPORT !!!");
   console.log(report)
-
   this.reportService.update(report).subscribe({
     next: (updatedReport) => {
       this.selected=null;
