@@ -16,9 +16,12 @@ public interface ReportService {
 	public Report update(String username, int id, Report report);
 	
 	public Report disable(String username, int id, Report report);
+//	public boolean unenable(String username, int reportId);
 
 	public boolean destroy(String username, int id);
 	
 	public List<Report> showAllEnabledReports();
+
+	public boolean unenable(String name, int rid);
 
 }
