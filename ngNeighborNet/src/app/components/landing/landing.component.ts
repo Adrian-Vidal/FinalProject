@@ -1,4 +1,3 @@
-import { User } from './../../models/user';
 import { Report } from './../../models/report';
 import { ReportService } from './../../services/report.service';
 import { CommonModule } from '@angular/common';
@@ -23,6 +22,9 @@ export class LandingComponent implements OnInit{
 
   reports: Report [] = [];
   newReport: Report = new Report();
+  showUpdateForm: Report | null = null;
+  editReport: any;
+
 
 constructor (
   private reportService: ReportService,
@@ -60,6 +62,43 @@ addReport(report: Report): void {
       console.error('landing.component - addReport(): Error adding report', err);
     }
   });
+}
+
+
+displayLandingPage(): void {
+  this.showUpdateForm = null;
+}
+
+
+displayUpdateForm(report: Report): void {
+  this.showUpdateForm = report;
+  this.setEditEvent;
+}
+
+updateReport(): void{
+  if (this.editReport) {
+    this.reportService.update(this.editReport).subscribe({
+      next: () => {
+        this.reload();
+        this.editReport;
+        this.showUpdateForm = null;
+
+      },
+
+    });
+  }
+}
+
+
+
+setEditEvent(): void {
+  if (this.showUpdateForm) {
+    this.editReport = Object.assign({}, this.showUpdateForm);
+  }
+}
+
+cancelEdit(): void {
+  this.editReport;
 }
 
 

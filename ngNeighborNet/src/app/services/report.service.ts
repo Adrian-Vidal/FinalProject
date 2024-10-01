@@ -10,6 +10,7 @@ import { Report } from '../models/report';
 })
 export class ReportService {
 
+
   private url = environment.baseUrl + 'api/reports'
 
   constructor(
@@ -85,6 +86,17 @@ export class ReportService {
   //     })
   //   );
 
+
+  update(report: Report): Observable<Report> {
+    return this.http.put<Report>(`${this.url}/${report.user.id}`, report, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error(`ReportService.update(): error updating report: ` + err)
+        );
+      })
+    );
+  }
 
 
 
