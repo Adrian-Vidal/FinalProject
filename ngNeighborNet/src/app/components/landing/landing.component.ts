@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { ReportButtonsComponent } from "../report-buttons/report-buttons.component";
 
 
 
@@ -12,8 +13,9 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule
-  ],
+    FormsModule,
+    ReportButtonsComponent
+],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })
