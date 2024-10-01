@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { ReportButtonsComponent } from '../report-buttons/report-buttons.component';
 
 
 
@@ -12,7 +13,8 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReportButtonsComponent
   ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
@@ -23,7 +25,8 @@ export class LandingComponent implements OnInit{
   reports: Report [] = [];
   newReport: Report = new Report();
   showUpdateForm: Report | null = null;
-  editReport: Report = new Report();
+  editReport : Report | null =null;
+  selected: Report | null = null;
 
 
 constructor (
@@ -75,7 +78,20 @@ displayUpdateForm(report: Report): void {
   this.setEditEvent;
 }
 
-updateReport(): void{
+updateReport(report: Report): void{
+  console.log("IN UPDATE REPORT !!!");
+  console.log(report)
+
+  this.reportService.update(report).subscribe({
+    next: (updatedReport) => {
+      this.selected=null;
+      this.editReport=null;
+    },
+    error: (oopsy) =>{
+      console.error("error editing todo: ");
+      console.error(oopsy);
+    }
+  })
   if (this.editReport) {
     this.reportService.update(this.editReport).subscribe({
       next: () => {
@@ -101,10 +117,14 @@ cancelEdit(): void {
   this.editReport;
 }
 
-checkReportUser(){
-  if(this.authService.checkLogin()){
-  }
-}
+// reportOwner(report: Report): boolean {
+  //   console.log('in report-buttons, reportOwner( ) .');
+  //   let loggedInUser = this.auth.getLoggedInUser();
+  //   if (loggedInUser && report.user){
+  //     return loggedInUser.id === report.user.id;
+  //   }
+  //   return false;
+  // }
 
 
 }
