@@ -24,4 +24,6 @@ export class LogoutComponent {
     this.router.navigateByUrl('/home');
   }
 
+
+
 }
