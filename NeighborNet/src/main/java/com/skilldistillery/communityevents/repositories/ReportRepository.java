@@ -23,6 +23,8 @@ public interface ReportRepository extends JpaRepository<Report, Integer>{
 
 	List<Report> findByEnabled(Boolean enabled);
 	
+	Report findByUser_UsernameAndId(String username, int id);
+	
 
 
 }

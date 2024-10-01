@@ -1,4 +1,5 @@
 <h1>Landing</h1>
+<!--------------------------------------------- Reports -----------------------------------------v----------------->
 <div *ngIf="!showUpdateForm">
 <!-- Bootstrap - card - "Kitchen Sink example"-->
 <div class="card" *ngFor="let report of reports" style="width: 18rem;">
@@ -23,8 +24,10 @@
   <!-- TODO - ngIf - user is post's user, can EDIT, otherwise -> comment -->
   <!-- <button (click)="edit()">Edit</button> -->
   <button type="button" class="edit-report" (click)="displayUpdateForm(report)">Edit</button>
-</div>
+  <button type="button" class="delete-report" (click)="deleteReport(report.id)">Delete</button>
 
+</div>
+<!-------------------------------------------- add new Form ------------------------------------------------------------>
 <div class="container-md">
   <h1>Add Post</h1>
   <form>
@@ -37,12 +40,6 @@
     <div class="form-group row">
       Image URL: <input type="text" name="imageUrl" placeholder="Link image URL" [(ngModel)]="newReport.imageUrl">
     </div>
-
-    <!-- [ object Object ]  TODO -->
-    <!-- <div class="form-group row">
-      <input type="text" name="userId" placeholder="User Id" [(ngModel)]="newReport.user.id">
-    </div> -->
-
 
     <div class="form-group row">
       Address Name: <input type="text" name="name" placeholder="Location Name" [(ngModel)]="newReport.address.name">
@@ -81,13 +78,16 @@
 </div>
 </div>
 
-
+<h1>--------------------------------------------------------------</h1>
 <!--====================== UPDATE FROM ===========================-->
 
+
+
 <div *ngIf="showUpdateForm" class="update-form">
+  <h1>Update Report</h1>
   <form *ngIf="editReport">
   <div class="form-group row">
-    Name: <input type="text" name="name" placeholder="Name" [(ngModel)]="editReport.name">
+    Name????: <input type="text" name="name" placeholder="Name" [(ngModel)]="editReport.name">
   </div>
   <div class="form-group row">
     Description: <input type="text" name="description" placeholder="Description" [(ngModel)]="editReport.description">

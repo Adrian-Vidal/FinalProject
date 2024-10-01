@@ -96,15 +96,28 @@ public class ReportServiceImpl implements ReportService {
 		
 		return false;
 	}
+	
 
 	@Override
 	public List<Report> showAllEnabledReports() {
 		return reportRepo.findByEnabled(true);
 	}
 
+	@Override
+	public boolean unenable(String name, int rid) {
+		Report report = reportRepo.findByUser_UsernameAndId(name, rid);
+		System.out.println(name);
+		System.out.println(rid);
+		System.out.println("In unenable in reportServiceImpl?");
+		System.out.println(report);
+		System.out.println("-----------------------------------------------------");
+		if(report !=null) {
+			report.setEnabled(false);
+			reportRepo.saveAndFlush(report);
+			System.out.println(report);
+		}
+		return false;
+	}
 
-
-	
-	
 
 }

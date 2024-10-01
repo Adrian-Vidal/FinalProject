@@ -50,7 +50,21 @@ reload() {
   });
 }
 
+deleteReport(reportId: number){
+  console.log(reportId)
 
+  this.reportService.disableReport(reportId).subscribe({
+    next: (result) =>{
+      this.newReport = new Report();
+      this.reload();
+    },
+    error: (nojoy) => {
+      console.error("Error deleting Report");
+      console.error(nojoy)
+    }
+  });
+
+}
 
 addReport(report: Report): void {
   console.log("addReport!!?!?!?");
@@ -92,6 +106,7 @@ updateReport(report: Report): void{
     next: (updatedReport) => {
       this.selected=null;
       this.editReport=null;
+      this.reload();
     },
     error: (oopsy) =>{
       console.error("error editing todo: ");

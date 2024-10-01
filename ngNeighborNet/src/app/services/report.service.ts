@@ -85,6 +85,17 @@ export class ReportService {
   //       );
   //     })
   //   );
+    disableReport(reportId: number): Observable<void> {
+      console.log(reportId)
+      return this.http.delete<void>(this.url + '/'+ reportId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(
+           () => new Error( 'ReportService.disableReport(): error disabling report: ' + err )
+        );
+      })
+    );
+  }
 
 //    OG
   // update(report: Report): Observable<Report> {
