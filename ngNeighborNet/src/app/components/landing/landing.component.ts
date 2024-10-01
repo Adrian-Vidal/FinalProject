@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { ReportButtonsComponent } from "../report-buttons/report-buttons.component";
+import { ReportButtonsComponent } from '../report-buttons/report-buttons.component';
 
 
 
@@ -15,7 +15,7 @@ import { ReportButtonsComponent } from "../report-buttons/report-buttons.compone
     CommonModule,
     FormsModule,
     ReportButtonsComponent
-],
+  ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })
@@ -25,7 +25,6 @@ export class LandingComponent implements OnInit{
   reports: Report [] = [];
   newReport: Report = new Report();
   showUpdateForm: Report | null = null;
-  // editReport: any;
   editReport : Report | null =null;
   selected: Report | null = null;
 
@@ -84,8 +83,6 @@ displayUpdateForm(report: Report): void {
 
 }
 
-
-
 updateReport(report: Report): void{
   console.log("IN UPDATE REPORT !!!");
   console.log(report)
@@ -115,9 +112,24 @@ updateReport(report: Report): void{
 
 
 
+setEditEvent(): void {
+  if (this.showUpdateForm) {
+    this.editReport = Object.assign({}, this.showUpdateForm);
+  }
+}
+
 cancelEdit(): void {
   this.editReport;
 }
+
+// reportOwner(report: Report): boolean {
+  //   console.log('in report-buttons, reportOwner( ) .');
+  //   let loggedInUser = this.auth.getLoggedInUser();
+  //   if (loggedInUser && report.user){
+  //     return loggedInUser.id === report.user.id;
+  //   }
+  //   return false;
+  // }
 
 
 }
