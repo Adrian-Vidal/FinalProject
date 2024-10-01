@@ -23,7 +23,9 @@ export class LandingComponent implements OnInit{
   reports: Report [] = [];
   newReport: Report = new Report();
   showUpdateForm: Report | null = null;
-  editReport: any;
+  // editReport: any;
+  editReport : Report | null =null;
+  selected: Report | null = null;
 
 
 constructor (
@@ -71,11 +73,31 @@ displayLandingPage(): void {
 
 
 displayUpdateForm(report: Report): void {
+  this.selected = report;
   this.showUpdateForm = report;
-  this.setEditEvent;
+  this.editReport = Object.assign({}, this.selected);
+
+  console.log("displayUpdateForm????")
+  console.log(this.selected)
+
 }
 
-updateReport(): void{
+
+
+updateReport(report: Report): void{
+  console.log("IN UPDATE REPORT !!!");
+  console.log(report)
+
+  this.reportService.update(report).subscribe({
+    next: (updatedReport) => {
+      this.selected=null;
+      this.editReport=null;
+    },
+    error: (oopsy) =>{
+      console.error("error editing todo: ");
+      console.error(oopsy);
+    }
+  })
   if (this.editReport) {
     this.reportService.update(this.editReport).subscribe({
       next: () => {
@@ -90,12 +112,6 @@ updateReport(): void{
 }
 
 
-
-setEditEvent(): void {
-  if (this.showUpdateForm) {
-    this.editReport = Object.assign({}, this.showUpdateForm);
-  }
-}
 
 cancelEdit(): void {
   this.editReport;

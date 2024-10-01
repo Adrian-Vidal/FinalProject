@@ -24,8 +24,8 @@ import { Report } from './../../models/report';
 export class TestingComponent implements OnInit {
   reports: Report [] =[];
 
-  center: google.maps.LatLngLiteral = {lat: 40, lng: 140};
-  zoom = 4;
+  center: google.maps.LatLngLiteral = {lat: 36.637, lng: -93.254};
+  zoom = 12;
   markerOptions: google.maps.MarkerOptions = {draggable: false};
   markerPositions: google.maps.LatLngLiteral[] = [];
   newReport: Report = new Report();

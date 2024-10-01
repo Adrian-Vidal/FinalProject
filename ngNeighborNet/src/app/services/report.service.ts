@@ -86,9 +86,24 @@ export class ReportService {
   //     })
   //   );
 
+//    OG
+  // update(report: Report): Observable<Report> {
+  //   console.log("In report.service")
+  //   return this.http.put<Report>(`${this.url}/${report.user.id}`, report, this.getHttpOptions()).pipe(
+  //     catchError((err: any) => {
+  //       console.log(err);
+  //       return throwError(
+  //         () => new Error(`ReportService.update(): error updating report: ` + err)
+  //       );
+  //     })
+  //   );
+  // }
 
   update(report: Report): Observable<Report> {
-    return this.http.put<Report>(`${this.url}/${report.user.id}`, report, this.getHttpOptions()).pipe(
+    console.log("In report.service")
+    console.log(report)
+    console.log(this.url + "/" + report.id);
+    return this.http.put<Report>(this.url + "/" + report.id, report, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
