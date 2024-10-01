@@ -156,17 +156,44 @@
 <div *ngIf="showUpdateForm" class="update-form">
   <form *ngIf="editReport">
     <h1>Update Form</h1>
-  <div class="container" *ngFor="let report of reports">
-    Name: <input type="text" name="name" placeholder={{editReport.name}} [(ngModel)]="editReport.name"><br>
-    Description: <input type="text" name="description" placeholder="Description" [(ngModel)]="editReport.description"><br>
-    Image URL: <input type="text" name="imageUrl" placeholder="Link image URL" [(ngModel)]="editReport.imageUrl"><br>
-    Address Name: <input type="text" name="name" placeholder="Location Name" [(ngModel)]="editReport.address.name"><br>
-    Street: <input type="text" name="street" placeholder="Street" [(ngModel)]="editReport.address.street"><br>
-    City: <input type="text" name="city" placeholder="City" [(ngModel)]="editReport.address.city"><br>
-    State: <input type="text" name="state" placeholder="State" [(ngModel)]="editReport.address.state"><br>
-    Zip: <input type="text" name="postalCode" placeholder="Postal Code" [(ngModel)]="editReport.address.postalCode"><br>
-    Country: <input type="text" name="country" placeholder="Country" [(ngModel)]="editReport.address.country"><br>
-    Category: <input type="text" name="reportCategory" placeholder="Category"[(ngModel)]="editReport.reportCategory.name">
+
+  <div class="form-group row">
+    Name: <input type="text" name="name" [(ngModel)]="editReport.name">
+  </div>
+  <div class="form-group row">
+    Description: <input type="text" name="description" [(ngModel)]="editReport.description">
+  </div>
+  <div class="form-group row">
+    Image URL: <input type="text" name="imageUrl" [(ngModel)]="editReport.imageUrl">
+  </div>
+
+  <div class="form-group row">
+    Address Name: <input type="text" name="addressname" [(ngModel)]="editReport.address.name">
+  </div>
+
+  <div class="form-group row">
+    Street: <input type="text" name="street" [(ngModel)]="editReport.address.street">
+  </div>
+
+  <div class="form-group row">
+    City: <input type="text" name="city" [(ngModel)]="editReport.address.city">
+  </div>
+
+  <div class="form-group row">
+    State: <input type="text" name="state" [(ngModel)]="editReport.address.state">
+  </div>
+
+  <div class="form-group row">
+    Zip: <input type="text" name="postalCode" [(ngModel)]="editReport.address.postalCode">
+  </div>
+
+  <div class="form-group row">
+    Country: <input type="text" name="country" [(ngModel)]="editReport.address.country">
+  </div>
+
+  <div class="form-group row">
+    Category: <input type="text" name="reportCategory" [(ngModel)]="editReport.reportCategory.name">
+
   </div>
   <br>
   <button (click)="displayProfilePage()">Cancel</button>
