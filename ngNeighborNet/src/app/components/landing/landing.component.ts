@@ -74,8 +74,13 @@ displayLandingPage(): void {
 
 
 displayUpdateForm(report: Report): void {
+  this.selected = report;
   this.showUpdateForm = report;
-  this.setEditEvent;
+  this.editReport = Object.assign({}, this.selected);
+
+  console.log("displayUpdateForm????")
+  console.log(this.selected)
+
 }
 
 updateReport(report: Report): void{
