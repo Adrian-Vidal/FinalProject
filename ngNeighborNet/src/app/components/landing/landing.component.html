@@ -85,7 +85,7 @@
 <!--====================== UPDATE FROM ===========================-->
 
 <div *ngIf="showUpdateForm" class="update-form">
-  <form (ngSubmit)="updateReport()">
+  <form *ngIf="editReport">
   <div class="form-group row">
     Name: <input type="text" name="name" placeholder="Name" [(ngModel)]="editReport.name">
   </div>
@@ -125,7 +125,7 @@
   </div>
   <br>
   <button (click)="displayLandingPage()">Cancel</button>
-  <button (click)="setEditEvent()">Submit</button>
+  <button (click)="updateReport(editReport)">Submit</button>
 </form>
 </div>
 
