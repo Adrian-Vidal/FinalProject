@@ -23,61 +23,7 @@ export class LandingComponent implements OnInit{
   reports: Report [] = [];
   newReport: Report = new Report();
   showUpdateForm: Report | null = null;
-  editReport: Report = {
-    name: '',
-    description: '',
-    imageUrl: '',
-    address: {
-      name: '',
-      street: '',
-      city: '',
-      state: '',
-      postalCode: 0,
-      country: '',
-      id: 0,
-      enabled: false
-    },
-    reportCategory: {
-      name: '',
-      id: 0,
-      description: '',
-      imageUrl: ''
-    },
-    id: 0,
-    createDate: '',
-    modifiedDate: '',
-    eventDate: '',
-    eventDateEnd: '',
-    resolved: false,
-    enabled: false,
-    user: {
-      id: 0,
-      email: '',
-      username: '',
-      password: '',
-      enabled: false,
-      role: '',
-      firstName: '',
-      lastName: '',
-      imageUrl: '',
-      address: {
-        id: 0,
-        name: '',
-        street: '',
-        city: '',
-        state: '',
-        postalCode: 0,
-        country: '',
-        enabled: false
-      }
-    },
-    severity: {
-      id: 0,
-      name: '',
-      level: 0,
-      imageUrl: '',
-    }
-  };
+  editReport: any;
 
 
 constructor (
@@ -135,6 +81,7 @@ updateReport(): void{
       next: () => {
         this.reload();
         this.editReport;
+        this.showUpdateForm = null;
 
       },
 
