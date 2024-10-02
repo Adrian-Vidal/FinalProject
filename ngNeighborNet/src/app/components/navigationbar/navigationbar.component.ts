@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LogoutComponent } from "../logout/logout.component";
+import { ReportFormModalComponent } from "../report-form-modal/report-form-modal.component";
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -14,6 +15,7 @@ import { LogoutComponent } from "../logout/logout.component";
     CommonModule,
     FormsModule,
     LogoutComponent,
+    ReportFormModalComponent
 ],
   templateUrl: './navigationbar.component.html',
   styleUrl: './navigationbar.component.css'
