@@ -38,6 +38,7 @@ export class TestingComponent implements OnInit {
   markerPositions: { position: google.maps.LatLngLiteral; report: Report}[] = [];
   newReport: Report = new Report();
   infoWindowContent: string='';
+  selected: Report | null = null;
 
 
   constructor(
@@ -86,8 +87,15 @@ openInfoWindow(marker: MapMarker, report: Report){
     this.infoWindowContent = report.name;
     console.log(this.infoWindow.getContent)
   }
+  this.selected=report;
+  console.log("hello???")
+  console.log(this.selected);
 }
 
+////-------------------Display and Open------------------------
+displayAndOpen(){
+
+}
 
 
 

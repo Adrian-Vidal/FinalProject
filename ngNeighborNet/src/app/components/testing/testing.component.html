@@ -23,9 +23,19 @@
 
   </div>
 
-
+<br>
 </google-map>
+<div *ngIf="selected">
 
+  <h1>{{selected.name}}</h1>
+  <ul>
+    <li>Descripition: {{selected.description}}</li>
+    <li>Username: {{selected.user.username}}</li>
+    <li>Address: {{selected.address.street}}, {{selected.address.city}}, {{selected.address.state}}, {{selected.address.postalCode}}</li>
+  </ul>
+  <h3></h3>
+
+</div>
 
 
 
