@@ -420,7 +420,7 @@ START TRANSACTION;
 USE `neighbornetdb`;
 INSERT INTO `direct_message` (`id`, `title`, `body`, `create_date`, `modified_date`, `enabled`, `sender_id`, `recipient_id`) VALUES (1, 'Hey Neighbor', 'I had a quick follow up question regarding your post the other day.', '2024-09-26 16:50:00', NULL, 1, 3, 1);
 INSERT INTO `direct_message` (`id`, `title`, `body`, `create_date`, `modified_date`, `enabled`, `sender_id`, `recipient_id`) VALUES (2, 'Disabled Message 1', 'Disabled Message 1', '2024-09-30 08:00:00', NULL, 0, 1, 2);
-INSERT INTO `direct_message` (`id`, `title`, `body`, `create_date`, `modified_date`, `enabled`, `sender_id`, `recipient_id`) VALUES (3, 'Disabled Message 2', 'Disabled Message 2', '2024-09-30 08:30:00', NULL, 0, 3, 4);
+INSERT INTO `direct_message` (`id`, `title`, `body`, `create_date`, `modified_date`, `enabled`, `sender_id`, `recipient_id`) VALUES (3, 'Disabled Message 2', 'Disabled Message 2', '2024-09-30 08:30:00', NULL, 1, 1, 2);
 
 COMMIT;
 
