@@ -7,6 +7,8 @@ import java.util.Objects;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,10 +46,12 @@ public class Comment {
 	// FOREIGN
 	@ManyToOne
 	@JoinColumn(name = "report_id")
+	@JsonIgnore
 	private Report report;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 
 	@ManyToOne
@@ -55,6 +59,7 @@ public class Comment {
 	private Comment inReplyTo;
 
 	@OneToMany(mappedBy = "inReplyTo")
+	@JsonIgnore
 	private List<Comment> replies;
 
 	// == CONSTRUCTORS ==
