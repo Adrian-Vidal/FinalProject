@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.communityevents.entities.Comment;
+import com.skilldistillery.communityevents.entities.Report;
 import com.skilldistillery.communityevents.services.CommentService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -73,6 +74,18 @@ public class CommentController {
 	    return updatedComment;
 	}
 
+	@PutMapping("comments/user/{commentId}/disable")
+	public Comment disable(Principal principal, HttpServletRequest req, HttpServletResponse res,
+			@PathVariable("commentId") int commentId, @RequestBody Comment comment) {
+		Comment disableComment = commentService.disable(principal.getName(), commentId, comment);
+		if (disableComment == null) {
+			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		} else {
+			res.setStatus(HttpServletResponse.SC_OK);
+		}
+		return disableComment;
+
+	}
 
 
 	
