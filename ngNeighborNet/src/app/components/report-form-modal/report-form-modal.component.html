@@ -1,0 +1,41 @@
+<!--# var = content (reference to modal) & (let modal - also reference to modal) -->
+<ng-template #content let-modal>
+
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Create / Add New Report</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Dismissed - X')"></button>
+	</div>
+
+	<div class="modal-body">
+		<form>
+			<div class="mb-3">
+
+        <!-- From landing.html for ex.-->
+        <!-- <form>
+          <div class="form-group row">
+            Name: <input type="text" name="name" placeholder="Title" [(ngModel)]="newReport.name">
+          </div> -->
+
+        <!-- <div class="form-group row">
+          <label for="name">Title</label>
+          <input type="text"  [(ngModel)]="newReport.name"  >
+        </div> -->
+
+
+				<label for="dateOfBirth">Date of birth</label>
+				<div class="input-group">
+
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+	<div class="modal-footer">                                      <!--Close belongs to Modal-->
+		<button type="button" class="btn btn-outline-secondary" (click)="modal.close('Submitted - Save')">Save</button>
+	</div>
+
+</ng-template>
+
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Create Report</button>

@@ -27,6 +27,10 @@
         <a class="nav-link" [routerLink]="['/map']">Map (TODO: rename)</a>
       </li>
 
+      <li class="nav-item" *ngIf="loggedIn()">
+        <app-report-form-modal></app-report-form-modal>
+      </li>
+
       <!-- <li class="nav-item">
         <a class="nav-link" [routerLink]="['/community']">Community (reports/posts)</a>
       </li> -->
