@@ -120,5 +120,23 @@ cancelEdit(): void {
   this.editReport;
 }
 
+//------------------------_DELETE REPORT-------------------------------------------------
+
+deleteReport(reportId: number){
+  console.log(reportId)
+
+  this.reportService.disableReport(reportId).subscribe({
+    next: (result) =>{
+      this.newReport = new Report();
+      this.reload();
+    },
+    error: (nojoy) => {
+      console.error("Error deleting Report");
+      console.error(nojoy)
+    }
+  });
+
+}
+
 
 }
