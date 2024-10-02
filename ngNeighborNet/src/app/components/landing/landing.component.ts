@@ -56,8 +56,9 @@ deleteReport(reportId: number){
 
   this.reportService.disableReport(reportId).subscribe({
     next: (result) =>{
-      this.newReport = new Report();
       this.reload();
+      this.newReport = new Report();
+
     },
     error: (nojoy) => {
       console.error("Error deleting Report");
