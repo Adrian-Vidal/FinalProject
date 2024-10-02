@@ -57,6 +57,7 @@ public class CommentServiceImpl implements CommentService {
 //		return null;
 //	}
 //
+	
 	@Override
 	public Comment create(int reportId, String username, Comment comment) {
 	    Optional<Report> reportOpt = reportRepo.findById(reportId);
@@ -74,12 +75,22 @@ public class CommentServiceImpl implements CommentService {
 	   
 	    return commentRepo.saveAndFlush(comment);
 	}
-//
-//	@Override
-//	public Comment update(String username, int id, Comment comment) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
+	@Override
+	public Comment update(int commentId, String username, Comment updatedComment) {
+	    Optional<Comment> existingCommentOpt = commentRepo.findById(commentId);
+	    if (!existingCommentOpt.isPresent()) {
+	        return null;  
+	    }
+	    Comment existingComment = existingCommentOpt.get();
+	    if (!existingComment.getUser().getUsername().equals(username)) {
+	        return null;
+	    }
+	    existingComment.setBody(updatedComment.getBody());
+	    existingComment.setImageUrl(updatedComment.getImageUrl());
+	    return commentRepo.saveAndFlush(existingComment);
+	}
+
 //
 //	@Override
 //	public Comment disable(String username, int id, Comment comment) {
