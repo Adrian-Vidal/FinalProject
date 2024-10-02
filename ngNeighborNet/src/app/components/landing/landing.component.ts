@@ -68,21 +68,6 @@ deleteReport(reportId: number){
 
 }
 
-addReport(report: Report): void {
-  console.log("addReport!!?!?!?");
-
-  this.reportService.create(this.newReport).subscribe({
-    next: (createdReport) => {
-      this.reload();
-      this.newReport = new Report();
-    },
-    error: (err) => {
-      console.error('landing.component - addReport(): Error adding report', err);
-    }
-  });
-}
-
-
 displayLandingPage(): void {
   this.showUpdateForm = null;
 }

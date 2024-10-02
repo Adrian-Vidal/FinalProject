@@ -52,19 +52,6 @@ reload() {
   });
 }
 
-addReport(report: Report): void {
-  this.reportService.create(report).subscribe({
-    next: (createdReport) => {
-      this.reload();
-      this.newReport = new Report();
-      // this.loadForeign();
-    },
-    error: (err) => {
-      console.error('landing.component - addReport(): Error adding report', err);
-    }
-  });
-}
-
 displayCreateForm(){
   this.showCreateForm = !this.showCreateForm;
 }

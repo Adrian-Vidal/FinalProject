@@ -1,26 +1,20 @@
 <h1>Landing</h1>
-<!--------------------------------------------- Reports -----------------------------------------v----------------->
+
+
 <div *ngIf="!showUpdateForm">
-<!-- Bootstrap - card - "Kitchen Sink example"-->
-<div class="card" *ngFor="let report of reports" style="width: 18rem;">
-  <!-- TODO , check if image url present before including on card -->
-  <!-- <img src="..." class="card-img-top" alt="..."> -->
-  <div class="card-body">
-    <!-- <h5 class="card-title">Card title</h5> -->
-    <h5 class="card-title" >{{report.name}}</h5>
-    <p class="card-text">{{report.description}}</p>
+  <div class="card" *ngFor="let report of reports" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title" >{{report.name}}</h5>
+      <p class="card-text">{{report.description}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">createDate: (to be changed) {{report.createDate}}</li>
+      <li class="list-group-item">eventDate: (to be changed) {{report.eventDate}}</li>
+      <li class="list-group-item">reportCategory: (to be changed) {{report.reportCategory}}</li>
+    </ul>
+    <button type="button" class="edit-report" (click)="displayUpdateForm(report)">Edit</button>
+    <button type="button" class="delete-report" (click)="deleteReport(report.id)">Delete</button>
   </div>
-  <ul class="list-group list-group-flush">
-    <!-- TODO card layout and items to include / handle edits inline or send elsewhere? -->
-    <li class="list-group-item">createDate: (to be changed) {{report.createDate}}</li>
-    <li class="list-group-item">eventDate: (to be changed) {{report.eventDate}}</li>
-    <li class="list-group-item">reportCategory: (to be changed) {{report.reportCategory}}</li>
-  </ul>
-
-  <button type="button" class="edit-report" (click)="displayUpdateForm(report)">Edit</button>
-  <button type="button" class="delete-report" (click)="deleteReport(report.id)">Delete</button>
-
-</div>
 </div>
 
 <!--====================== UPDATE FORM ===========================-->
