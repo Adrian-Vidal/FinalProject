@@ -1,6 +1,7 @@
 package com.skilldistillery.communityevents.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import com.skilldistillery.communityevents.entities.Report;
@@ -23,5 +24,8 @@ public interface ReportService {
 	public List<Report> showAllEnabledReports();
 
 	public boolean unenable(String name, int rid);
+
+	Optional<Report> findById(int id);
+
 
 }
