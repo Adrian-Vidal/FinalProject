@@ -15,7 +15,7 @@ public interface CommentService {
 	
 //	public Comment show(String username, int id);
 //
-//	public Comment create(String username, Comment comment);
+	public Comment create(int reportId, String username, Comment comment);
 //
 //	public Comment update(String username, int id, Comment comment);
 //	
@@ -26,5 +26,6 @@ public interface CommentService {
 //	
 //
 //	public boolean unenable(String name, int id);
+
 
 }
