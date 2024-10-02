@@ -9,42 +9,17 @@
 	<div class="modal-body">
 		<form>
 			<div class="mb-3">
-
-        <!-- From landing.html for ex.-->
-        <!-- <form>
-          <div class="form-group row">
-            Name: <input type="text" name="name" placeholder="Title" [(ngModel)]="newReport.name">
-          </div> -->
-
         <div class="form-group row">
-          <div class="input-group">
             <input type="text" name="name" placeholder="Title" [(ngModel)]="newReport.name" >
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="input-group">
             <input type="text" name="description" placeholder="Description" [(ngModel)]="newReport.description" >
-          </div>
+            <input type="text" name="imageUrl" placeholder="Image URL" [(ngModel)]="newReport.imageUrl" >
+            <input type="text" name="address.name" placeholder="Name of Location" [(ngModel)]="newReport.address.name">
+            <input type="text" name="address.street" placeholder="Street" [(ngModel)]="newReport.address.street">
+            <input type="text" name="address.city" placeholder="City" [(ngModel)]="newReport.address.city">
+            <input type="text" name="address.state" placeholder="State" [(ngModel)]="newReport.address.state">
+            <input type="text" name="address" placeholder="Postal Code" [(ngModel)]="newReport.address.postalCode">
+            <input type="text" name="address.country" placeholder="Country" [(ngModel)]="newReport.address.country">
         </div>
-
-        <div class="form-group row">
-          <!-- <div class="input-group"> -->
-            <input type="text" name="imageUrl" placeholder="Image URL" >
-          <!-- </div> -->
-        </div>
-
-        <div class="form-group row">
-          <!-- <div class="input-group"> -->
-            <input type="text" name="address" placeholder="Address" >
-          <!-- </div> -->
-        </div>
-
-
-				<!-- <label for="dateOfBirth">Date of birth</label>
-				<div class="input-group">
-				</div> -->
-
 			</div>
 		</form>
 	</div>
@@ -59,4 +34,4 @@
 </ng-template>
 
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Create Report</button>
+<button class="btn btn-md btn-outline-primary" (click)="open(content)">Create Report</button>
