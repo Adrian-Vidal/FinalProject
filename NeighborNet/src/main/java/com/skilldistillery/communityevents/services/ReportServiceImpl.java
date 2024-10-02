@@ -121,4 +121,9 @@ public class ReportServiceImpl implements ReportService {
 		return deleted;
 	}
 
+	@Override
+	public Optional<Report> findById(int id) {
+		return reportRepo.findById(id);
+	}
+
 }

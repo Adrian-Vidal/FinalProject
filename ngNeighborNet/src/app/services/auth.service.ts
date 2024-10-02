@@ -96,6 +96,7 @@ export class AuthService {
    checkLogin(): boolean {
     //  console.log("in CheckLogin()")
      if (localStorage.getItem('credentials')) {
+      console.log(this.getCredentials);
       // console.log('in checkLogin() in auth.service.ts');
        return true;
      }

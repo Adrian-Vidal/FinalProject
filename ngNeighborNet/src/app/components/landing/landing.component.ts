@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ReportButtonsComponent } from '../report-buttons/report-buttons.component';
+import { User } from '../../models/user';
 
 
 
@@ -27,6 +28,7 @@ export class LandingComponent implements OnInit{
   showUpdateForm: Report | null = null;
   editReport : Report | null =null;
   selected: Report | null = null;
+  loggedInUser: User | null = null;
 
 
 constructor (
@@ -37,6 +39,7 @@ constructor (
 
 ngOnInit(): void {
   this.reload();
+  this.getLoggedInUser();
 }
 
 reload() {
@@ -67,21 +70,6 @@ deleteReport(reportId: number){
   });
 
 }
-
-addReport(report: Report): void {
-  console.log("addReport!!?!?!?");
-
-  this.reportService.create(this.newReport).subscribe({
-    next: (createdReport) => {
-      this.reload();
-      this.newReport = new Report();
-    },
-    error: (err) => {
-      console.error('landing.component - addReport(): Error adding report', err);
-    }
-  });
-}
-
 
 displayLandingPage(): void {
   this.showUpdateForm = null;
@@ -138,14 +126,21 @@ cancelEdit(): void {
   this.editReport;
 }
 
-// reportOwner(report: Report): boolean {
-  //   console.log('in report-buttons, reportOwner( ) .');
-  //   let loggedInUser = this.auth.getLoggedInUser();
-  //   if (loggedInUser && report.user){
-  //     return loggedInUser.id === report.user.id;
-  //   }
-  //   return false;
-  // }
+isReportOwner(report: Report) {
+  return report.user.id === this.loggedInUser?.id;
+}
 
+getLoggedInUser(){
+  console.log('in report-buttons, reportOwner( ) .');
+  let loggedInUser = this.authService.getLoggedInUser().subscribe({
+    next: (loggedInUser) =>{
+     this.loggedInUser = loggedInUser;
+    },
+    error: (err) => {
+      console.error("reportOwner() error: ");
+      console.error(err);
+    }
+  });
+}
 
 }
