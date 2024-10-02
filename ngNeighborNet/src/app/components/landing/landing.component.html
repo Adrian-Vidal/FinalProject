@@ -12,8 +12,16 @@
       <li class="list-group-item">eventDate: (to be changed) {{report.eventDate}}</li>
       <li class="list-group-item">reportCategory: (to be changed) {{report.reportCategory}}</li>
     </ul>
-    <button type="button" class="edit-report" (click)="displayUpdateForm(report)">Edit</button>
-    <button type="button" class="delete-report" (click)="deleteReport(report.id)">Delete</button>
+
+     <div *ngIf="isReportOwner(report)">
+        <button type="button" class="edit-report" (click)="displayUpdateForm(report)">Edit</button>
+        <button type="button" class="delete-report" (click)="deleteReport(report.id)">Delete</button>
+       </div>
+
+       <div>
+       <button type="button">Like</button>
+        <button type="button" >Comment</button>
+       </div>
   </div>
 </div>
 
