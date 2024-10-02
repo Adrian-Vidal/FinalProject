@@ -11,18 +11,20 @@ public interface CommentService {
 
 	public List<Comment> showAllEnabledComments();
 	
-	public Comment show(String username, int id);
-
-	public Comment create(String username, Comment comment);
-
-	public Comment update(String username, int id, Comment comment);
+	public List<Comment> showCommentsByReportId(int reportId);
 	
-	public Comment disable(String username, int id, Comment comment);
-//	public boolean unenable(String username, int reportId);
-
-	public boolean destroy(String username, int id);
-	
-
-	public boolean unenable(String name, int id);
+//	public Comment show(String username, int id);
+//
+//	public Comment create(String username, Comment comment);
+//
+//	public Comment update(String username, int id, Comment comment);
+//	
+//	public Comment disable(String username, int id, Comment comment);
+////	public boolean unenable(String username, int reportId);
+//
+//	public boolean destroy(String username, int id);
+//	
+//
+//	public boolean unenable(String name, int id);
 
 }

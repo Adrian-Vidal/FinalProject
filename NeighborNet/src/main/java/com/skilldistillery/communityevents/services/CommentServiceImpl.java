@@ -43,42 +43,49 @@ public class CommentServiceImpl implements CommentService {
 	public List<Comment> showAllEnabledComments() {
 		return commentRepo.findByEnabled(true);
 	}
-
+	
 	@Override
-	public Comment show(String username, int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Comment> showCommentsByReportId(int reportId) {
+	    return commentRepo.findByReport_Id(reportId);
 	}
 
-	@Override
-	public Comment create(String username, Comment comment) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public Comment show(String username, int id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public Comment create(String username, Comment comment) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public Comment update(String username, int id, Comment comment) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public Comment disable(String username, int id, Comment comment) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public boolean destroy(String username, int id) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+//
+//
+//	@Override
+//	public boolean unenable(String name, int rid) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 
-	@Override
-	public Comment update(String username, int id, Comment comment) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Comment disable(String username, int id, Comment comment) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean destroy(String username, int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	@Override
-	public boolean unenable(String name, int rid) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 }

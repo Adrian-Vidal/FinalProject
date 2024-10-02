@@ -22,5 +22,7 @@ public interface CommentRepository extends JpaRepository<Comment, Integer>{
 	List<Comment> findByEnabled(Boolean enabled);
 	
 	Comment findByUser_UsernameAndId(String username, int id);
+	
+	List<Comment> findByReport_Id(int reportId);
 
 }

@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,8 +35,16 @@ public class CommentController {
 	@GetMapping("comments")
 	public List<Comment> showAllEnabledComments(HttpServletRequest req, HttpServletResponse res){
 		List<Comment> enabledComments = commentService.showAllEnabledComments();
-		return enabledComments; // May need to a
+		return enabledComments;
 	}
+	
+	@GetMapping("comments/report/{id}")
+	public List<Comment> showCommentsByReportId(@PathVariable("id") int reportId, HttpServletRequest req, HttpServletResponse res) {
+	    List<Comment> reportComments = commentService.showCommentsByReportId(reportId);
+	    return reportComments;
+	}
+
+
 	
 }
 

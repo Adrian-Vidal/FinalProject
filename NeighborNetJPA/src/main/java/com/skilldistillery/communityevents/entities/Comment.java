@@ -46,6 +46,7 @@ public class Comment {
 	// FOREIGN
 	@ManyToOne
 	@JoinColumn(name = "report_id")
+	@JsonIgnore
 	private Report report;
 
 	@ManyToOne
