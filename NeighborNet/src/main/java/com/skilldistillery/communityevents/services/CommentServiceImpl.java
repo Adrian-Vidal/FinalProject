@@ -3,13 +3,15 @@ package com.skilldistillery.communityevents.services;
 
 
 import java.util.List;
-
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.communityevents.entities.Comment;
+import com.skilldistillery.communityevents.entities.Report;
+import com.skilldistillery.communityevents.entities.User;
 import com.skilldistillery.communityevents.repositories.AddressRepository;
 import com.skilldistillery.communityevents.repositories.CommentRepository;
 import com.skilldistillery.communityevents.repositories.ReportCategoryRepository;
@@ -55,11 +57,23 @@ public class CommentServiceImpl implements CommentService {
 //		return null;
 //	}
 //
-//	@Override
-//	public Comment create(String username, Comment comment) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public Comment create(int reportId, String username, Comment comment) {
+	    Optional<Report> reportOpt = reportRepo.findById(reportId);
+	    if (!reportOpt.isPresent()) {
+	        return null;
+	    }
+	    Report report = reportOpt.get();
+	    User user = userRepo.findByUsername(username);
+	    if (user == null) {
+	        return null;
+	    }
+	    comment.setReport(report);
+	    comment.setUser(user);
+	    comment.setEnabled(true);
+	   
+	    return commentRepo.saveAndFlush(comment);
+	}
 //
 //	@Override
 //	public Comment update(String username, int id, Comment comment) {
