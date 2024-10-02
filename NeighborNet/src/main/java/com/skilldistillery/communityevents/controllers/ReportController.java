@@ -2,6 +2,7 @@ package com.skilldistillery.communityevents.controllers;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,17 +56,36 @@ public class ReportController {
 		return createdReport;
 	}
 
+//	@PutMapping("reports/{id}")
+//	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res,
+//			@PathVariable("id") int id, @RequestBody Report report) {
+////	@PutMapping("reports/{tid}")
+////	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable("tid") int id, @RequestBody Report report) {
+//		Report updatedReport = reportService.update(principal.getName(), id, report);
+//		if (updatedReport == null) {
+//			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
+//		}
+//		return updatedReport;
+//
+//	}
+
 	@PutMapping("reports/{id}")
 	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res,
 			@PathVariable("id") int id, @RequestBody Report report) {
-//	@PutMapping("reports/{tid}")
-//	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable("tid") int id, @RequestBody Report report) {
+
+		Optional<Report> reportOpt = reportService.findById(id); 
+		if (reportOpt.isPresent()) {
+			Report managedReport = reportOpt.get();
+			if (!managedReport.getUser().getUsername().equals(principal.getName())) {
+				res.setStatus(HttpServletResponse.SC_FORBIDDEN);
+				return null;
+			}
+		}
 		Report updatedReport = reportService.update(principal.getName(), id, report);
 		if (updatedReport == null) {
 			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		}
 		return updatedReport;
-
 	}
 
 	@PutMapping("reports/user/{id}/disable")
