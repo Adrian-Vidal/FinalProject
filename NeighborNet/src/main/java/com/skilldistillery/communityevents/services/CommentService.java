@@ -9,6 +9,8 @@ public interface CommentService {
 	
 	public Set<Comment> index(String username);
 
+	public List<Comment> showAllEnabledComments();
+	
 	public Comment show(String username, int id);
 
 	public Comment create(String username, Comment comment);
@@ -20,8 +22,7 @@ public interface CommentService {
 
 	public boolean destroy(String username, int id);
 	
-	public List<Comment> showAllEnabledComments();
 
-	public boolean unenable(String name, int rid);
+	public boolean unenable(String name, int id);
 
 }
