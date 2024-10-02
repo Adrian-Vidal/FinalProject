@@ -19,14 +19,12 @@ public interface CommentService {
 
 	public Comment update(int commentId, String username, Comment comment);
 
-//	
-//	public Comment disable(String username, int id, Comment comment);
-////	public boolean unenable(String username, int reportId);
-//
+	
+	public Comment disable(String username, int commentId, Comment comment);
+	
+
 //	public boolean destroy(String username, int id);
-//	
-//
-//	public boolean unenable(String name, int id);
+
 
 
 }

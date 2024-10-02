@@ -84,19 +84,25 @@ public class CommentServiceImpl implements CommentService {
 	    }
 	    Comment existingComment = existingCommentOpt.get();
 	    if (!existingComment.getUser().getUsername().equals(username)) {
-	        return null;
+	        return null; //checks if user is an authorized user
 	    }
 	    existingComment.setBody(updatedComment.getBody());
 	    existingComment.setImageUrl(updatedComment.getImageUrl());
 	    return commentRepo.saveAndFlush(existingComment);
 	}
 
-//
-//	@Override
-//	public Comment disable(String username, int id, Comment comment) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public Comment disable(String username, int commentId, Comment updatedComment) {
+		Optional<Comment> commentOpt = commentRepo.findById(commentId);
+		Comment existingComment = null;
+		if (commentOpt.isPresent()) {
+			existingComment = commentOpt.get();
+			existingComment.setEnabled(false);
+			commentRepo.saveAndFlush(existingComment);
+			return existingComment;
+		}
+		return null;
+	}
 //
 //	@Override
 //	public boolean destroy(String username, int id) {
