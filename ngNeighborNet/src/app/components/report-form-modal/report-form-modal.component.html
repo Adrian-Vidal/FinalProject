@@ -2,7 +2,7 @@
 <ng-template #content let-modal>
 
 	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Create / Add New Report</h4>
+		<h4 class="modal-title" id="modal-basic-title">Create Report</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Dismissed - X')"></button>
 	</div>
 
@@ -16,23 +16,44 @@
             Name: <input type="text" name="name" placeholder="Title" [(ngModel)]="newReport.name">
           </div> -->
 
-        <!-- <div class="form-group row">
-          <label for="name">Title</label>
-          <input type="text"  [(ngModel)]="newReport.name"  >
-        </div> -->
+        <div class="form-group row">
+          <div class="input-group">
+            <input type="text" name="name" placeholder="Title" [(ngModel)]="newReport.name" >
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="input-group">
+            <input type="text" name="description" placeholder="Description" [(ngModel)]="newReport.description" >
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <!-- <div class="input-group"> -->
+            <input type="text" name="imageUrl" placeholder="Image URL" >
+          <!-- </div> -->
+        </div>
+
+        <div class="form-group row">
+          <!-- <div class="input-group"> -->
+            <input type="text" name="address" placeholder="Address" >
+          <!-- </div> -->
+        </div>
 
 
-				<label for="dateOfBirth">Date of birth</label>
+				<!-- <label for="dateOfBirth">Date of birth</label>
 				<div class="input-group">
+				</div> -->
 
-				</div>
 			</div>
 		</form>
 	</div>
 
 
 	<div class="modal-footer">                                      <!--Close belongs to Modal-->
-		<button type="button" class="btn btn-outline-secondary" (click)="modal.close('Submitted - Save')">Save</button>
+		 <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Submitted - Save')">Save</button>
+     <!-- <button type="button" class="btn btn-outline-secondary" (click)="modal.close(addReport)">Save</button> -->
+    <!-- <button type="button" class="btn btn-outline-secondary" (click)="modal.open('Submitted - Save')">Save</button> -->
 	</div>
 
 </ng-template>
