@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,6 +59,18 @@ public class CommentController {
 	    }
 	    
 	    return createdComment;
+	}
+
+	@PutMapping("comments/{commentId}")
+	public Comment update(Principal principal, HttpServletRequest req, HttpServletResponse res, 
+	                      @PathVariable("commentId") int commentId, @RequestBody Comment comment) {
+	    Comment updatedComment = commentService.update(commentId, principal.getName(), comment);
+	    if (updatedComment == null) {
+	        res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	    } else {
+	        res.setStatus(HttpServletResponse.SC_OK);
+	    }
+	    return updatedComment;
 	}
 
 

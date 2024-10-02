@@ -13,11 +13,12 @@ public interface CommentService {
 	
 	public List<Comment> showCommentsByReportId(int reportId);
 	
-//	public Comment show(String username, int id);
-//
 	public Comment create(int reportId, String username, Comment comment);
-//
-//	public Comment update(String username, int id, Comment comment);
+	
+//	public Comment show(String username, int id);
+
+	public Comment update(int commentId, String username, Comment comment);
+
 //	
 //	public Comment disable(String username, int id, Comment comment);
 ////	public boolean unenable(String username, int reportId);
