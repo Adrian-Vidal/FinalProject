@@ -1,7 +1,6 @@
 <h1>Landing</h1>
 
-
-<div *ngIf="!showUpdateForm">
+<!-- <div *ngIf="!showUpdateForm">
   <div class="card" *ngFor="let report of reports" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title" >{{report.name}}</h5>
@@ -12,18 +11,129 @@
       <li class="list-group-item">eventDate: (to be changed) {{report.eventDate}}</li>
       <li class="list-group-item">reportCategory: (to be changed) {{report.reportCategory}}</li>
     </ul>
-
      <div *ngIf="isReportOwner(report)">
         <button type="button" class="edit-report" (click)="displayUpdateForm(report)">Edit</button>
         <button type="button" class="delete-report" (click)="deleteReport(report.id)">Delete</button>
        </div>
-
        <div>
        <button type="button">Like</button>
         <button type="button" >Comment</button>
        </div>
   </div>
-</div>
+</div> -->
+
+<!-- CARD - Displaying a user's report -->
+
+<div class="row d-flex flex-column align-items-center">
+  <!-- <div class="card" *ngFor="let report of reports" style="width: 18rem;"> -->
+    <div class="card w-75" *ngFor="let report of reports" >
+    <!-- <img src="..." class="card-img-top" alt="..."> -->
+    <div class="card-body">
+      <!-- <h5 class="card-title">Card title</h5> -->
+      <div class="row">
+        <div class="col">
+          <h5 class="card-title" >{{report.name}}</h5>
+        </div>
+
+        <div class="col">
+          <!-- PLACEHOLDER -->
+        </div>
+
+        <div class="col ">
+          <a class="list-group-item">Author: {{report.user.firstName}}</a>
+        </div>
+
+        <div class="row">
+          <p class="card-text">{{report.description}}</p>
+        </div>
+
+
+        <div class="row">
+          <div class="col">
+            <a class="list-group-item">Posted: {{report.createDate | date: 'full'  }}</a>
+          </div>
+
+          <div class="col">
+            <!-- PLACEHOLDER -->
+          </div>
+
+          <div class="col">
+            <a class="list-group-item">Happened: {{report.eventDate | date: 'full' }}</a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <a class="list-group-item">Category: {{report.reportCategory.name}}</a>
+          </div>
+
+          <div class="col">
+            <a class="list-group-item">PLACEHOLDER for tag {{report.reportCategory.name}}</a>
+          </div>
+
+          <div class="col">
+            <a class="list-group-item">Location:
+              {{report.address.street}}, {{report.address.city}},
+              {{report.address.postalCode}}
+            </a>
+          </div>
+
+        </div>    <!--ROW-->
+
+        </div> <!-- 2nd ROW-->
+
+        <div class="card-footer d-flex justify-content-between align-items-center">
+          <div *ngIf="isReportOwner(report)">
+            <button type="button" class="edit-report" (click)="displayUpdateForm(report)">Edit</button>
+            <button type="button" class="delete-report" (click)="deleteReport(report.id)">Delete</button>
+          </div>
+
+          <div>
+            <button type="button">Like</button>
+            <!-- <button type="button" (click)="!isCollapsed" >Comment</button> -->
+            <button
+              type="button"
+              class="btn btn-outline-primary ms-2"
+              (click)="isCollapsed = !isCollapsed"
+              [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseExample"
+              (click)="loadCommentsToReport(report.id)"
+            > View Comments
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Testing these 2 divs below-->
+
+
+        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+
+          <div class="card card-body">
+            <!-- <div class="card-body">You can collapse this card by clicking one Toggle button</div> -->
+            <div *ngFor="let comment of comments">
+              <a>
+                <!-- {{comment.user.firstName}} {{comment.user.lastName}} - {{comment.body}} -->
+                {{comment.user.firstName}} {{comment.user.lastName}} - {{comment.body}}
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- <div class="col ">
+          <a class="list-group-item">Author: {{report.user.firstName}}</a>
+        </div> -->
+
+      </div>
+    </div>
+
+
+
+
+
+
+
 
 <!--====================== UPDATE FORM ===========================-->
 <div *ngIf="showUpdateForm" class="update-form">
