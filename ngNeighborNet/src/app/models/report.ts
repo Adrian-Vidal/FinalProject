@@ -2,6 +2,7 @@ import { Address } from "./address";
 import { Reportcategory } from "./reportcategory";
 import { Severity } from "./severity";
 import { User } from "./user";
+import { Comment } from "./comment";
 
 export class Report {
 
@@ -18,7 +19,8 @@ export class Report {
   address: Address;
   user: User;
   reportCategory: Reportcategory;
-  severity: Severity
+  severity: Severity;
+  comments: Comment [];
 
 constructor(
   id: number=0,
@@ -35,6 +37,7 @@ constructor(
   user: User = new User(),
   reportCategory = new Reportcategory(),
   severity = new Severity(),
+  comments = [],
 
 
 ){
@@ -52,6 +55,7 @@ constructor(
   this.user=user;
   this.reportCategory=reportCategory;
   this.severity=severity;
+  this.comments=comments;
 
 }
 

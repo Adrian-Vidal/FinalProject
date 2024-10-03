@@ -74,9 +74,34 @@
           <button (click)="deleteReport(report.id)">Remove</button>
         </div>
           <!-- <button>Delete</button> -->
-        <div class="col">
+        <!-- <div class="col">
           <button>Comment</button>
+        </div> -->
+
+        <div class="col">
+          <button
+            type="button"
+            (click)="collapse.toggle()"
+            [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample"
+            (click)="loadCommentsToReport(report.id)"
+          >
+            View Comments
+          </button>
         </div>
+        <br><br>
+        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <div class="card">
+          <div class="card-body">
+          <div *ngFor="let comment of report.comments">
+            <a>
+              {{comment.user.firstName}} {{comment.user.lastName}} - {{comment.body}}
+            </a>
+          </div>
+        </div>
+        </div>
+        </div>
+
           <br>
       </div>
     </div>
