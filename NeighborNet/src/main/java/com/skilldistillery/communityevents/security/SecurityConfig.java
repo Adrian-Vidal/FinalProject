@@ -33,6 +33,7 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() // For CORS, the preflight request
             .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()     // will hit the OPTIONS on the route
             .requestMatchers(HttpMethod.GET, "/api/reports").permitAll()     //( If GET request for reports - no need to authenticate )
+            .requestMatchers("/api/admin/**").hasAuthority("admin")     //( only admin role has access to these endpoints )
             .requestMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
             .anyRequest().permitAll());                 // All other requests are allowed without authentication.
 

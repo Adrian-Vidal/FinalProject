@@ -111,10 +111,7 @@ public class ReportController {
 	@DeleteMapping("reports/{rid}")
 	public void disable(Principal principal, HttpServletRequest req, HttpServletResponse res,
 			@PathVariable("rid") int rid) {
-		System.out.println();
-		System.out.println();
-		System.out.println("Report Controller?");
-		System.out.println();
+
 		try {
 			if (reportService.unenable(principal.getName(), rid)) {
 				res.setStatus(204);

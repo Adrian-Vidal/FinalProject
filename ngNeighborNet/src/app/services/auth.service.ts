@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Observable, catchError, throwError, tap } from 'rxjs';
 import { User } from '../models/user';
 import { environment } from '../../environments/environment';
@@ -12,6 +12,8 @@ import  { Buffer } from 'buffer';
 export class AuthService {
    // Set port number to server's port
    private url = environment.baseUrl;
+   private loginSignal = signal(false);
+   readonly changeMade = this.loginSignal.asReadonly();
 
 
    constructor(private http: HttpClient){}
@@ -51,6 +53,8 @@ export class AuthService {
          // While credentials are stored in browser localStorage, we consider
          // ourselves logged in.
          localStorage.setItem('credentials', credentials);
+         this.loginSignal.update((v)=> v=true)
+
          return newUser;
        }),
        catchError((err: any) => {
@@ -65,6 +69,8 @@ export class AuthService {
 
    logout(): void {
      localStorage.removeItem('credentials');
+     this.loginSignal.update((v)=> v=false)
+
    }
 
 
@@ -96,7 +102,7 @@ export class AuthService {
    checkLogin(): boolean {
     //  console.log("in CheckLogin()")
      if (localStorage.getItem('credentials')) {
-      console.log(this.getCredentials);
+      // console.log(this.getCredentials);
       // console.log('in checkLogin() in auth.service.ts');
        return true;
      }
