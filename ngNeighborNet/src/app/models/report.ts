@@ -3,6 +3,7 @@ import { Reportcategory } from "./reportcategory";
 import { Severity } from "./severity";
 import { User } from "./user";
 import { Comment } from "./comment";
+import { ReportTag } from "./report-tag";
 
 export class Report {
 
@@ -21,6 +22,7 @@ export class Report {
   reportCategory: Reportcategory;
   severity: Severity;
   comments: Comment [];
+  reportTags: ReportTag [];
 
 constructor(
   id: number=0,
@@ -38,6 +40,7 @@ constructor(
   reportCategory = new Reportcategory(),
   severity = new Severity(),
   comments = [],
+  reportTags = []
 
 
 ){
@@ -56,6 +59,7 @@ constructor(
   this.reportCategory=reportCategory;
   this.severity=severity;
   this.comments=comments;
+  this.reportTags = reportTags;
 
 }
 

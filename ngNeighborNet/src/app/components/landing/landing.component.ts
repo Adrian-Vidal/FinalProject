@@ -8,6 +8,8 @@ import { User } from '../../models/user';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentService } from '../../services/comment.service';
 import { Comment } from '../../models/comment';
+import { ReportTag } from '../../models/report-tag';
+import { ReportTagService } from '../../services/report-tag.service';
 
 @Component({
   selector: 'app-landing',
@@ -33,11 +35,14 @@ export class LandingComponent implements OnInit{
   comments: Comment [] = [];
   isCollapsed = false;
 
+  reportTags: ReportTag [] = [];
+
 
 constructor (
   private reportService: ReportService,
   private authService: AuthService,
-  private commentService: CommentService
+  private commentService: CommentService,
+  private tagService: ReportTagService
   // private userService: UserService,
 ){}
 
@@ -160,6 +165,19 @@ loadCommentsToReport(reportId: number) {
     next: (comments) => {
       this.comments = comments;
       console.log(this.comments);
+    },
+    error: (err) => {
+      console.error('Error loading comments: ', err);
+    }
+  });
+}
+
+loadTagsToReport(id: number) {
+  console.log('in loadTagsToReport( ) .');
+  this.tagService.showTagsByReportId(id).subscribe({
+    next: (reportTags) => {
+      this.reportTags = reportTags;
+      console.log(this.reportTags);
     },
     error: (err) => {
       console.error('Error loading comments: ', err);
