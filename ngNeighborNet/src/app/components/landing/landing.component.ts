@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { ReportButtonsComponent } from '../report-buttons/report-buttons.component';
 import { User } from '../../models/user';
-
-
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommentService } from '../../services/comment.service';
+import { Comment } from '../../models/comment';
 
 @Component({
   selector: 'app-landing',
@@ -15,7 +15,7 @@ import { User } from '../../models/user';
   imports: [
     CommonModule,
     FormsModule,
-    ReportButtonsComponent
+    NgbCollapseModule,
   ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
@@ -30,23 +30,28 @@ export class LandingComponent implements OnInit{
   selected: Report | null = null;
   loggedInUser: User | null = null;
 
+  comments: Comment [] = [];
+  isCollapsed = false;
+
 
 constructor (
   private reportService: ReportService,
   private authService: AuthService,
+  private commentService: CommentService
   // private userService: UserService,
 ){}
 
 ngOnInit(): void {
   this.reload();
   this.getLoggedInUser();
+  // this.loadCommentsToReport();
 }
 
 reload() {
   this.reportService.index().subscribe({
     next: (reports) => {
       this.reports = reports;
-      console.log(this.reports)
+      console.log(this.reports);
     },
     error: (err) => {
       console.error('Error loading reports: ', err);
@@ -80,11 +85,17 @@ displayUpdateForm(report: Report): void {
   this.selected = report;
   this.showUpdateForm = report;
   this.editReport = Object.assign({}, this.selected);
+  this.reload(); //**** */
 
   console.log("displayUpdateForm????")
   console.log(this.selected)
+  console.log("still in displayUpdateForm()")
 
 }
+
+
+
+
 
 updateReport(report: Report): void{
   console.log("IN UPDATE REPORT !!!");
@@ -139,6 +150,19 @@ getLoggedInUser(){
     error: (err) => {
       console.error("reportOwner() error: ");
       console.error(err);
+    }
+  });
+}
+
+loadCommentsToReport(reportId: number) {
+  console.log('in loadCommentsToReport( ) .');
+  this.commentService.showCommentsByReportId(reportId).subscribe({
+    next: (comments) => {
+      this.comments = comments;
+      console.log(this.comments);
+    },
+    error: (err) => {
+      console.error('Error loading comments: ', err);
     }
   });
 }

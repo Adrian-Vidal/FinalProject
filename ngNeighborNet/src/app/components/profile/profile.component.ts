@@ -1,3 +1,4 @@
+import { CommentService } from './../../services/comment.service';
 import { AuthService } from './../../services/auth.service';
 import { Report } from './../../models/report';
 import { ReportService } from './../../services/report.service';
@@ -8,6 +9,8 @@ import { Address } from '../../models/address';
 import { Reportcategory } from '../../models/reportcategory';
 import { User } from '../../models/user';
 import { ReportButtonsComponent } from '../report-buttons/report-buttons.component';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { Comment } from '../../models/comment';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +18,8 @@ import { ReportButtonsComponent } from '../report-buttons/report-buttons.compone
   imports: [
     CommonModule,
     FormsModule,
-    ReportButtonsComponent
+    ReportButtonsComponent,
+    NgbCollapseModule,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
@@ -29,10 +33,14 @@ export class ProfileComponent implements OnInit {
   showUpdateForm: Report | null = null;
   selected: Report | null = null;
   editReport: Report | null = null;
+  isCollapsed = true;
+  comments: Comment[] = [];
+
 
 constructor (
   private authService: AuthService,
-  private reportService: ReportService
+  private reportService: ReportService,
+  private commentService: CommentService,
   // private dialogExample: diaglo // TODO - look up prompt dialog > MatDialogRef
 ){}
 
@@ -124,6 +132,21 @@ deleteReport(reportId: number){
   });
 
 }
+
+//------------------------COMMENT-------------------------------------------------
+loadCommentsToReport(reportId: number) {
+  console.log('in loadCommentsToReport( ) .');
+  this.commentService.showCommentsByReportId(reportId).subscribe({
+    next: (comments) => {
+      this.comments = comments;
+      console.log(this.comments);
+    },
+    error: (err) => {
+      console.error('Error loading comments: ', err);
+    }
+  });
+}
+
 
 
 }

@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,15 +47,15 @@ public class Comment {
 	// FOREIGN
 	@ManyToOne
 	@JoinColumn(name = "report_id")
-	@JsonIgnore
 	private Report report;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private User user;
 
 	@ManyToOne
+	@JsonIgnoreProperties({"inReplyTo","report"})
 	@JoinColumn(name = "in_reply_to_id")
 	private Comment inReplyTo;
 
