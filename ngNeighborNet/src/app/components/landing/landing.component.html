@@ -1,186 +1,184 @@
-<h1>Landing</h1>
+<h1>Community</h1>
 
-<!-- <div *ngIf="!showUpdateForm">
-  <div class="card" *ngFor="let report of reports" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title" >{{report.name}}</h5>
-      <p class="card-text">{{report.description}}</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">createDate: (to be changed) {{report.createDate}}</li>
-      <li class="list-group-item">eventDate: (to be changed) {{report.eventDate}}</li>
-      <li class="list-group-item">reportCategory: (to be changed) {{report.reportCategory}}</li>
-    </ul>
-     <div *ngIf="isReportOwner(report)">
-        <button type="button" class="edit-report" (click)="displayUpdateForm(report)">Edit</button>
-        <button type="button" class="delete-report" (click)="deleteReport(report.id)">Delete</button>
-       </div>
-       <div>
-       <button type="button">Like</button>
-        <button type="button" >Comment</button>
-       </div>
-  </div>
-</div> -->
-
+<div *ngIf="!showUpdateForm">
 <!-- CARD - Displaying a user's report -->
 
 <div class="row d-flex flex-column align-items-center">
   <!-- <div class="card" *ngFor="let report of reports" style="width: 18rem;"> -->
-    <div class="card w-75" *ngFor="let report of reports" >
+  <div class="card w-75 mb-5" *ngFor="let report of reports">
     <!-- <img src="..." class="card-img-top" alt="..."> -->
+
+    <!-- == HEADER (card) == -->
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="card-title">{{ report.name }}</h5>
+      <a class="list-group-item">
+        {{ report.address.street }} - {{ report.address.city }},
+        {{ report.address.state }}
+      </a>
+      <a class="list-group-item">
+        {{ report.user.firstName }} {{ report.user.lastName }}
+      </a>
+    </div>
+
     <div class="card-body">
-      <!-- <h5 class="card-title">Card title</h5> -->
-      <div class="row">
-        <div class="col">
-          <h5 class="card-title" >{{report.name}}</h5>
-        </div>
+      <p class="card-text">{{ report.description }}</p>
 
-        <div class="col">
-          <!-- PLACEHOLDER -->
-        </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <!-- <a class="list-group-item" -->
+        <p class="card-text">
+          Posted: {{ report.createDate | date : "mediumDate" }}
+        </p>
 
-        <div class="col ">
-          <a class="list-group-item">Author: {{report.user.firstName}}</a>
-        </div>
+        <a class="list-group-item"
+          >Happened: {{ report.eventDate | date : "mediumDate" }}</a
+        >
+      </div>
 
-        <div class="row">
-          <p class="card-text">{{report.description}}</p>
-        </div>
-
-
-        <div class="row">
-          <div class="col">
-            <a class="list-group-item">Posted: {{report.createDate | date: 'full'  }}</a>
-          </div>
-
-          <div class="col">
-            <!-- PLACEHOLDER -->
-          </div>
-
-          <div class="col">
-            <a class="list-group-item">Happened: {{report.eventDate | date: 'full' }}</a>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <a class="list-group-item">Category: {{report.reportCategory.name}}</a>
-          </div>
-
-          <div class="col">
-            <a class="list-group-item">PLACEHOLDER for tag {{report.reportCategory.name}}</a>
-          </div>
-
-          <div class="col">
-            <a class="list-group-item">Location:
-              {{report.address.street}}, {{report.address.city}},
-              {{report.address.postalCode}}
-            </a>
-          </div>
-
-        </div>    <!--ROW-->
-
-        </div> <!-- 2nd ROW-->
-
-        <div class="card-footer d-flex justify-content-between align-items-center">
-          <div *ngIf="isReportOwner(report)">
-            <button type="button" class="edit-report" (click)="displayUpdateForm(report)">Edit</button>
-            <button type="button" class="delete-report" (click)="deleteReport(report.id)">Delete</button>
-          </div>
-
-          <div>
-            <button type="button">Like</button>
-            <!-- <button type="button" (click)="!isCollapsed" >Comment</button> -->
-            <button
-              type="button"
-              class="btn btn-outline-primary ms-2"
-              (click)="isCollapsed = !isCollapsed"
-              [attr.aria-expanded]="!isCollapsed"
-              aria-controls="collapseExample"
-              (click)="loadCommentsToReport(report.id)"
-            > View Comments
-            </button>
-          </div>
-
-        </div>
-
-        <!-- Testing these 2 divs below-->
-
-
-        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-
-          <div class="card card-body">
-            <!-- <div class="card-body">You can collapse this card by clicking one Toggle button</div> -->
-            <div *ngFor="let comment of comments">
-              <a>
-                <!-- {{comment.user.firstName}} {{comment.user.lastName}} - {{comment.body}} -->
-                {{comment.user.firstName}} {{comment.user.lastName}} - {{comment.body}}
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- <div class="col ">
-          <a class="list-group-item">Author: {{report.user.firstName}}</a>
-        </div> -->
-
+      <div class="d-flex justify-content-between align-items-center">
+        <a class="list-group-item"
+          >Category: {{ report.reportCategory.name }}</a
+        >
+        <a class="list-group-item"
+          >PLACEHOLDER (tag) : {{ report.reportCategory.name }}</a
+        >
       </div>
     </div>
 
+    <div class="card-footer d-flex justify-content-between align-items-center">
+      <div *ngIf="isReportOwner(report)">
+        <button
+          type="button"
+          class="edit-report"
+          (click)="displayUpdateForm(report)"
+        >
+          Edit
+        </button>
 
+        <!-- <div class="col">
+          <button (click)="displayUpdateForm(report)">Edit</button>
+        </div> -->
 
+        <button
+          type="button"
+          class="delete-report"
+          (click)="deleteReport(report.id)"
+        >
+          Remove
+        </button>
+      </div>
 
+      <div>
+        <button type="button">Like</button>
+        <!-- <button type="button" (click)="!isCollapsed" >Comment</button> -->
+        <button
+          type="button"
+          class="btn btn-outline-primary ms-2"
+          (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed"
+          aria-controls="collapseExample"
+          (click)="loadCommentsToReport(report.id)"
+        >
+          View Comments
+        </button>
+      </div>
+    </div>
+    <!-- Testing these 2 divs below-->
 
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <!-- <div class="card card-body"> -->
+      <div class="card w-50 mb-2" *ngFor="let comment of report.comments">
+        <!-- <div class="card-body">You can collapse this card by clicking one Toggle button</div> -->
+        <!-- <div *ngFor="let comment of comments"> -->
+        <a>
+          <!-- {{comment.user.firstName}} {{comment.user.lastName}} - {{comment.body}} -->
+          {{ comment.user.firstName }} {{ comment.user.lastName }} -
+          {{ comment.body }}
+        </a>
+        <!-- </div> -->
+      </div>
+    </div>
 
-
-
+  </div>
+ </div>
+</div>
 <!--====================== UPDATE FORM ===========================-->
 <div *ngIf="showUpdateForm" class="update-form">
   <h1>Update Report</h1>
   <form *ngIf="editReport">
+    <div class="form-group row">
+      Name: <input type="text" name="name" [(ngModel)]="editReport.name" />
+    </div>
+    <div class="form-group row">
+      Description:
+      <input
+        type="text"
+        name="description"
+        [(ngModel)]="editReport.description"
+      />
+    </div>
+    <div class="form-group row">
+      Image URL:
+      <input type="text" name="imageUrl" [(ngModel)]="editReport.imageUrl" />
+    </div>
 
-  <div class="form-group row">
+    <div class="form-group row">
+      Address Name:
+      <input
+        type="text"
+        name="addressname"
+        [(ngModel)]="editReport.address.name"
+      />
+    </div>
 
-    Name: <input type="text" name="name" [(ngModel)]="editReport.name">
-  </div>
-  <div class="form-group row">
-    Description: <input type="text" name="description" [(ngModel)]="editReport.description">
-  </div>
-  <div class="form-group row">
-    Image URL: <input type="text" name="imageUrl" [(ngModel)]="editReport.imageUrl">
-  </div>
+    <div class="form-group row">
+      Street:
+      <input
+        type="text"
+        name="street"
+        [(ngModel)]="editReport.address.street"
+      />
+    </div>
 
-  <div class="form-group row">
-    Address Name: <input type="text" name="addressname" [(ngModel)]="editReport.address.name">
-  </div>
+    <div class="form-group row">
+      City:
+      <input type="text" name="city" [(ngModel)]="editReport.address.city" />
+    </div>
 
-  <div class="form-group row">
-    Street: <input type="text" name="street" [(ngModel)]="editReport.address.street">
-  </div>
+    <div class="form-group row">
+      State:
+      <input type="text" name="state" [(ngModel)]="editReport.address.state" />
+    </div>
 
-  <div class="form-group row">
-    City: <input type="text" name="city" [(ngModel)]="editReport.address.city">
-  </div>
+    <div class="form-group row">
+      Zip:
+      <input
+        type="text"
+        name="postalCode"
+        [(ngModel)]="editReport.address.postalCode"
+      />
+    </div>
 
-  <div class="form-group row">
-    State: <input type="text" name="state" [(ngModel)]="editReport.address.state">
-  </div>
+    <div class="form-group row">
+      Country:
+      <input
+        type="text"
+        name="country"
+        [(ngModel)]="editReport.address.country"
+      />
+    </div>
 
-  <div class="form-group row">
-    Zip: <input type="text" name="postalCode" [(ngModel)]="editReport.address.postalCode">
-  </div>
+    <div class="form-group row">
+      Category:
+      <input
+        type="text"
+        name="reportCategory"
+        [(ngModel)]="editReport.reportCategory.name"
+      />
+    </div>
 
-  <div class="form-group row">
-    Country: <input type="text" name="country" [(ngModel)]="editReport.address.country">
-  </div>
-
-  <div class="form-group row">
-    Category: <input type="text" name="reportCategory" [(ngModel)]="editReport.reportCategory.name">
-  </div>
-  <br>
-  <button (click)="displayLandingPage()">Cancel</button>
-  <button (click)="updateReport(editReport)">Submit</button>
-</form>
+    <br />
+    <button (click)="displayLandingPage()">Cancel</button>
+    <button (click)="updateReport(editReport)">Submit</button>
+  </form>
 </div>
 
