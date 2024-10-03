@@ -1,0 +1,11 @@
+<p>Username: {{loggedInUser?.username}}</p>
+
+
+<ul>
+  <div *ngFor="let report of reports">
+    <li>{{report.name}} : {{report.user.username}}</li>
+    <button type="button" class="delete-report" (click)="deleteReportAdmin(report.id)">Delete</button>
+
+  </div>
+
+</ul>

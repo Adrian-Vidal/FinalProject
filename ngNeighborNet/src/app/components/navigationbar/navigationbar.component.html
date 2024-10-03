@@ -30,7 +30,11 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/testing']">Map</a>
       </li>
-
+      <div *ngIf="checkAdmin()">
+      <li class="nav-item" >
+        <a class="nav-link" [routerLink]="['/admin']">Admin</a>
+      </li>
+    </div>
       <li class="nav-item" *ngIf="loggedIn()">
         <app-report-form-modal></app-report-form-modal>
       </li>
