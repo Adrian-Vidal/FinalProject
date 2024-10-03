@@ -7,6 +7,7 @@ import { NavigationbarComponent } from './components/navigationbar/navigationbar
 import { MapReportsComponent } from './components/map-reports/map-reports.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TestingComponent } from './components/testing/testing.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -16,6 +17,8 @@ export const routes: Routes = [
   {path: 'map', component: MapReportsComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'testing', component: TestingComponent},
+  {path: 'admin', component: AdminComponent},
+
 
 
 
