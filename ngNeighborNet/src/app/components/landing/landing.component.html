@@ -1,5 +1,6 @@
 <h1>Community</h1>
 
+<div *ngIf="!showUpdateForm">
 <!-- CARD - Displaying a user's report -->
 
 <div class="row d-flex flex-column align-items-center">
@@ -46,6 +47,8 @@
     <div class="card-footer d-flex justify-content-between align-items-center">
       <div *ngIf="isReportOwner(report)">
         <button
+          type="button"
+          class="edit-report"
           (click)="displayUpdateForm(report)"
         >
           Edit
@@ -60,7 +63,7 @@
           class="delete-report"
           (click)="deleteReport(report.id)"
         >
-          Delete
+          Remove
         </button>
       </div>
 
@@ -83,7 +86,7 @@
 
     <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
       <!-- <div class="card card-body"> -->
-      <div class="card w-50 mb-2" *ngFor="let comment of comments">
+      <div class="card w-50 mb-2" *ngFor="let comment of report.comments">
         <!-- <div class="card-body">You can collapse this card by clicking one Toggle button</div> -->
         <!-- <div *ngFor="let comment of comments"> -->
         <a>
@@ -94,9 +97,10 @@
         <!-- </div> -->
       </div>
     </div>
+
   </div>
  </div>
-
+</div>
 <!--====================== UPDATE FORM ===========================-->
 <div *ngIf="showUpdateForm" class="update-form">
   <h1>Update Report</h1>

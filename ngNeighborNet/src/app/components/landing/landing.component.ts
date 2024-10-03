@@ -1,14 +1,13 @@
-import { CommentService } from './../../services/comment.service';
 import { Report } from './../../models/report';
 import { ReportService } from './../../services/report.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { ReportButtonsComponent } from '../report-buttons/report-buttons.component';
 import { User } from '../../models/user';
-import { Comment } from '../../models/comment';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommentService } from '../../services/comment.service';
+import { Comment } from '../../models/comment';
 
 @Component({
   selector: 'app-landing',
@@ -17,7 +16,6 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     FormsModule,
     NgbCollapseModule,
-    ReportButtonsComponent
   ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
@@ -87,11 +85,17 @@ displayUpdateForm(report: Report): void {
   this.selected = report;
   this.showUpdateForm = report;
   this.editReport = Object.assign({}, this.selected);
+  this.reload(); //**** */
 
   console.log("displayUpdateForm????")
   console.log(this.selected)
+  console.log("still in displayUpdateForm()")
 
 }
+
+
+
+
 
 updateReport(report: Report): void{
   console.log("IN UPDATE REPORT !!!");
