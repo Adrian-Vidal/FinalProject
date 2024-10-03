@@ -51,7 +51,7 @@ public class Comment {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private User user;
 
 	@ManyToOne

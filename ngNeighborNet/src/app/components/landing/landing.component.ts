@@ -1,3 +1,4 @@
+import { CommentService } from './../../services/comment.service';
 import { Report } from './../../models/report';
 import { ReportService } from './../../services/report.service';
 import { CommonModule } from '@angular/common';
@@ -6,8 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ReportButtonsComponent } from '../report-buttons/report-buttons.component';
 import { User } from '../../models/user';
-
-
+import { Comment } from '../../models/comment';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-landing',
@@ -15,6 +16,7 @@ import { User } from '../../models/user';
   imports: [
     CommonModule,
     FormsModule,
+    NgbCollapseModule,
     ReportButtonsComponent
   ],
   templateUrl: './landing.component.html',
@@ -30,23 +32,28 @@ export class LandingComponent implements OnInit{
   selected: Report | null = null;
   loggedInUser: User | null = null;
 
+  comments: Comment [] = [];
+  isCollapsed = false;
+
 
 constructor (
   private reportService: ReportService,
   private authService: AuthService,
+  private commentService: CommentService
   // private userService: UserService,
 ){}
 
 ngOnInit(): void {
   this.reload();
   this.getLoggedInUser();
+  // this.loadCommentsToReport();
 }
 
 reload() {
   this.reportService.index().subscribe({
     next: (reports) => {
       this.reports = reports;
-      console.log(this.reports)
+      console.log(this.reports);
     },
     error: (err) => {
       console.error('Error loading reports: ', err);
@@ -139,6 +146,19 @@ getLoggedInUser(){
     error: (err) => {
       console.error("reportOwner() error: ");
       console.error(err);
+    }
+  });
+}
+
+loadCommentsToReport(reportId: number) {
+  console.log('in loadCommentsToReport( ) .');
+  this.commentService.showCommentsByReportId(reportId).subscribe({
+    next: (comments) => {
+      this.comments = comments;
+      console.log(this.comments);
+    },
+    error: (err) => {
+      console.error('Error loading comments: ', err);
     }
   });
 }
