@@ -9,9 +9,9 @@ export class Comment {
   modifiedDate: string;
   imageUrl: string;
   enabled: boolean;
+  report: Report | undefined;
+  user: User | undefined;
 
-  report: Report;
-  user: User;
 
   constructor(
     id: number = 0,
@@ -22,6 +22,7 @@ export class Comment {
     enabled: boolean = false,
     report: Report = new Report(),
     user: User = new User()
+
   ){
     this.id = id;
     this.body = body;

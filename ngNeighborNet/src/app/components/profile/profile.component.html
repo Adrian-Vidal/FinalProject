@@ -95,9 +95,14 @@
           <div class="card-body">
           <div *ngFor="let comment of report.comments">
             <a>
-              {{comment.user.firstName}} {{comment.user.lastName}} - {{comment.body}}
+              {{comment.user?.firstName}} {{comment.user?.lastName}} - {{comment.body}}
             </a>
           </div>
+          <div class="add-comment">
+            <input type="text" name="body" placeholder="Add Comment" [(ngModel)]="newComment.body">
+            <input type="text" name="imageUrl" placeholder="Image Url" [(ngModel)]="newComment.imageUrl">
+          </div>
+          <button (click)="addComment(report)">Submit</button>
         </div>
         </div>
         </div>

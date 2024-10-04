@@ -3,12 +3,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LandingComponent } from '../landing/landing.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-report-buttons',
   standalone: true,
   imports: [
-    LandingComponent
+    LandingComponent,
+    CommonModule,
   ],
   templateUrl: './report-buttons.component.html',
   styleUrl: './report-buttons.component.css'

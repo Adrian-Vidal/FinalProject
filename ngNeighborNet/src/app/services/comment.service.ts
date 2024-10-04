@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 import { Report } from '../models/report';
 import { Comment } from '../models/comment';
+import { ReportService } from './report.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class CommentService {
 
   constructor(
     private http: HttpClient,
-    private auth: AuthService
+    private auth: AuthService,
+    private report: ReportService,
   ) { }
 
   getHttpOptions() {
@@ -50,4 +52,22 @@ export class CommentService {
     );
   }
 
+  create(comment: Comment, reportId: number): Observable<Comment> {
+    console.log("comment.service.ts Firing!!?!?!?");
+    console.log(comment);
+    delete comment.user
+    delete comment.report
+    console.log(comment);
+    console.log("**************");
+    return this.http.post<Comment>(this.url + '/report' + "/" + reportId, comment, this.getHttpOptions()).pipe(
+      catchError(
+        (err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error('report.service.ts - create () : error creating report: ' + err)
+          );
+        }
+      )
+    );
+  }
 }

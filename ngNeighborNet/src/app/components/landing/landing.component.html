@@ -91,7 +91,7 @@
         <!-- <div *ngFor="let comment of comments"> -->
         <a>
           <!-- {{comment.user.firstName}} {{comment.user.lastName}} - {{comment.body}} -->
-          {{ comment.user.firstName }} {{ comment.user.lastName }} -
+          {{ comment.user?.firstName }} {{ comment.user?.lastName }} -
           {{ comment.body }}
         </a>
         <!-- </div> -->

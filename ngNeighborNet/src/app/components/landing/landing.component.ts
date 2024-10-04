@@ -85,7 +85,7 @@ displayUpdateForm(report: Report): void {
   this.selected = report;
   this.showUpdateForm = report;
   this.editReport = Object.assign({}, this.selected);
-  this.reload(); //**** */
+  this.reload();
 
   console.log("displayUpdateForm????")
   console.log(this.selected)
