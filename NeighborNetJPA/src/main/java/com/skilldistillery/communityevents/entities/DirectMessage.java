@@ -16,44 +16,39 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="direct_message")
+@Table(name = "direct_message")
 public class DirectMessage {
-	///------------------------FIELDS------------------------------------------------------------------------------------------
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String title;
-	
+
 	private String body;
-	
+
 	@CreationTimestamp
-	@Column(name="create_date")
+	@Column(name = "create_date")
 	private LocalDateTime createDate;
-	
+
 	@UpdateTimestamp
-	@Column(name="modified_date")
+	@Column(name = "modified_date")
 	private LocalDateTime modifiedDate;
-	
-	
+
 	private boolean enabled;
-	
+
 	@ManyToOne
-	@JoinColumn(name="sender_id")
+	@JoinColumn(name = "sender_id")
 	private User sender;
-	
+
 	@ManyToOne
-	@JoinColumn(name="recipient_id")
+	@JoinColumn(name = "recipient_id")
 	private User recipient;
-	///------------------------CONSTRUCTOR------------------------------------------------------------------------------------------
 
 	public DirectMessage() {
 		super();
 	}
-	///------------------------GETTERS AND SETTERS ------------------------------------------------------------------------------------------
 
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -62,37 +57,25 @@ public class DirectMessage {
 		return title;
 	}
 
-
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-
 
 	public User getSender() {
 		return sender;
 	}
 
-
-
 	public void setSender(User sender) {
 		this.sender = sender;
 	}
-
-
 
 	public User getRecipient() {
 		return recipient;
 	}
 
-
-
 	public void setRecipient(User recipient) {
 		this.recipient = recipient;
 	}
-
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -130,8 +113,6 @@ public class DirectMessage {
 		this.modifiedDate = modifiedDate;
 	}
 
-
-
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -144,8 +125,6 @@ public class DirectMessage {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
-
 
 	@Override
 	public String toString() {
@@ -165,8 +144,4 @@ public class DirectMessage {
 		return id == other.id;
 	}
 
-	
-
-	
-	
 }

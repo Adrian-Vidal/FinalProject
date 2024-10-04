@@ -16,7 +16,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "address")
 public class Address {
-	/// ------------------------FIELDS------------------------------------------------------------------------------------------
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +39,6 @@ public class Address {
 	@JsonIgnore
 	@OneToMany(mappedBy = "address")
 	private List<User> users;
-	/// ----------------------------CONSTRUCTOR--------------------------------------------------------------------------------------
 
 	public Address() {
 	}
@@ -58,9 +56,6 @@ public class Address {
 		this.enabled = enabled;
 		this.users = users;
 	}
-
-	/// -----------------------------------GETTERS AND
-	/// SETTERS-------------------------------------------------------------------------------
 
 	public int getId() {
 		return id;

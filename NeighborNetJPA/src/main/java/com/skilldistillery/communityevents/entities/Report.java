@@ -24,7 +24,6 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Report {
 
-	// == FIELDS ==
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -52,8 +51,6 @@ public class Report {
 	private Boolean resolved;
 	private Boolean enabled;
 
-	// == FOREIGN ==
-
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
@@ -68,17 +65,16 @@ public class Report {
 
 	@ManyToOne
 	@JoinColumn(name = "report_category_id")
-	private ReportCategory reportCategory; 
-	
-	@JsonIgnore // 
+	private ReportCategory reportCategory;
+
+	@JsonIgnore //
 	@ManyToMany(mappedBy = "reports") // reportTags?
 	private List<ReportTag> reportTags;
-	
-	@JsonIgnoreProperties({"report"})
+
+	@JsonIgnoreProperties({ "report" })
 	@OneToMany(mappedBy = "report")
 	private List<Comment> comments;
 
-	// == CONSTRUCTORS ==
 	public Report() {
 
 	}
@@ -105,7 +101,6 @@ public class Report {
 		this.reportTags = reportTags;
 	}
 
-	// == GETTERS & SETTERS ==
 	public int getId() {
 		return id;
 	}
