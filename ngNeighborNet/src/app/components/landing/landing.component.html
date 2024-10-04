@@ -1,5 +1,4 @@
 <!-- <h1>Community</h1> -->
-<!-- ----------------Report view------------------------------------ -->
 
 <div *ngIf="!showUpdateForm">
   <!-- CARD - Displaying a user's report -->
@@ -14,14 +13,17 @@
       <div
         class="card-header d-flex justify-content-between align-items-center"
       >
-      <img [src]="report.imageUrl" class="img-fluid" style="width: 100px; height: 100px; object-fit: cover">
         <h5 class="card-title">{{ report.name }}</h5>
-
-
-
         <a class="list-group-item">
-          {{ report.address.street }} - {{ report.address.city }},
+          <div class="align-items-center">
+          <div row>
+          {{ report.address.street }}
+          </div>
+          <div row>
+          {{ report.address.city }}
           {{ report.address.state }}
+          </div>
+          </div>
         </a>
         <a class="list-group-item">
           {{ report.user.firstName }} {{ report.user.lastName }}
@@ -65,7 +67,6 @@
             Edit
           </button>
 
-
           <button
             type="button"
             class="btn btn-outline-primary ms-2"
@@ -76,7 +77,9 @@
         </div>
 
         <div>
-          <button type="button" class="btn btn-outline-primary ms-2">Like</button>
+          <button type="button" class="btn btn-outline-primary ms-2">
+            Like
+          </button>
           <!-- <button type="button" (click)="!isCollapsed" >Comment</button> -->
           <button
             type="button"
@@ -91,12 +94,10 @@
         </div>
       </div>
       <!-- Testing these 2 divs below-->
-      <br>
+
       <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-        <div class="card align-items-center">
-          <h3>Comments</h3>
         <!-- <div class="card card-body"> -->
-        <div class="card w-75 mb-2" *ngFor="let comment of report.comments">
+        <div class="card w-50 mb-2" *ngFor="let comment of report.comments">
           <!-- <div class="card-body">You can collapse this card by clicking one Toggle button</div> -->
           <!-- <div *ngFor="let comment of comments"> -->
           <div class="card-header">
@@ -104,21 +105,7 @@
           </div>
           <div class="card-body">
             {{ comment.body }}
-            <br>
-            <br>
-            <br>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-            <a>Posted:
-            {{comment.createDate | date: 'full'}}
-            </a>
-            </div>
           </div>
-        </div>
-<!----------------------------- ADD COMMENT ----------------------------->
-<div class="add-comment">
-  <textarea name="body" placeholder="Add Comment" [(ngModel)]="newComment.body" rows="4" cols="50"></textarea>
-</div>
-<button class="btn btn-outline-primary ms-2"(click)="addComment(report)">Submit</button>
         </div>
       </div>
     </div>
@@ -129,10 +116,8 @@
 <div *ngIf="showUpdateForm" class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-
       <h2 class="text-center">Update</h2>
       <form *ngIf="editReport" class="mt-4">
-
         <div class="form-group mb-3">
           <label for="name">Name</label>
           <input
@@ -250,10 +235,19 @@
         </div>
 
         <div class="d-flex justify-content-between">
-          <button class="btn btn-outline-primary ms-2" (click)="displayLandingPage()">Cancel</button>
-          <button class="btn btn-outline-primary ms-2" (click)="updateReport(editReport)">Submit</button>
+          <button
+            class="btn btn-outline-primary ms-2"
+            (click)="displayLandingPage()"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-outline-primary ms-2"
+            (click)="updateReport(editReport)"
+          >
+            Submit
+          </button>
         </div>
-
       </form>
     </div>
   </div>
