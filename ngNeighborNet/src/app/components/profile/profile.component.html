@@ -1,197 +1,269 @@
-<!-- TODO $customize w/ users name, etc-->
 <h1>Profile</h1>
-
 <div *ngIf="!showUpdateForm">
+  <!-- CARD - Displaying a user's report -->
+  <div class="container py-2">
+    <!-- <div class="row d-flex flex-column align-items-center"> -->
+    <div class="card align-items-center">
+      <div class="card w-75 mb-2" *ngFor="let report of reports">
+        <!-- == HEADER (card) == -->
+        <div
+          class="card-header d-flex justify-content-between align-items-center"
+        >
+          <img
+            [src]="report.imageUrl"
+            class="img-fluid"
+            style="width: 100px; height: 100px; object-fit: cover"
+          />
 
+          <h5 class="card-title">{{ report.name }}</h5>
 
- <br>
-
-<!-- CARD - Displaying a user's report -->
-
-  <div class="row d-flex flex-column align-items-center">
-<!-- <div class="card" *ngFor="let report of reports" style="width: 18rem;"> -->
-  <div class="card w-75" *ngFor="let report of reports" >
-  <!-- <img src="..." class="card-img-top" alt="..."> -->
-  <div class="card-body">
-    <!-- HEADER -->
-    <div class="card-header d-flex justify-content-between align-items-center">
-    <!-- <h5 class="card-title">Card title</h5> -->
-
-    <div class="col">
-      <img
-          [src]="report.imageUrl"
-          class="img-fluid"
-          style="width: 100px; height: 100px; object-fit: cover"
-        />
-    </div>
-
-
-      <div class="col text-center">
-        <h5 class="card-title" >{{report.name}}</h5>
-      </div>
-
-
-      <div class="col text-end">
-        <h5 class="list-group-item">Author: {{report.user.firstName}}</h5>
-      </div>
-      </div>
-      </div>
-
-
-      <div class="row">
-      <div class="col">
-        <a class="list-group-item">{{report.description}}</a>
-      </div>
-      <div class="col text-end">
-        <a class="list-group-item">Location:
-          {{report.address.street}}
-          {{report.address.city}}
-          {{report.address.postalCode}}
-        </a>
-      </div>
-      </div>
-      <br>
-
-      <div class="row">
-        <div class="col">
-          <a class="list-group-item">Posted: {{report.createDate | date: 'full'  }}</a>
-        </div>
-
-        <div class="col">
-          <!-- PLACEHOLDER -->
-        </div>
-
-        <div class="col text-end">
-          <a class="list-group-item">Happened: {{report.eventDate | date: 'full' }}</a>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col">
-          <a class="list-group-item">Category: {{report.reportCategory.name}}</a>
-        </div>
-
-        <div class="col">
-          <!-- <a class="list-group-item">PLACEHOLDER for tag {{report.reportCategory.name}}</a> -->
-        </div>
-
-
-      </div>
-      <br>
-      <br>
-
-
-      <div class="row">
-        <div class="col">
-          <button class="btn btn-outline-primary ms-2" (click)="displayUpdateForm(report)">Edit</button>
-        </div>
-          <!-- <button (click)="disable()">Remove</button>  -->
-        <div class="col text-center">
-          <button class="btn btn-outline-primary ms-2" (click)="deleteReport(report.id)">Remove</button>
-        </div>
-          <!-- <button>Delete</button> -->
-        <!-- <div class="col">
-          <button>Comment</button>
-        </div> -->
-
-        <div class="col text-end">
-          <button
-            type="button"
-            class="btn btn-outline-primary ms-2"
-            (click)="collapse.toggle()"
-            [attr.aria-expanded]="!isCollapsed"
-            aria-controls="collapseExample"
-            (click)="loadCommentsToReport(report.id)"
-          >
-            View Comments
-          </button>
-        </div>
-        <br>
-        <br>
-        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-        <div class="card align-items-center">
-          <div class="card-body text-center">
-            <h3>Comments</h3>
-          <div class="card w-150 mb-2" *ngFor="let comment of report.comments">
-            <div class="card-header">
-              {{comment.user?.firstName}} {{comment.user?.lastName}}
-          </div>
-          <div class="card-body">
-            {{comment.body}}
-            <br>
-            <br>
-            <br>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-            <a>Posted:
-            {{comment.createDate | date: 'full'}}
-            </a>
+          <a class="list-group-item">
+            <div class="align-items-center text-center">
+              <div>
+                {{ report.address.street }}
+              </div>
+              <div>
+                {{ report.address.city }}
+                {{ report.address.state }}
+              </div>
             </div>
-          </div>
+          </a>
 
+          <a class="list-group-item">
+            <div>{{ report.user.firstName }} {{ report.user.lastName }}</div>
+            <div>
+              {{ report.createDate | date : "mediumDate" }}
+            </div>
+          </a>
+        </div>
 
+        <div class="card-body">
+          <p class="card-text">{{ report.description }}</p>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <a class="list-group-item"
+              >Event Date: {{ report.eventDate | date : "mediumDate" }}</a
+            >
+
+            <a class="list-group-item">{{ report.reportCategory.name }}</a>
           </div>
-          </div>
-          <br>
-          <div class="add-comment">
-            <textarea name="body" placeholder="Add Comment" [(ngModel)]="newComment.body" rows="4" cols="50"></textarea>
-          </div>
-          <button class="btn btn-outline-primary ms-2"(click)="addComment(report)">Submit</button>
         </div>
+
+        <div
+          class="card-footer d-flex justify-content-between align-items-center"
+        >
+          <!-- <div *ngIf="isReportOwner(report)"> -->
+            <button
+              type="button"
+              class="btn btn-outline-primary ms-2"
+              (click)="displayUpdateForm(report)"
+            >
+              Edit
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline-primary ms-2"
+              (click)="deleteReport(report.id)"
+            >
+              Remove
+            </button>
+          <!-- </div> -->
+
+          <div>
+            <!-- <button type="button" (click)="!isCollapsed" >Comment</button> -->
+            <button
+              type="button"
+              class="btn btn-outline-primary ms-2"
+              (click)="isCollapsed = !isCollapsed"
+              [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseExample"
+              (click)="loadCommentsToReport(report.id)"
+            >
+              View Comments
+            </button>
+          </div>
         </div>
-          <br>
+        <!-- Testing these 2 divs below-->
+        <br />
+        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+          <div class="card align-items-center">
+            <h5>Comments</h5>
+            <!-- <div class="card card-body"> -->
+            <div class="card w-75 mb-2" *ngFor="let comment of report.comments">
+              <div class="card-header">
+                {{ comment.user?.firstName }} {{ comment.user?.lastName }}
+              </div>
+              <div class="card-body">
+                {{ comment.body }}
+              </div>
+
+              <div class="card-footer align-items-center">
+                <a>
+                  {{ comment.createDate | date : "full" }}
+                </a>
+              </div>
+            </div>
+            <!----------------------------- ADD COMMENT ----------------------------->
+            <div class="add-comment">
+              <textarea
+                name="body"
+                placeholder="Add Comment"
+                [(ngModel)]="newComment.body"
+                rows="4"
+                cols="50"
+              ></textarea>
+            </div>
+            <button
+              class="btn btn-outline-primary ms-2"
+              (click)="addComment(report)"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<!-- </div>
-</div> -->
 
-<!--====================== UPDATE FROM ===========================-->
+<!--====================== UPDATE FORM ===========================-->
+<div *ngIf="showUpdateForm" class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center">Update</h2>
+      <form *ngIf="editReport" class="mt-4">
+        <div class="form-group mb-3">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            name="name"
+            [(ngModel)]="editReport.name"
+          />
+        </div>
 
-<div *ngIf="showUpdateForm" class="update-form">
-  <form *ngIf="editReport">
-    <h1>Update Form</h1>
+        <div class="form-group mb-3">
+          <label for="description">Description</label>
+          <textarea
+            id="description"
+            class="form-control"
+            name="description"
+            rows="3"
+            [(ngModel)]="editReport.description"
+          ></textarea>
+        </div>
 
-  <div class="form-group row">
-    Name: <input type="text" name="name" [(ngModel)]="editReport.name">
+        <div class="form-group mb-3">
+          <label for="imageUrl">Image URL</label>
+          <input
+            type="text"
+            id="imageUrl"
+            class="form-control"
+            name="imageUrl"
+            [(ngModel)]="editReport.imageUrl"
+          />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="addressname">Address Name</label>
+          <input
+            type="text"
+            id="addressname"
+            class="form-control"
+            name="addressname"
+            [(ngModel)]="editReport.address.name"
+          />
+        </div>
+
+        <!-- == 1 row - street/city -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="street">Street</label>
+            <input
+              type="text"
+              id="street"
+              class="form-control"
+              name="street"
+              [(ngModel)]="editReport.address.street"
+            />
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="city">City</label>
+            <input
+              type="text"
+              id="city"
+              class="form-control"
+              name="city"
+              [(ngModel)]="editReport.address.city"
+            />
+          </div>
+        </div>
+
+        <!-- == 1 row - state/zip/country -->
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="state">State</label>
+            <input
+              type="text"
+              id="state"
+              class="form-control"
+              name="state"
+              [(ngModel)]="editReport.address.state"
+            />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="postalCode">Zip</label>
+            <input
+              type="text"
+              id="postalCode"
+              class="form-control"
+              name="postalCode"
+              [(ngModel)]="editReport.address.postalCode"
+            />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="country">Country</label>
+            <input
+              type="text"
+              id="country"
+              class="form-control"
+              name="country"
+              [(ngModel)]="editReport.address.country"
+            />
+          </div>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="reportCategory">Category</label>
+          <input
+            type="text"
+            id="reportCategory"
+            class="form-control"
+            name="reportCategory"
+            [(ngModel)]="editReport.reportCategory.name"
+          />
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button
+            class="btn btn-outline-primary ms-2"
+            (click)="displayProfilePage()"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-outline-primary ms-2"
+            (click)="updateReport(editReport)"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="form-group row">
-    Description: <input type="text" name="description" [(ngModel)]="editReport.description">
-  </div>
-  <div class="form-group row">
-    Image URL: <input type="text" name="imageUrl" [(ngModel)]="editReport.imageUrl">
-  </div>
-
-  <div class="form-group row">
-    Address Name: <input type="text" name="addressname" [(ngModel)]="editReport.address.name">
-  </div>
-
-  <div class="form-group row">
-    Street: <input type="text" name="street" [(ngModel)]="editReport.address.street">
-  </div>
-
-  <div class="form-group row">
-    City: <input type="text" name="city" [(ngModel)]="editReport.address.city">
-  </div>
-
-  <div class="form-group row">
-    State: <input type="text" name="state" [(ngModel)]="editReport.address.state">
-  </div>
-
-  <div class="form-group row">
-    Zip: <input type="text" name="postalCode" [(ngModel)]="editReport.address.postalCode">
-  </div>
-
-  <div class="form-group row">
-    Country: <input type="text" name="country" [(ngModel)]="editReport.address.country">
-  </div>
-
-  <div class="form-group row">
-    Category: <input type="text" name="reportCategory" [(ngModel)]="editReport.reportCategory.name">
-
-  </div>
-  <br>
-  <button (click)="displayProfilePage()">Cancel</button>
-  <button (click)="updateReport(editReport)">Submit</button>
-</form>
 </div>

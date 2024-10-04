@@ -69,7 +69,7 @@ public class ReportServiceImpl implements ReportService {
 //			if (managedCategory != null) {
 //				
 //			}
-//			reportCategoryRepo.saveAndFlush(report.getReportCategory());
+			reportCategoryRepo.saveAndFlush(report.getReportCategory());
 			
 			if (managedAddresses != null && !managedAddresses.isEmpty()) {
 				System.out.println("Address found (if) ");

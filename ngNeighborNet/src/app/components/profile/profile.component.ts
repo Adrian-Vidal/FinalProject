@@ -53,7 +53,11 @@ ngOnInit(): void {
 reload() {
   this.reportService.showAllUserReportEnabled().subscribe({
     next: (reports) => {
-      this.reports = reports;
+      this.reports = reports.sort((a, b) => {
+        return (
+          new Date(b.createDate).getTime() - new Date(a.createDate).getTime()
+        );
+      });
     },
     error: (err) => {
       console.error('Error loading reports: ', err);

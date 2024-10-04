@@ -9,6 +9,6 @@ import com.skilldistillery.communityevents.entities.ReportTag;
 
 public interface ReportTagRepository extends JpaRepository<ReportTag, Integer> {
 	
-	List<ReportTag> findByReports_Id(int id);
+//	List<ReportTag> findByReports_Id(int id);
 
 }
