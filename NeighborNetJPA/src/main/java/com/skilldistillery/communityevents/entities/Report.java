@@ -68,10 +68,10 @@ public class Report {
 
 	@ManyToOne
 	@JoinColumn(name = "report_category_id")
-	private ReportCategory reportCategory;
+	private ReportCategory reportCategory; 
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "reports")
+	@JsonIgnore // 
+	@ManyToMany(mappedBy = "reports") // reportTags?
 	private List<ReportTag> reportTags;
 	
 	@JsonIgnoreProperties({"report"})
