@@ -96,7 +96,9 @@ public class ReportServiceImpl implements ReportService {
 			managedReport.setDescription(updatedReport.getDescription());
 			managedReport.setImageUrl(updatedReport.getImageUrl());
 			managedReport.setEnabled(updatedReport.getEnabled());
-			reportRepo.saveAndFlush(managedReport);
+			managedReport.setReportCategory(updatedReport.getReportCategory());
+			reportCategoryRepo.saveAndFlush(managedReport.getReportCategory());
+			reportRepo.saveAndFlush(managedReport);;
 		}
 		return managedReport;
 	}

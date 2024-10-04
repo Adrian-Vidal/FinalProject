@@ -72,7 +72,8 @@ public class ReportController {
 	@PutMapping("reports/{id}")
 	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res,
 			@PathVariable("id") int id, @RequestBody Report report) {
-
+		System.out.println(report);
+		System.out.println(report.getReportCategory().getName());
 		Optional<Report> reportOpt = reportService.findById(id); 
 		if (reportOpt.isPresent()) {
 			Report managedReport = reportOpt.get();
