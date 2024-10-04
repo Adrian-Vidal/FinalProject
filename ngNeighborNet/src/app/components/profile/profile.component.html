@@ -2,9 +2,7 @@
 <h1>Profile</h1>
 
 <div *ngIf="!showUpdateForm">
-<div format_align_right>
-  <button class="btn btn-outline-primary ms-2"> Edit (profile) </button>
-</div>
+
 
  <br>
 
@@ -27,7 +25,7 @@
         <!-- PLACEHOLDER -->
       </div>
 
-      <div class="col ">
+      <div class="col align">
         <h5 class="list-group-item">Author: {{report.user.firstName}}</h5>
       </div>
       </div>
@@ -101,10 +99,23 @@
         <div class="card align-items-center">
           <div class="card-body align-items-center">
             <h3>Comments</h3>
-          <div *ngFor="let comment of report.comments">
-            <a>
-              {{comment.user?.firstName}} {{comment.user?.lastName}} - {{comment.body}}
+          <div class="card w-150 mb-2" *ngFor="let comment of report.comments">
+            <div class="card-header">
+              {{comment.user?.firstName}} {{comment.user?.lastName}}
+          </div>
+          <div class="card-body">
+            {{comment.body}}
+            <br>
+            <br>
+            <br>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+            <a>Posted:
+            {{comment.createDate | date: 'full'}}
             </a>
+            </div>
+          </div>
+
+
           </div>
           </div>
           <br>
@@ -114,8 +125,6 @@
           <button class="btn btn-outline-primary ms-2"(click)="addComment(report)">Submit</button>
         </div>
         </div>
-
-
           <br>
       </div>
     </div>
