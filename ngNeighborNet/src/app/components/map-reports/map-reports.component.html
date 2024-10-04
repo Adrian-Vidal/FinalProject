@@ -16,15 +16,25 @@
 
     <div class="container py-8">
       <div *ngIf="selected">
+        <br>
         <h1>{{ selected.name }}</h1>
-        <ul>
-          <li>Descripition: {{ selected.description }}</li>
-          <li>{{ selected.user.firstName }} {{ selected.user.lastName }}</li>
-          <li>
-            Address: {{ selected.address.street }}, {{ selected.address.city }},
+
+          <h4>Descripition</h4>
+
+          <p>{{ selected.description }}</p>
+          <h4>Report Creator</h4>
+          <p>{{ selected.user.firstName }} {{ selected.user.lastName }}</p>
+          <h4>Location</h4>
+          <p>
+            {{ selected.address.street }}, {{ selected.address.city }},
             {{ selected.address.state }}, {{ selected.address.postalCode }}
-          </li>
-        </ul>
+          </p>
+
+        <img
+        [src]="selected.imageUrl"
+        class="img-fluid"
+        style="width: 300px; height: 300px; object-fit: cover"
+      />
       </div>
     </div>
   </div>
