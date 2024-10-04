@@ -1,23 +1,49 @@
-<h1>MAP REPORTS</h1>
+<div class="container py-5">
+  <div style="display: flex; justify-content: center; align-items: center">
+    <!-- google-map-demo.component.html -->
+    <google-map height="400px" width="750px" [center]="center" [zoom]="zoom">
+      <div *ngFor="let item of markerPositions">
+        <map-marker
+          #marker="mapMarker"
+          [position]="item.position"
+          (mapClick)="openInfoWindow(marker, item.report)"
+        >
+          <!-- <h1>{{item.report.name}}</h1> -->
+          <map-info-window>{{ infoWindowContent }}</map-info-window>
+        </map-marker>
+      </div>
+    </google-map>
 
-<!-- google-maps-demo.component.html -->
-
-<div *ngIf="center && user" >
+    <div class="container py-8">
+      <div *ngIf="selected">
+        <h1>{{ selected.name }}</h1>
+        <ul>
+          <li>Descripition: {{ selected.description }}</li>
+          <li>{{ selected.user.firstName }} {{ selected.user.lastName }}</li>
+          <li>
+            Address: {{ selected.address.street }}, {{ selected.address.city }},
+            {{ selected.address.state }}, {{ selected.address.postalCode }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- OG
+--------------------------------------------------------
 <google-map
   height="400px"
   width="750px"
   [center]="center"
-  [zoom] = "12">
-
+  [zoom]="zoom"
+  >
+    @for (position of markerPositions; track position) {
+      <map-marker
+      #marker="mapMarker"
+      [position]="position"
+      (mapClick)="openInfoWindow(marker)"
+      ></map-marker>
+      <map-info-window>{{reports.length}}</map-info-window>
+    }
 </google-map>
-</div>
-
-  <!--
-<div>Latitude: {{display?.lat}}</div>
-<div>Longitude: {{display?.lng}}</div> -->
-
-<!-- 36.64427820939584, -93.22183641644135 -->
-
-
-
-
+-------------------------------------------------------- -->
