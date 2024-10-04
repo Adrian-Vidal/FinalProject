@@ -13,6 +13,7 @@
             class="img-fluid"
             style="width: 100px; height: 100px; object-fit: cover"
           />
+
           <h5 class="card-title">{{ report.name }}</h5>
 
           <a class="list-group-item">
@@ -28,7 +29,10 @@
           </a>
 
           <a class="list-group-item">
-            {{ report.user.firstName }} {{ report.user.lastName }}
+            <div>{{ report.user.firstName }} {{ report.user.lastName }}</div>
+            <div>
+              {{ report.createDate | date : "mediumDate" }}
+            </div>
           </a>
         </div>
 
@@ -36,24 +40,11 @@
           <p class="card-text">{{ report.description }}</p>
 
           <div class="d-flex justify-content-between align-items-center">
-            <!-- <a class="list-group-item" -->
-            <p class="card-text">
-              Posted: {{ report.createDate | date : "mediumDate" }}
-            </p>
-
             <a class="list-group-item"
-              >Happened: {{ report.eventDate | date : "mediumDate" }}</a
-            >
-          </div>
-
-          <div class="d-flex justify-content-between align-items-center">
-            <a class="list-group-item"
-              >Category: {{ report.reportCategory.name }}</a
+              >Event Date: {{ report.eventDate | date : "mediumDate" }}</a
             >
 
-            <div *ngFor="let reportTag of reportTags">
-              <a class="list-group-item"> TAG: {{ reportTag.id }} </a>
-            </div>
+            <a class="list-group-item">{{ report.reportCategory.name }}</a>
           </div>
         </div>
 
@@ -79,9 +70,6 @@
           </div>
 
           <div>
-            <button type="button" class="btn btn-outline-primary ms-2">
-              Like
-            </button>
             <!-- <button type="button" (click)="!isCollapsed" >Comment</button> -->
             <button
               type="button"
@@ -102,8 +90,6 @@
             <h5>Comments</h5>
             <!-- <div class="card card-body"> -->
             <div class="card w-75 mb-2" *ngFor="let comment of report.comments">
-              <!-- <div class="card-body">You can collapse this card by clicking one Toggle button</div> -->
-              <!-- <div *ngFor="let comment of comments"> -->
               <div class="card-header">
                 {{ comment.user?.firstName }} {{ comment.user?.lastName }}
               </div>
