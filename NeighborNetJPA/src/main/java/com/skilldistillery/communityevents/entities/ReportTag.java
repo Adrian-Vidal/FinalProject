@@ -16,21 +16,17 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "report_tag")
 public class ReportTag {
-//----------FIELDS--------------------------------------------------------------------------
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "tag_name")
 	private String tagName;
-	
+
 	@ManyToMany
-	@JoinTable(name="report_has_report_tag",
-	joinColumns=@JoinColumn(name="report_tag_id"),
-	inverseJoinColumns=@JoinColumn(name="report_id")
-	)
+	@JoinTable(name = "report_has_report_tag", joinColumns = @JoinColumn(name = "report_tag_id"), inverseJoinColumns = @JoinColumn(name = "report_id"))
 	private List<Report> reports;
-//----------CONSTRUCTOR--------------------------------------------------------------------------
 
 	public ReportTag() {
 	}
@@ -40,10 +36,6 @@ public class ReportTag {
 		this.id = id;
 		this.tagName = tagName;
 	}
-//----------Getters and Setters--------------------------------------------------------------------------
-
-	
-	
 
 	public int getId() {
 		return id;

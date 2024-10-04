@@ -53,7 +53,6 @@ class UserTest {
 	void test_User_has_an_address() {
 		assertNotNull(user.getAddress());
 		assertEquals("Branson", user.getAddress().getCity());
-
 	}
 
 	@Test
@@ -62,8 +61,6 @@ class UserTest {
 //		assertTrue(user.getSentMessages().size()>0);
 		assertNotNull(user.getRecievedMessages());
 		assertTrue(user.getRecievedMessages().size() > 0);
-//		
-
 	}
 
 	@Test
@@ -71,7 +68,6 @@ class UserTest {
 		assertNotNull(user);
 		assertNotNull(user.getReports());
 		assertTrue(user.getReports().size() > 0);
-
 	}
 
 }

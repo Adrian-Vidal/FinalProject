@@ -19,7 +19,6 @@ class ReportCategoryTest {
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
 	private ReportCategory reportCategory;
-	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -35,28 +34,26 @@ class ReportCategoryTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-        // Initialize the user object from the database
-        reportCategory = em.find(ReportCategory.class, 1); 
-		}
+		// Initialize the user object from the database
+		reportCategory = em.find(ReportCategory.class, 1);
+	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		em.close();	
-		}
+		em.close();
+	}
 
 	@Test
 	void test_reportCategory_basic_mappings() {
 		assertNotNull(reportCategory);
 		assertEquals("Weather", reportCategory.getName());
 		assertEquals("Reports related to weather events", reportCategory.getDescription());
-		
 	}
-	
+
 	@Test
 	void test_reportCategory_reports_oneToMany() {
 		assertNotNull(reportCategory.getReports());
 		assertTrue(reportCategory.getReports().size() > 0);
-		// Make greater than one once we start populating more data
 	}
 
 }

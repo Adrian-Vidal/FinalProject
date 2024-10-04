@@ -19,7 +19,6 @@ class DirectMessageTest {
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
 	private DirectMessage directMessage;
-	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -35,29 +34,26 @@ class DirectMessageTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-        // Initialize the user object from the database
-        directMessage = em.find(DirectMessage.class, 1); 
-		}
+		// Initialize the user object from the database
+		directMessage = em.find(DirectMessage.class, 1);
+	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		em.close();	
-		}
+		em.close();
+	}
 
 	@Test
 	void test_User_basic_mappings() {
-		
 		assertNotNull(directMessage);
 		assertEquals("I had a quick follow up question regarding your post the other day.", directMessage.getBody());
-
 	}
+
 	@Test
 	void test_directmessage_has_a_sender_and_recipient() {
 		assertNotNull(directMessage.getSender());
-		assertEquals("John",directMessage.getSender().getFirstName());
-		assertEquals("test",directMessage.getRecipient().getUsername());
-		
-
+		assertEquals("John", directMessage.getSender().getFirstName());
+		assertEquals("test", directMessage.getRecipient().getUsername());
 	}
 
 }

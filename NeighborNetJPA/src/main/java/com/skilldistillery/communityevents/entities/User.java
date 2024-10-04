@@ -22,7 +22,6 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class User {
 
-	// == FIELDS ==
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -39,7 +38,7 @@ public class User {
 	private String lastName;
 
 	private String email;
-	
+
 	@CreationTimestamp
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
@@ -51,7 +50,6 @@ public class User {
 	@Column(name = "image_url")
 	private String imageUrl;
 
-	// == FOREIGN ==
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
@@ -71,8 +69,6 @@ public class User {
 	@JsonIgnore
 	@ManyToMany(mappedBy = "usersLiked")
 	private List<Report> likedReports;
-
-	// == CONSTRUCTORS ==
 
 	public User() {
 		super();
@@ -101,7 +97,6 @@ public class User {
 		this.likedReports = likedReports;
 	}
 
-	// == GETTERS & SETTERS ==
 	public String getFirstName() {
 		return firstName;
 	}
@@ -230,7 +225,6 @@ public class User {
 		this.likedReports = likedReports;
 	}
 
-	// == HASHCODE & EQUALS ==
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -254,7 +248,5 @@ public class User {
 				+ enabled + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", createDate="
 				+ createDate + ", modifiedDate=" + modifiedDate + ", imageUrl=" + imageUrl + "]";
 	}
-
-	// == TO-STRING ==
 
 }

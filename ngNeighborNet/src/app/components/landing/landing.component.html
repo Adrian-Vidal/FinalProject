@@ -1,4 +1,4 @@
-<h1>Community</h1>
+<!-- <h1>Community</h1> -->
 
 <div *ngIf="!showUpdateForm">
   <!-- CARD - Displaying a user's report -->
@@ -6,6 +6,7 @@
   <div class="row d-flex flex-column align-items-center">
     <!-- <div class="card" *ngFor="let report of reports" style="width: 18rem;"> -->
     <div class="card w-75 mb-5" *ngFor="let report of reports">
+      <!-- <div class="card col-12 mb-5" *ngFor="let report of reports"> -->
       <!-- <img src="..." class="card-img-top" alt="..."> -->
 
       <!-- == HEADER (card) == -->
@@ -38,14 +39,12 @@
 
         <div class="d-flex justify-content-between align-items-center">
           <a class="list-group-item"
-            >Category: {{ report.reportCategory.name }}</a>
+            >Category: {{ report.reportCategory.name }}</a
+          >
 
           <div *ngFor="let reportTag of reportTags">
-            <a class="list-group-item" >
-              TAG: {{ reportTag.id }}
-            </a>
+            <a class="list-group-item"> TAG: {{ reportTag.id }} </a>
           </div>
-
         </div>
       </div>
 
@@ -55,19 +54,16 @@
         <div *ngIf="isReportOwner(report)">
           <button
             type="button"
-            class="edit-report"
+            class="btn btn-outline-primary ms-2"
             (click)="displayUpdateForm(report)"
           >
             Edit
           </button>
 
-          <!-- <div class="col">
-          <button (click)="displayUpdateForm(report)">Edit</button>
-        </div> -->
 
           <button
             type="button"
-            class="delete-report"
+            class="btn btn-outline-primary ms-2"
             (click)="deleteReport(report.id)"
           >
             Remove
@@ -75,7 +71,7 @@
         </div>
 
         <div>
-          <button type="button">Like</button>
+          <button type="button" class="btn btn-outline-primary ms-2">Like</button>
           <!-- <button type="button" (click)="!isCollapsed" >Comment</button> -->
           <button
             type="button"
@@ -107,83 +103,137 @@
     </div>
   </div>
 </div>
+
 <!--====================== UPDATE FORM ===========================-->
-<div *ngIf="showUpdateForm" class="update-form">
-  <h1>Update Report</h1>
-  <form *ngIf="editReport">
-    <div class="form-group row">
-      Name: <input type="text" name="name" [(ngModel)]="editReport.name" />
-    </div>
-    <div class="form-group row">
-      Description:
-      <input
-        type="text"
-        name="description"
-        [(ngModel)]="editReport.description"
-      />
-    </div>
-    <div class="form-group row">
-      Image URL:
-      <input type="text" name="imageUrl" [(ngModel)]="editReport.imageUrl" />
-    </div>
+<div *ngIf="showUpdateForm" class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
 
-    <div class="form-group row">
-      Address Name:
-      <input
-        type="text"
-        name="addressname"
-        [(ngModel)]="editReport.address.name"
-      />
-    </div>
+      <h2 class="text-center">Update</h2>
+      <form *ngIf="editReport" class="mt-4">
 
-    <div class="form-group row">
-      Street:
-      <input
-        type="text"
-        name="street"
-        [(ngModel)]="editReport.address.street"
-      />
-    </div>
+        <div class="form-group mb-3">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            name="name"
+            [(ngModel)]="editReport.name"
+          />
+        </div>
 
-    <div class="form-group row">
-      City:
-      <input type="text" name="city" [(ngModel)]="editReport.address.city" />
-    </div>
+        <div class="form-group mb-3">
+          <label for="description">Description</label>
+          <textarea
+            id="description"
+            class="form-control"
+            name="description"
+            rows="3"
+            [(ngModel)]="editReport.description"
+          ></textarea>
+        </div>
 
-    <div class="form-group row">
-      State:
-      <input type="text" name="state" [(ngModel)]="editReport.address.state" />
-    </div>
+        <div class="form-group mb-3">
+          <label for="imageUrl">Image URL</label>
+          <input
+            type="text"
+            id="imageUrl"
+            class="form-control"
+            name="imageUrl"
+            [(ngModel)]="editReport.imageUrl"
+          />
+        </div>
 
-    <div class="form-group row">
-      Zip:
-      <input
-        type="text"
-        name="postalCode"
-        [(ngModel)]="editReport.address.postalCode"
-      />
-    </div>
+        <div class="form-group mb-3">
+          <label for="addressname">Address Name</label>
+          <input
+            type="text"
+            id="addressname"
+            class="form-control"
+            name="addressname"
+            [(ngModel)]="editReport.address.name"
+          />
+        </div>
 
-    <div class="form-group row">
-      Country:
-      <input
-        type="text"
-        name="country"
-        [(ngModel)]="editReport.address.country"
-      />
-    </div>
+        <!-- == 1 row - street/city -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="street">Street</label>
+            <input
+              type="text"
+              id="street"
+              class="form-control"
+              name="street"
+              [(ngModel)]="editReport.address.street"
+            />
+          </div>
 
-    <div class="form-group row">
-      Category:
-      <input
-        type="text"
-        name="reportCategory"
-        [(ngModel)]="editReport.reportCategory.name"
-      />
-    </div>
+          <div class="col-md-6 mb-3">
+            <label for="city">City</label>
+            <input
+              type="text"
+              id="city"
+              class="form-control"
+              name="city"
+              [(ngModel)]="editReport.address.city"
+            />
+          </div>
+        </div>
 
-    <br />
-    <button (click)="displayLandingPage()">Cancel</button>
-    <button (click)="updateReport(editReport)">Submit</button>
-  </form>
+        <!-- == 1 row - state/zip/country -->
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="state">State</label>
+            <input
+              type="text"
+              id="state"
+              class="form-control"
+              name="state"
+              [(ngModel)]="editReport.address.state"
+            />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="postalCode">Zip</label>
+            <input
+              type="text"
+              id="postalCode"
+              class="form-control"
+              name="postalCode"
+              [(ngModel)]="editReport.address.postalCode"
+            />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="country">Country</label>
+            <input
+              type="text"
+              id="country"
+              class="form-control"
+              name="country"
+              [(ngModel)]="editReport.address.country"
+            />
+          </div>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="reportCategory">Category</label>
+          <input
+            type="text"
+            id="reportCategory"
+            class="form-control"
+            name="reportCategory"
+            [(ngModel)]="editReport.reportCategory.name"
+          />
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-outline-primary ms-2" (click)="displayLandingPage()">Cancel</button>
+          <button class="btn btn-outline-primary ms-2" (click)="updateReport(editReport)">Submit</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
 </div>

@@ -45,13 +45,12 @@ class ReportTagTest {
 	void test_reportCategory_basic_mappings() {
 		assertNotNull(reportTag);
 		assertEquals("Tornado", reportTag.getTagName());
-
 	}
+
 	@Test
 	void test_reportTag_has_reports() {
 		assertNotNull(reportTag.getReports());
-		assertTrue(reportTag.getReports().size()==0);//TODO: change to > 0 when data is input
-		
+		assertTrue(reportTag.getReports().size() == 0);// TODO: change to > 0 when data is input
 	}
 
 }

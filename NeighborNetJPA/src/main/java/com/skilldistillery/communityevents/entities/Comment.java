@@ -24,7 +24,6 @@ import jakarta.persistence.Table;
 @Table(name = "comment")
 public class Comment {
 
-	// == FIELDS ==
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -44,7 +43,6 @@ public class Comment {
 
 	private boolean enabled;
 
-	// FOREIGN
 	@ManyToOne
 	@JoinColumn(name = "report_id")
 	private Report report;
@@ -55,7 +53,7 @@ public class Comment {
 	private User user;
 
 	@ManyToOne
-	@JsonIgnoreProperties({"inReplyTo","report"})
+	@JsonIgnoreProperties({ "inReplyTo", "report" })
 	@JoinColumn(name = "in_reply_to_id")
 	private Comment inReplyTo;
 
@@ -63,7 +61,6 @@ public class Comment {
 	@JsonIgnore
 	private List<Comment> replies;
 
-	// == CONSTRUCTORS ==
 	public Comment() {
 		super();
 	}
@@ -83,7 +80,6 @@ public class Comment {
 		this.replies = replies;
 	}
 
-	// == GETTERS & SETTERS ==
 	public int getId() {
 		return id;
 	}
@@ -164,7 +160,6 @@ public class Comment {
 		this.replies = replies;
 	}
 
-	// == HASHCODE & EQUALS ==
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

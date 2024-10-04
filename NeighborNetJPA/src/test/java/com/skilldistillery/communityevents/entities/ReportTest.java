@@ -19,7 +19,6 @@ class ReportTest {
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
 	private Report report;
-	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -35,34 +34,31 @@ class ReportTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-        // Initialize the user object from the database
-        report = em.find(Report.class, 1); 
-		}
+		// Initialize the user object from the database
+		report = em.find(Report.class, 1);
+	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		em.close();	
-		}
+		em.close();
+	}
 
 	@Test
 	void test_User_basic_mappings() {
 		assertNotNull(report);
 		assertEquals("Traffic jam!", report.getName());
 	}
-	
-	@Test
 
-	void test_report_has_many_users_manyToMany () {
+	@Test
+	void test_report_has_many_users_manyToMany() {
 		assertNotNull(report);
 		assertNotNull(report.getUsersLiked());
 		assertTrue(report.getUsersLiked().size() > 0);
 	}
-		
 
 	void test_has_many_ReportTags() {
 		assertNotNull(report.getReportTags());
-		assertTrue(report.getReportTags().size()==0);//change this to > 1 when more data is input
-
+		assertTrue(report.getReportTags().size() == 0);// change this to > 1 when more data is input
 	}
 
 }

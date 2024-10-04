@@ -39,7 +39,6 @@ public class ReportImage {
 
 	private Boolean enabled;
 
-	// FOREIGN
 	@ManyToOne
 	@JoinColumn(name = "report_id")
 	private Report report;
