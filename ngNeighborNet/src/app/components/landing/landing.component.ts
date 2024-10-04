@@ -46,27 +46,9 @@ export class LandingComponent implements OnInit {
     // this.loadCommentsToReport();
   }
 
-  // ** our current reload () **
-  // reload() {
-  //   this.reportService.index().subscribe({
-  //     next: (reports) => {
-  //       this.reports = reports;
-  //       console.log(this.reports);
-  //     },
-  //     error: (err) => {
-  //       console.error('Error loading reports: ', err);
-  //     }
-  //   });
-  // }
-
-  // TESTING SORT (display most recent reports first) - ex:
-
-  // function sortByDate(a: any, b: any): number {
-  //   return new Date(a.date).getTime() - new Date(b.date).getTime();
-  // }
-
   reload() {
-    this.reportService.index().subscribe({
+    // this.reportService.showAllEnabled().subscribe({
+      this.reportService.index().subscribe({
       next: (reports) => {
         this.reports = reports.sort((a, b) => {
           return (
@@ -105,14 +87,13 @@ export class LandingComponent implements OnInit {
     this.showUpdateForm = report;
     this.editReport = Object.assign({}, this.selected);
     this.reload();
-
-    console.log('displayUpdateForm????');
+    console.log(' currently in - displayUpdateForm()');
     console.log(this.selected);
     console.log('still in displayUpdateForm()');
   }
 
   updateReport(report: Report): void {
-    console.log('IN UPDATE REPORT !!!');
+    console.log(' currently in - updateReport()');
     console.log(report);
 
     this.reportService.update(report).subscribe({
