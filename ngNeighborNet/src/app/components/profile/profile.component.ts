@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
   editReport: Report | null = null;
   isCollapsed = true;
   comments: Comment[] = [];
+  newComment: Comment = new Comment();
 
 
 constructor (
@@ -146,6 +147,39 @@ loadCommentsToReport(reportId: number) {
     }
   });
 }
+
+
+//------------------------ADD COMMENT-------------------------------------------------
+// addComment(commenet: Comment): void {
+//   console.log('addComment()');
+
+//   this.commentService.create(this.newComment).subscribe({
+//     next: (createdComment) => {
+//       // this.reload();
+//       this.newComment = new Comment();
+//     },
+//     error: (err) => {
+//       console.error(' Error adding comment', err);
+//     }
+//   });
+// }
+
+addComment(report: Report): void {
+  this.newComment.report = report;
+  console.log(this.newComment.report);
+  this.commentService.create(this.newComment, report.id).subscribe({
+    next: (createdComment) => {
+      this.newComment = new Comment();
+      this.reload();
+      this.loadCommentsToReport(report.id);
+
+    },
+    error: (err) => {
+      console.error('Error adding comment: ', err);
+    }
+  });
+}
+
 
 
 

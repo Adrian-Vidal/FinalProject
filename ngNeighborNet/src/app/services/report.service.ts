@@ -15,7 +15,7 @@ export class ReportService {
 
   constructor(
     private http: HttpClient,
-    private auth: AuthService
+    private auth: AuthService,
   ) { }
 
   getHttpOptions() {

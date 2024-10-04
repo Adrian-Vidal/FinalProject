@@ -97,7 +97,7 @@
           <!-- <div class="card-body">You can collapse this card by clicking one Toggle button</div> -->
           <!-- <div *ngFor="let comment of comments"> -->
           <div class="card-header">
-            {{ comment.user.firstName }} {{ comment.user.lastName }}
+            {{ comment.user?.firstName }} {{ comment.user?.lastName }}
           </div>
           <div class="card-body">
             {{ comment.body }}
