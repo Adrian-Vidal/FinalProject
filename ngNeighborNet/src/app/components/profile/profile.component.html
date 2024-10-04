@@ -17,23 +17,40 @@
     <div class="card-header d-flex justify-content-between align-items-center">
     <!-- <h5 class="card-title">Card title</h5> -->
 
-      <div class="col">
+    <div class="col">
+      <img
+          [src]="report.imageUrl"
+          class="img-fluid"
+          style="width: 100px; height: 100px; object-fit: cover"
+        />
+    </div>
+
+
+      <div class="col text-center">
         <h5 class="card-title" >{{report.name}}</h5>
       </div>
 
-      <div class="col">
-        <!-- PLACEHOLDER -->
-      </div>
 
-      <div class="col align">
+      <div class="col text-end">
         <h5 class="list-group-item">Author: {{report.user.firstName}}</h5>
       </div>
       </div>
       </div>
-      <div class="row">
-        <p class="card-text">{{report.description}}</p>
-      </div>
 
+
+      <div class="row">
+      <div class="col">
+        <a class="list-group-item">{{report.description}}</a>
+      </div>
+      <div class="col text-end">
+        <a class="list-group-item">Location:
+          {{report.address.street}}
+          {{report.address.city}}
+          {{report.address.postalCode}}
+        </a>
+      </div>
+      </div>
+      <br>
 
       <div class="row">
         <div class="col">
@@ -44,26 +61,21 @@
           <!-- PLACEHOLDER -->
         </div>
 
-        <div class="col">
+        <div class="col text-end">
           <a class="list-group-item">Happened: {{report.eventDate | date: 'full' }}</a>
         </div>
       </div>
-
+      <br>
       <div class="row">
         <div class="col">
           <a class="list-group-item">Category: {{report.reportCategory.name}}</a>
         </div>
 
         <div class="col">
-          <a class="list-group-item">PLACEHOLDER for tag {{report.reportCategory.name}}</a>
+          <!-- <a class="list-group-item">PLACEHOLDER for tag {{report.reportCategory.name}}</a> -->
         </div>
 
-        <div class="col">
-          <a class="list-group-item">Location:
-            {{report.address.street}}, {{report.address.city}},
-            {{report.address.postalCode}}
-          </a>
-        </div>
+
       </div>
       <br>
       <br>
@@ -74,7 +86,7 @@
           <button class="btn btn-outline-primary ms-2" (click)="displayUpdateForm(report)">Edit</button>
         </div>
           <!-- <button (click)="disable()">Remove</button>  -->
-        <div class="col">
+        <div class="col text-center">
           <button class="btn btn-outline-primary ms-2" (click)="deleteReport(report.id)">Remove</button>
         </div>
           <!-- <button>Delete</button> -->
@@ -82,7 +94,7 @@
           <button>Comment</button>
         </div> -->
 
-        <div class="col">
+        <div class="col text-end">
           <button
             type="button"
             class="btn btn-outline-primary ms-2"
@@ -94,10 +106,11 @@
             View Comments
           </button>
         </div>
-        <br><br>
+        <br>
+        <br>
         <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
         <div class="card align-items-center">
-          <div class="card-body align-items-center">
+          <div class="card-body text-center">
             <h3>Comments</h3>
           <div class="card w-150 mb-2" *ngFor="let comment of report.comments">
             <div class="card-header">
