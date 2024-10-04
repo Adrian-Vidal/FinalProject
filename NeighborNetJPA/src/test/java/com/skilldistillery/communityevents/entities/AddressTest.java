@@ -47,7 +47,6 @@ class AddressTest {
 		assertEquals("McDonald's", address.getName());
 		assertEquals("2214 W 76 Country Blvd", address.getStreet());
 		assertEquals("65616", address.getPostalCode());
-
 	}
 
 	@Test
@@ -57,7 +56,5 @@ class AddressTest {
 		System.out.println(address.getUsers());
 		System.out.println(address);
 		assertTrue(address.getUsers().size() > 0);
-
 	}
-
 }
