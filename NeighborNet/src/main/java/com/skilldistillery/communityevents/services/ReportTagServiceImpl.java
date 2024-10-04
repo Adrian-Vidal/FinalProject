@@ -17,7 +17,8 @@ public class ReportTagServiceImpl implements ReportTagService {
 
 	@Override
 	public List<ReportTag> findByReport_ReportId(int id) {
-		return tagRepo.findByReports_Id(id);
+		return null;
+//		return tagRepo.findByReports_Id(id);
 	}
 
 	
