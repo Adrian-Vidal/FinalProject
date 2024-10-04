@@ -2,17 +2,22 @@
 
 <div class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-
     <ul class="nav">
-
       <li>
         <a [routerLink]="['/home']">
-          <img src="images/NeighborNet_logo_generated_Gemini.jpeg" alt="NeighborNet logo" width="50" height="50">
+          <img
+            src="images/NeighborNet_logo_generated_Gemini.jpeg"
+            alt="NeighborNet logo"
+            width="50"
+            height="50"
+          />
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" [routerLink]="['/home']">Home</a>
+        <a class="nav-link active" aria-current="page" [routerLink]="['/home']"
+          >Home</a
+        >
       </li>
 
       <li class="nav-item">
@@ -31,10 +36,10 @@
         <a class="nav-link" [routerLink]="['/testing']">Map</a>
       </li> -->
       <div *ngIf="checkAdmin()">
-      <li class="nav-item" >
-        <a class="nav-link" [routerLink]="['/admin']">Admin</a>
-      </li>
-    </div>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/admin']">Admin</a>
+        </li>
+      </div>
       <li class="nav-item" *ngIf="loggedIn()">
         <app-report-form-modal></app-report-form-modal>
       </li>
@@ -42,7 +47,6 @@
       <!-- <li class="nav-item">
         <a class="nav-link" [routerLink]="['/community']">Community (reports/posts)</a>
       </li> -->
-
     </ul>
 
     <!-- Update div class once login/logout if logic has been added. -->
@@ -55,8 +59,5 @@
     <div *ngIf="loggedIn()">
       <app-logout></app-logout>
     </div>
-
-
   </div>
-
 </div>

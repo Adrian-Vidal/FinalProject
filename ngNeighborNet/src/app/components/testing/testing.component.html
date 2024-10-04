@@ -1,43 +1,32 @@
 <p>testing works!</p>
 
-
-
 <!-- google-map-demo.component.html -->
-<google-map
-  height="400px"
-  width="750px"
-  [center]="center"
-  [zoom]="zoom"
-  >
+<google-map height="400px" width="750px" [center]="center" [zoom]="zoom">
   <div *ngFor="let item of markerPositions">
     <map-marker
-    #marker="mapMarker"
-    [position]="item.position"
-    (mapClick)="openInfoWindow(marker, item.report)"
-
-  >
-  <!-- <h1>{{item.report.name}}</h1> -->
-  <map-info-window>{{infoWindowContent}}</map-info-window>
-  </map-marker>
-
-
+      #marker="mapMarker"
+      [position]="item.position"
+      (mapClick)="openInfoWindow(marker, item.report)"
+    >
+      <!-- <h1>{{item.report.name}}</h1> -->
+      <map-info-window>{{ infoWindowContent }}</map-info-window>
+    </map-marker>
   </div>
 
-<br>
+  <br />
 </google-map>
 <div *ngIf="selected">
-
-  <h1>{{selected.name}}</h1>
+  <h1>{{ selected.name }}</h1>
   <ul>
-    <li>Descripition: {{selected.description}}</li>
-    <li>Username: {{selected.user.username}}</li>
-    <li>Address: {{selected.address.street}}, {{selected.address.city}}, {{selected.address.state}}, {{selected.address.postalCode}}</li>
+    <li>Descripition: {{ selected.description }}</li>
+    <li>Username: {{ selected.user.username }}</li>
+    <li>
+      Address: {{ selected.address.street }}, {{ selected.address.city }},
+      {{ selected.address.state }}, {{ selected.address.postalCode }}
+    </li>
   </ul>
   <h3></h3>
-
 </div>
-
-
 
 <!-- OG
 --------------------------------------------------------

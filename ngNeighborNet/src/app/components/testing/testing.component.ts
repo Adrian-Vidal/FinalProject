@@ -8,8 +8,6 @@ import { ReportService } from '../../services/report.service';
 import { AuthService } from '../../services/auth.service';
 import { Report } from './../../models/report';
 
-
-
 @Component({
   selector: 'app-testing',
   standalone: true,
