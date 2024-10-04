@@ -31,7 +31,7 @@ export class LandingComponent implements OnInit{
   editReport : Report | null =null;
   selected: Report | null = null;
   loggedInUser: User | null = null;
-
+  newComment: Comment = new Comment();
   comments: Comment [] = [];
   isCollapsed = false;
 
@@ -181,6 +181,23 @@ loadTagsToReport(id: number) {
     },
     error: (err) => {
       console.error('Error loading comments: ', err);
+    }
+  });
+}
+
+
+addComment(report: Report): void {
+  this.newComment.report = report;
+  console.log(this.newComment.report);
+  this.commentService.create(this.newComment, report.id).subscribe({
+    next: (createdComment) => {
+      this.newComment = new Comment();
+      this.reload();
+      this.loadCommentsToReport(report.id);
+
+    },
+    error: (err) => {
+      console.error('Error adding comment: ', err);
     }
   });
 }
