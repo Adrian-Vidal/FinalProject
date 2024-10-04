@@ -42,18 +42,14 @@
             </p>
 
             <a class="list-group-item"
-              >Happened: {{ report.eventDate | date : "mediumDate" }}</a
+              >Event Date: {{ report.eventDate | date : "mediumDate" }}</a
             >
           </div>
 
           <div class="d-flex justify-content-between align-items-center">
             <a class="list-group-item"
-              >Category: {{ report.reportCategory.name }}</a
+              >Category: {{ report.reportCategory.name }} TEST</a
             >
-
-            <div *ngFor="let reportTag of reportTags">
-              <a class="list-group-item"> TAG: {{ reportTag.id }} </a>
-            </div>
           </div>
         </div>
 
@@ -79,9 +75,6 @@
           </div>
 
           <div>
-            <button type="button" class="btn btn-outline-primary ms-2">
-              Like
-            </button>
             <!-- <button type="button" (click)="!isCollapsed" >Comment</button> -->
             <button
               type="button"

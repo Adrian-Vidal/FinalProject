@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.communityevents.entities.Address;
 import com.skilldistillery.communityevents.entities.Report;
+import com.skilldistillery.communityevents.entities.ReportCategory;
 import com.skilldistillery.communityevents.entities.User;
 import com.skilldistillery.communityevents.repositories.AddressRepository;
 import com.skilldistillery.communityevents.repositories.ReportCategoryRepository;
@@ -49,6 +50,9 @@ public class ReportServiceImpl implements ReportService {
 		List<Address> managedAddresses = addrRepo.findByStreetAndCityAndStateAndPostalCodeAndCountry(
 				address.getStreet().trim(), address.getCity().trim(), address.getState().trim(),
 				address.getPostalCode().trim(), address.getCountry().trim());
+		
+		// ReportCategory managedCategory = reportCategoryRepo.findById(int id);
+		
 		System.out.println();
 		System.out.println();
 		System.out.println();
@@ -61,7 +65,12 @@ public class ReportServiceImpl implements ReportService {
 		if (user != null) {
 			report.setUser(user);
 			report.setEnabled(true);
-			reportCategoryRepo.saveAndFlush(report.getReportCategory());
+			
+//			if (managedCategory != null) {
+//				
+//			}
+//			reportCategoryRepo.saveAndFlush(report.getReportCategory());
+			
 			if (managedAddresses != null && !managedAddresses.isEmpty()) {
 				System.out.println("Address found (if) ");
 				System.out.println(managedAddresses);

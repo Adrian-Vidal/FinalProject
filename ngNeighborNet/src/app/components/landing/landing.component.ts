@@ -10,6 +10,7 @@ import { CommentService } from '../../services/comment.service';
 import { Comment } from '../../models/comment';
 import { ReportTag } from '../../models/report-tag';
 import { ReportTagService } from '../../services/report-tag.service';
+import { Reportcategory } from '../../models/reportcategory';
 
 @Component({
   selector: 'app-landing',
@@ -30,6 +31,7 @@ export class LandingComponent implements OnInit {
   isCollapsed = false;
 
   reportTags: ReportTag[] = [];
+  reportCategory: Reportcategory | null = null;
 
   constructor(
     private reportService: ReportService,
