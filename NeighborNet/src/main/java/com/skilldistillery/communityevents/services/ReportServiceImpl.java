@@ -49,6 +49,15 @@ public class ReportServiceImpl implements ReportService {
 		List<Address> managedAddresses = addrRepo.findByStreetAndCityAndStateAndPostalCodeAndCountry(
 				address.getStreet().trim(), address.getCity().trim(), address.getState().trim(),
 				address.getPostalCode().trim(), address.getCountry().trim());
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println(report.getImageUrl());
+		System.out.println();
+		if (report.getImageUrl() == "") {
+			System.out.println("Empty Image URL!!!!!!!!!!!!!!!");
+			report.setImageUrl("https://www.edwardhopper.net/assets/img/paintings/nighthawks.jpg");
+		}
 		if (user != null) {
 			report.setUser(user);
 			report.setEnabled(true);
