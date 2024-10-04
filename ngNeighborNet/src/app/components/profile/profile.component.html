@@ -3,7 +3,7 @@
 
 <div *ngIf="!showUpdateForm">
 <div format_align_right>
-  <button> Edit (profile) </button>
+  <button class="btn btn-outline-primary ms-2"> Edit (profile) </button>
 </div>
 
  <br>
@@ -15,8 +15,10 @@
   <div class="card w-75" *ngFor="let report of reports" >
   <!-- <img src="..." class="card-img-top" alt="..."> -->
   <div class="card-body">
+    <!-- HEADER -->
+    <div class="card-header d-flex justify-content-between align-items-center">
     <!-- <h5 class="card-title">Card title</h5> -->
-    <div class="row">
+
       <div class="col">
         <h5 class="card-title" >{{report.name}}</h5>
       </div>
@@ -26,9 +28,10 @@
       </div>
 
       <div class="col ">
-        <a class="list-group-item">Author: {{report.user.firstName}}</a>
+        <h5 class="list-group-item">Author: {{report.user.firstName}}</h5>
       </div>
-
+      </div>
+      </div>
       <div class="row">
         <p class="card-text">{{report.description}}</p>
       </div>
@@ -64,14 +67,17 @@
           </a>
         </div>
       </div>
+      <br>
+      <br>
+
 
       <div class="row">
         <div class="col">
-          <button (click)="displayUpdateForm(report)">Edit</button>
+          <button class="btn btn-outline-primary ms-2" (click)="displayUpdateForm(report)">Edit</button>
         </div>
           <!-- <button (click)="disable()">Remove</button>  -->
         <div class="col">
-          <button (click)="deleteReport(report.id)">Remove</button>
+          <button class="btn btn-outline-primary ms-2" (click)="deleteReport(report.id)">Remove</button>
         </div>
           <!-- <button>Delete</button> -->
         <!-- <div class="col">
@@ -81,6 +87,7 @@
         <div class="col">
           <button
             type="button"
+            class="btn btn-outline-primary ms-2"
             (click)="collapse.toggle()"
             [attr.aria-expanded]="!isCollapsed"
             aria-controls="collapseExample"
@@ -91,29 +98,31 @@
         </div>
         <br><br>
         <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-        <div class="card">
-          <div class="card-body">
+        <div class="card align-items-center">
+          <div class="card-body align-items-center">
+            <h3>Comments</h3>
           <div *ngFor="let comment of report.comments">
             <a>
               {{comment.user?.firstName}} {{comment.user?.lastName}} - {{comment.body}}
             </a>
           </div>
-          <div class="add-comment">
-            <input type="text" name="body" placeholder="Add Comment" [(ngModel)]="newComment.body">
-            <input type="text" name="imageUrl" placeholder="Image Url" [(ngModel)]="newComment.imageUrl">
           </div>
-          <button (click)="addComment(report)">Submit</button>
+          <br>
+          <div class="add-comment">
+            <textarea name="body" placeholder="Add Comment" [(ngModel)]="newComment.body" rows="4" cols="50"></textarea>
+          </div>
+          <button class="btn btn-outline-primary ms-2"(click)="addComment(report)">Submit</button>
         </div>
         </div>
-        </div>
+
 
           <br>
       </div>
     </div>
   </div>
 </div>
-</div>
-</div>
+<!-- </div>
+</div> -->
 
 <!--====================== UPDATE FROM ===========================-->
 
