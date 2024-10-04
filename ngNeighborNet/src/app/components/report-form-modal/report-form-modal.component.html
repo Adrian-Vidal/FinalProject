@@ -1,37 +1,89 @@
 <!--# var = content (reference to modal) & (let modal - also reference to modal) -->
 <ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Create Report</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Dismissed - X')"
+    ></button>
+  </div>
 
-	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Create Report</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Dismissed - X')"></button>
-	</div>
-
-	<div class="modal-body">
-		<form>
-			<div class="mb-3">
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
         <div class="form-group row">
-            <input type="text" name="name" placeholder="Title" [(ngModel)]="newReport.name" >
-            <input type="text" name="description" placeholder="Description" [(ngModel)]="newReport.description" >
-            <input type="text" name="imageUrl" placeholder="Image URL" [(ngModel)]="newReport.imageUrl" >
-            <input type="text" name="address.name" placeholder="Name of Location" [(ngModel)]="newReport.address.name">
-            <input type="text" name="address.street" placeholder="Street" [(ngModel)]="newReport.address.street">
-            <input type="text" name="address.city" placeholder="City" [(ngModel)]="newReport.address.city">
-            <input type="text" name="address.state" placeholder="State" [(ngModel)]="newReport.address.state">
-            <input type="text" name="address" placeholder="Postal Code" [(ngModel)]="newReport.address.postalCode">
-            <input type="text" name="address.country" placeholder="Country" [(ngModel)]="newReport.address.country">
+          <input
+            type="text"
+            name="name"
+            placeholder="Title"
+            [(ngModel)]="newReport.name"
+          />
+          <input
+            type="text"
+            name="description"
+            placeholder="Description"
+            [(ngModel)]="newReport.description"
+          />
+          <input
+            type="text"
+            name="imageUrl"
+            placeholder="Image URL"
+            [(ngModel)]="newReport.imageUrl"
+          />
+          <input
+            type="text"
+            name="address.name"
+            placeholder="Name of Location"
+            [(ngModel)]="newReport.address.name"
+          />
+          <input
+            type="text"
+            name="address.street"
+            placeholder="Street"
+            [(ngModel)]="newReport.address.street"
+          />
+          <input
+            type="text"
+            name="address.city"
+            placeholder="City"
+            [(ngModel)]="newReport.address.city"
+          />
+          <input
+            type="text"
+            name="address.state"
+            placeholder="State"
+            [(ngModel)]="newReport.address.state"
+          />
+          <input
+            type="text"
+            name="address"
+            placeholder="Postal Code"
+            [(ngModel)]="newReport.address.postalCode"
+          />
+          <input
+            type="text"
+            name="address.country"
+            placeholder="Country"
+            [(ngModel)]="newReport.address.country"
+          />
         </div>
-			</div>
-		</form>
-	</div>
-
-
-	<div class="modal-footer">                                      <!--Close belongs to Modal-->
-		 <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Submitted - Save')">Save</button>
-     <!-- <button type="button" class="btn btn-outline-secondary" (click)="modal.close(addReport)">Save</button> -->
-    <!-- <button type="button" class="btn btn-outline-secondary" (click)="modal.open('Submitted - Save')">Save</button> -->
-	</div>
-
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!--Close belongs to Modal-->
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      (click)="modal.close('Submitted - Save')"
+    >
+      Save
+    </button>
+  </div>
 </ng-template>
 
-
-<button class="btn btn-md btn-outline-primary" (click)="open(content)">Create Report</button>
+<button class="btn btn-md btn-outline-primary" (click)="open(content)">
+  Create Report
+</button>
