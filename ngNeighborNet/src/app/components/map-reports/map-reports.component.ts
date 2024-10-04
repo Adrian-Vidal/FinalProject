@@ -27,7 +27,6 @@ import {
   templateUrl: './map-reports.component.html',
   styleUrl: './map-reports.component.css',
 })
-
 export class MapReportsComponent implements OnInit {
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
   reports: Report[] = [];
@@ -79,8 +78,6 @@ export class MapReportsComponent implements OnInit {
     }
   }
 
-  //-------------------map marker info window------------------------
-
   openInfoWindow(marker: MapMarker, report: Report) {
     console.log('map marker clicked');
     if (this.infoWindow) {
@@ -92,13 +89,10 @@ export class MapReportsComponent implements OnInit {
     console.log('hello???');
     console.log(this.selected);
   }
-
-  ////-------------------Display and Open------------------------
   displayAndOpen() {}
 
   //132 Cape Cod Dr, Branson, MO 65616
   //  testAddress: Address = new Address();
-
   // //  makeTestAddress(){
   // //    this.testAddress.street="132 Cape Cod Dr";
   // //    this.testAddress.city = "Branson";
@@ -111,19 +105,14 @@ export class MapReportsComponent implements OnInit {
   //   this.mapReportService.getLongAndLat(address).subscribe({
   //     next: (geoResponse) => {
   //       console.log(geoResponse.results[0].geometry.location.lat());
-
   //       this.markerPositions.push({lat: geoResponse.results[0].geometry.location.lat(), lng: geoResponse.results[0].geometry.location.lng()});
-
   //       console.log(geoResponse.results[0].geometry.location.lng());
   //     }
   //   });
   // }
-
   //-------------------Add a marker on the map doesnt work i think------------------------
   // mapMarker(markerPosition: google.maps.LatLngLiteral[]){
-
   //   for (let marker of markerPosition){
-
   //     this.markerPositions = this.mapReportService.addMarker({lat: marker.lat, lng: marker.lng});
   //   }
   // }
