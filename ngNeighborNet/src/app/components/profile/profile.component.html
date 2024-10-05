@@ -1,4 +1,3 @@
-<h1>Profile</h1>
 <div *ngIf="!showUpdateForm">
   <!-- CARD - Displaying a user's report -->
   <div class="container py-2">
@@ -53,21 +52,21 @@
           class="card-footer d-flex justify-content-between align-items-center"
         >
           <!-- <div *ngIf="isReportOwner(report)"> -->
-            <button
-              type="button"
-              class="btn btn-outline-primary ms-2"
-              (click)="displayUpdateForm(report)"
-            >
-              Edit
-            </button>
+          <button
+            type="button"
+            class="btn btn-outline-primary ms-2"
+            (click)="displayUpdateForm(report)"
+          >
+            Edit
+          </button>
 
-            <button
-              type="button"
-              class="btn btn-outline-primary ms-2"
-              (click)="deleteReport(report.id)"
-            >
-              Remove
-            </button>
+          <button
+            type="button"
+            class="btn btn-outline-primary ms-2"
+            (click)="deleteReport(report.id)"
+          >
+            Remove
+          </button>
           <!-- </div> -->
 
           <div>

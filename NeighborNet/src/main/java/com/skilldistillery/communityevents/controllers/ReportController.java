@@ -56,25 +56,12 @@ public class ReportController {
 		return createdReport;
 	}
 
-//	@PutMapping("reports/{id}")
-//	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res,
-//			@PathVariable("id") int id, @RequestBody Report report) {
-////	@PutMapping("reports/{tid}")
-////	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable("tid") int id, @RequestBody Report report) {
-//		Report updatedReport = reportService.update(principal.getName(), id, report);
-//		if (updatedReport == null) {
-//			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
-//		}
-//		return updatedReport;
-//
-//	}
-
 	@PutMapping("reports/{id}")
 	public Report update(Principal principal, HttpServletRequest req, HttpServletResponse res,
 			@PathVariable("id") int id, @RequestBody Report report) {
 		System.out.println(report);
 		System.out.println(report.getReportCategory().getName());
-		Optional<Report> reportOpt = reportService.findById(id); 
+		Optional<Report> reportOpt = reportService.findById(id);
 		if (reportOpt.isPresent()) {
 			Report managedReport = reportOpt.get();
 			if (!managedReport.getUser().getUsername().equals(principal.getName())) {
@@ -99,13 +86,12 @@ public class ReportController {
 			res.setStatus(HttpServletResponse.SC_OK);
 		}
 		return disableReport;
-
 	}
 
 	@GetMapping("reports")
 	public List<Report> showAllEnabledReports(HttpServletRequest req, HttpServletResponse res) {
 		List<Report> enabledReports = reportService.showAllEnabledReports();
-		return enabledReports; // May need to a
+		return enabledReports; // May need to add principal
 	}
 
 //  DELETE todos/{tid}

@@ -85,7 +85,8 @@
         </div>
         <!-- Testing these 2 divs below-->
         <br />
-        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <!-- <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed"> -->
+        <div *ngIf="!isCollapsed">
           <div class="card align-items-center">
             <h5>Comments</h5>
             <!-- <div class="card card-body"> -->

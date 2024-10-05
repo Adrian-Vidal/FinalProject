@@ -21,20 +21,19 @@ import jakarta.servlet.http.HttpServletResponse;
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost/" })
 public class ReportTagController {
-	
+
 	@Autowired
 	private ReportTagService tagService;
-	
+
 	@Autowired
 	private ReportService reportService;
-	
-	
+
 	@GetMapping("tags/reports/{id}")
-	public List<ReportTag> showReportTagsByReportId(@PathVariable("id") int id, 
-			HttpServletRequest req, HttpServletResponse res) {
+	public List<ReportTag> showReportTagsByReportId(@PathVariable("id") int id, HttpServletRequest req,
+			HttpServletResponse res) {
 //	    List<ReportTag> reportTags = tagService.findByReport(reports);
 		List<ReportTag> reportTags = tagService.findByReport_ReportId(id);
-	    return reportTags;
+		return reportTags;
 	}
 
 }

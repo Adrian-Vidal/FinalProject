@@ -22,11 +22,10 @@ import { Comment } from '../../models/comment';
     NgbCollapseModule,
   ],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrl: './profile.component.css',
 })
 export class ProfileComponent implements OnInit {
-
-  reports: Report [] = [];
+  reports: Report[] = [];
   newReport: Report = new Report();
   loggedInUser: User | null = null;
   showCreateForm = false;
@@ -37,154 +36,124 @@ export class ProfileComponent implements OnInit {
   comments: Comment[] = [];
   newComment: Comment = new Comment();
 
+  constructor(
+    private authService: AuthService,
+    private reportService: ReportService,
+    private commentService: CommentService
+  ) // private dialogExample: diaglo // TODO - look up prompt dialog > MatDialogRef
+  {}
 
-constructor (
-  private authService: AuthService,
-  private reportService: ReportService,
-  private commentService: CommentService,
-  // private dialogExample: diaglo // TODO - look up prompt dialog > MatDialogRef
-){}
+  ngOnInit(): void {
+    this.reload();
+  }
 
-ngOnInit(): void {
-  this.reload();
-}
-
-// Rather than index -> showAllUserReportEnabled
-reload() {
-  this.reportService.showAllUserReportEnabled().subscribe({
-    next: (reports) => {
-      this.reports = reports.sort((a, b) => {
-        return (
-          new Date(b.createDate).getTime() - new Date(a.createDate).getTime()
-        );
-      });
-    },
-    error: (err) => {
-      console.error('Error loading reports: ', err);
-    }
-  });
-}
-
-displayCreateForm(){
-  this.showCreateForm = !this.showCreateForm;
-}
-
-displayProfilePage(): void {
-  this.showUpdateForm = null;
-}
-
-displayUpdateForm(report: Report): void {
-  this.selected = report;
-  this.showUpdateForm = report;
-  this.editReport = Object.assign({}, this.selected);
-  this.reload();
-
-  console.log("displayUpdateForm????")
-  console.log(this.selected)
-
-}
-
-updateReport(report: Report): void{
-  console.log("IN UPDATE REPORT !!!");
-  console.log(report)
-  this.reportService.update(report).subscribe({
-    next: (updatedReport) => {
-      this.selected=null;
-      this.editReport=null;
-    },
-    error: (oopsy) =>{
-      console.error("error editing todo: ");
-      console.error(oopsy);
-    }
-  })
-  if (this.editReport) {
-    this.reportService.update(this.editReport).subscribe({
-      next: () => {
-        this.reload();
-        this.editReport;
-        this.showUpdateForm = null;
-
+  // Rather than index -> showAllUserReportEnabled
+  reload() {
+    this.reportService.showAllUserReportEnabled().subscribe({
+      next: (reports) => {
+        this.reports = reports.sort((a, b) => {
+          return (
+            new Date(b.createDate).getTime() - new Date(a.createDate).getTime()
+          );
+        });
       },
-
+      error: (err) => {
+        console.error('Error loading reports: ', err);
+      },
     });
   }
-}
 
-setEditEvent(): void {
-  if (this.showUpdateForm) {
-    this.editReport = Object.assign({}, this.showUpdateForm);
+  displayCreateForm() {
+    this.showCreateForm = !this.showCreateForm;
   }
-}
 
-cancelEdit(): void {
-  this.editReport;
-}
+  displayProfilePage(): void {
+    this.showUpdateForm = null;
+  }
 
-//------------------------_DELETE REPORT-------------------------------------------------
+  displayUpdateForm(report: Report): void {
+    this.selected = report;
+    this.showUpdateForm = report;
+    this.editReport = Object.assign({}, this.selected);
+    this.reload();
 
-deleteReport(reportId: number){
-  console.log(reportId)
+    console.log('displayUpdateForm( ) - profile.ts');
+    console.log(this.selected);
+  }
 
-  this.reportService.disableReport(reportId).subscribe({
-    next: (result) =>{
-      this.newReport = new Report();
-      this.reload();
-    },
-    error: (nojoy) => {
-      console.error("Error deleting Report");
-      console.error(nojoy)
+  updateReport(report: Report): void {
+    console.log('in updateReport() - profile.ts');
+    console.log(report);
+    this.reportService.update(report).subscribe({
+      next: (updatedReport) => {
+        this.selected = null;
+        this.editReport = null;
+      },
+      error: (oopsy) => {
+        console.error('error editing todo: ');
+        console.error(oopsy);
+      },
+    });
+    if (this.editReport) {
+      this.reportService.update(this.editReport).subscribe({
+        next: () => {
+          this.reload();
+          this.editReport;
+          this.showUpdateForm = null;
+        },
+      });
     }
-  });
+  }
 
-}
-
-//------------------------COMMENT-------------------------------------------------
-loadCommentsToReport(reportId: number) {
-  console.log('in loadCommentsToReport( ) .');
-  this.commentService.showCommentsByReportId(reportId).subscribe({
-    next: (comments) => {
-      this.comments = comments;
-      console.log(this.comments);
-    },
-    error: (err) => {
-      console.error('Error loading comments: ', err);
+  setEditEvent(): void {
+    if (this.showUpdateForm) {
+      this.editReport = Object.assign({}, this.showUpdateForm);
     }
-  });
-}
+  }
 
+  cancelEdit(): void {
+    this.editReport;
+  }
 
-//------------------------ADD COMMENT-------------------------------------------------
-// addComment(commenet: Comment): void {
-//   console.log('addComment()');
+  deleteReport(reportId: number) {
+    console.log(reportId);
+    this.reportService.disableReport(reportId).subscribe({
+      next: (result) => {
+        this.newReport = new Report();
+        this.reload();
+      },
+      error: (nojoy) => {
+        console.error('Error deleting Report');
+        console.error(nojoy);
+      },
+    });
+  }
 
-//   this.commentService.create(this.newComment).subscribe({
-//     next: (createdComment) => {
-//       // this.reload();
-//       this.newComment = new Comment();
-//     },
-//     error: (err) => {
-//       console.error(' Error adding comment', err);
-//     }
-//   });
-// }
+  loadCommentsToReport(reportId: number) {
+    console.log('in loadCommentsToReport( ) .');
+    this.commentService.showCommentsByReportId(reportId).subscribe({
+      next: (comments) => {
+        this.comments = comments;
+        console.log(this.comments);
+      },
+      error: (err) => {
+        console.error('Error loading comments: ', err);
+      },
+    });
+  }
 
-addComment(report: Report): void {
-  this.newComment.report = report;
-  console.log(this.newComment.report);
-  this.commentService.create(this.newComment, report.id).subscribe({
-    next: (createdComment) => {
-      this.newComment = new Comment();
-      this.reload();
-      this.loadCommentsToReport(report.id);
-
-    },
-    error: (err) => {
-      console.error('Error adding comment: ', err);
-    }
-  });
-}
-
-
-
-
+  addComment(report: Report): void {
+    this.newComment.report = report;
+    console.log(this.newComment.report);
+    this.commentService.create(this.newComment, report.id).subscribe({
+      next: (createdComment) => {
+        this.newComment = new Comment();
+        this.reload();
+        this.loadCommentsToReport(report.id);
+      },
+      error: (err) => {
+        console.error('Error adding comment: ', err);
+      },
+    });
+  }
 }

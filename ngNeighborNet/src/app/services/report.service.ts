@@ -6,17 +6,12 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { Report } from '../models/report';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ReportService {
+  private url = environment.baseUrl + 'api/reports';
 
-
-  private url = environment.baseUrl + 'api/reports'
-
-  constructor(
-    private http: HttpClient,
-    private auth: AuthService,
-  ) { }
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   getHttpOptions() {
     let options = {
@@ -33,35 +28,42 @@ export class ReportService {
       catchError((err: any) => {
         console.error(err);
         return throwError(
-           () => new Error( 'ReportService.index(): error retrieving reports: ' + err )
+          () =>
+            new Error('ReportService.index(): error retrieving reports: ' + err)
         );
       })
     );
   }
 
   showAllUserReportEnabled(): Observable<Report[]> {
-    return this.http.get<Report[]>(this.url + '/user', this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.error(err);
-        return throwError(
-           () => new Error( 'ReportService.index(): error retrieving reports: ' + err )
-        );
-      })
-    );
+    return this.http
+      .get<Report[]>(this.url + '/user', this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.error(err);
+          return throwError(
+            () =>
+              new Error(
+                'ReportService.index(): error retrieving reports: ' + err
+              )
+          );
+        })
+      );
   }
 
   create(report: Report): Observable<Report> {
-    console.log("report.service.ts Firing!!?!?!?");
+    console.log('report.service.ts Firing!!?!?!?');
     console.log(report);
     return this.http.post<Report>(this.url, report, this.getHttpOptions()).pipe(
-      catchError(
-        (err: any) => {
-          console.log(err);
-          return throwError(
-            () => new Error('report.service.ts - create () : error creating report: ' + err)
-          );
-        }
-      )
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error(
+              'report.service.ts - create () : error creating report: ' + err
+            )
+        );
+      })
     );
   }
 
@@ -70,7 +72,11 @@ export class ReportService {
       catchError((err: any) => {
         console.error(err);
         return throwError(
-           () => new Error( 'ReportService.showAllEnabled(): error retrieving all enabled reports: ' + err )
+          () =>
+            new Error(
+              'ReportService.showAllEnabled(): error retrieving all enabled reports: ' +
+                err
+            )
         );
       })
     );
@@ -85,21 +91,25 @@ export class ReportService {
   //       );
   //     })
   //   );
-    disableReport(reportId: number): Observable<void> {
-      console.log(reportId)
-      return this.http.delete<void>(this.url + '/'+ reportId, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.error(err);
-        return throwError(
-           () => new Error( 'ReportService.disableReport(): error disabling report: ' + err )
-        );
-      })
-    );
+
+  disableReport(reportId: number): Observable<void> {
+    console.log(reportId);
+    return this.http
+      .delete<void>(this.url + '/' + reportId, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.error(err);
+          return throwError(
+            () =>
+              new Error(
+                'ReportService.disableReport(): error disabling report: ' + err
+              )
+          );
+        })
+      );
   }
 
-
-
-//    OG
+  //    OG
   // update(report: Report): Observable<Report> {
   //   console.log("In report.service")
   //   return this.http.put<Report>(`${this.url}/${report.user.id}`, report, this.getHttpOptions()).pipe(
@@ -113,24 +123,21 @@ export class ReportService {
   // }
 
   update(report: Report): Observable<Report> {
-
     // return this.http.put<Report>(`${this.url}/${report.id}`, report, this.getHttpOptions()).pipe(
 
-    console.log("In report.service")
-    console.log(report)
-    console.log(this.url + "/" + report.id);
-    return this.http.put<Report>(this.url + "/" + report.id, report, this.getHttpOptions()).pipe(
-
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error(`ReportService.update(): error updating report: ` + err)
-        );
-      })
-    );
+    console.log('In report.service');
+    console.log(report);
+    console.log(this.url + '/' + report.id);
+    return this.http
+      .put<Report>(this.url + '/' + report.id, report, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(`ReportService.update(): error updating report: ` + err)
+          );
+        })
+      );
   }
-
-
-
-
 }
