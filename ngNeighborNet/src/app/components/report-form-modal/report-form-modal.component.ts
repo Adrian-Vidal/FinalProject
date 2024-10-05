@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, inject, Input, TemplateRef } from '@angular/core';
 import {
   ModalDismissReasons,
@@ -23,7 +24,7 @@ export class ReportFormModalComponent {
   reports: Report[] = [];
   newReport: Report = new Report();
 
-  constructor(private reportService: ReportService) {}
+  constructor(private reportService: ReportService, private router: Router) {}
 
   // Opens 'overlay'
   open(content: TemplateRef<any>) {
@@ -63,6 +64,9 @@ export class ReportFormModalComponent {
       next: (createdReport) => {
         // this.reload();
         this.newReport = new Report();
+        this.router.navigateByUrl('/profile', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['profile']);
+      });
       },
       error: (err) => {
         console.error(
