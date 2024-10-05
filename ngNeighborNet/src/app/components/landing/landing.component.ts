@@ -48,7 +48,7 @@ export class LandingComponent implements OnInit {
 
   reload() {
     // this.reportService.showAllEnabled().subscribe({
-      this.reportService.index().subscribe({
+    this.reportService.index().subscribe({
       next: (reports) => {
         this.reports = reports.sort((a, b) => {
           return (
@@ -65,7 +65,6 @@ export class LandingComponent implements OnInit {
 
   deleteReport(reportId: number) {
     console.log(reportId);
-
     this.reportService.disableReport(reportId).subscribe({
       next: (result) => {
         this.reload();

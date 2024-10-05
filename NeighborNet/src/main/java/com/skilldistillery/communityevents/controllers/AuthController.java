@@ -14,7 +14,7 @@ import com.skilldistillery.communityevents.services.AuthService;
 
 import jakarta.servlet.http.HttpServletResponse;
 
-@RestController 
+@RestController
 @CrossOrigin({ "*", "http://localhost/" })
 public class AuthController {
 
@@ -28,7 +28,6 @@ public class AuthController {
 			res.setStatus(400);
 			return null;
 		}
-		
 		user = authService.register(user);
 		return user;
 	}
@@ -37,7 +36,7 @@ public class AuthController {
 	public User authenticate(Principal principal, HttpServletResponse res) {
 		if (principal == null) { // no Authorization header sent
 			res.setStatus(401);
-			res.setHeader("WWW-Authenticate", "Basic"); 
+			res.setHeader("WWW-Authenticate", "Basic");
 			return null;
 		}
 		return authService.getUserByUsername(principal.getName());

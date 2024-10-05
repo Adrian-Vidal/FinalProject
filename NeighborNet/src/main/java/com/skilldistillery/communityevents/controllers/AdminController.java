@@ -17,19 +17,18 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({"*", "http://localhost/"})
+@CrossOrigin({ "*", "http://localhost/" })
 public class AdminController {
-	
+
 	@Autowired
 	private AdminService adminService;
 
 	@Autowired
 	private ReportService reportService;
-	
+
 	@DeleteMapping("admin/{rid}")
-	public void disable(Principal principal, HttpServletRequest req, 
-						HttpServletResponse res, 
-						@PathVariable("rid") int rid ) {
+	public void disable(Principal principal, HttpServletRequest req, HttpServletResponse res,
+			@PathVariable("rid") int rid) {
 		System.out.println("Admin Controller mapping Good");
 		try {
 			if (adminService.unenable(rid)) {
@@ -40,7 +39,7 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);
-		}	
-		
+		}
+
 	}
 }

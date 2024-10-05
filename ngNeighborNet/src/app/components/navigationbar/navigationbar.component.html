@@ -1,5 +1,3 @@
-<!-- <p>navigationbar works!</p> -->
-
 <div class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <ul class="nav">
@@ -32,9 +30,6 @@
         <a class="nav-link" [routerLink]="['/map']">Explore</a>
       </li>
 
-      <!-- <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/testing']">Map</a>
-      </li> -->
       <div *ngIf="checkAdmin()">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/admin']">Admin</a>
@@ -43,10 +38,6 @@
       <li class="nav-item" *ngIf="loggedIn()">
         <app-report-form-modal></app-report-form-modal>
       </li>
-
-      <!-- <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/community']">Community (reports/posts)</a>
-      </li> -->
     </ul>
 
     <!-- Update div class once login/logout if logic has been added. -->

@@ -25,54 +25,54 @@ import jakarta.servlet.http.HttpServletResponse;
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost/" })
 public class CommentController {
-	
+
 	@Autowired
 	private CommentService commentService;
-	
 
 	@GetMapping("comments/user")
-	public Set<Comment> index(Principal principal, HttpServletRequest req, HttpServletResponse res) { 
+	public Set<Comment> index(Principal principal, HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("CommentController Firing!!!!");
 		return commentService.index(principal.getName());
 	}
-	
+
 	@GetMapping("comments")
-	public List<Comment> showAllEnabledComments(HttpServletRequest req, HttpServletResponse res){
+	public List<Comment> showAllEnabledComments(HttpServletRequest req, HttpServletResponse res) {
 		List<Comment> enabledComments = commentService.showAllEnabledComments();
 		return enabledComments;
 	}
-	
+
 	@GetMapping("comments/report/{id}")
-	public List<Comment> showCommentsByReportId(@PathVariable("id") int reportId, HttpServletRequest req, HttpServletResponse res) {
-	    List<Comment> reportComments = commentService.showCommentsByReportId(reportId);
-	    return reportComments;
+	public List<Comment> showCommentsByReportId(@PathVariable("id") int reportId, HttpServletRequest req,
+			HttpServletResponse res) {
+		List<Comment> reportComments = commentService.showCommentsByReportId(reportId);
+		return reportComments;
 	}
-	
+
 	@PostMapping("comments/report/{reportId}")
-	public Comment create(Principal principal, HttpServletRequest req, HttpServletResponse res, 
-	                      @PathVariable("reportId") int reportId, @RequestBody Comment comment) {
+	public Comment create(Principal principal, HttpServletRequest req, HttpServletResponse res,
+			@PathVariable("reportId") int reportId, @RequestBody Comment comment) {
 		System.out.println("createdComment");
-	    Comment createdComment = commentService.create(reportId, principal.getName(), comment);
-	    
-	    if (createdComment == null) {
-	        res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-	    } else {
-	        res.setStatus(HttpServletResponse.SC_CREATED);
-	    }
-	    
-	    return createdComment;
+		Comment createdComment = commentService.create(reportId, principal.getName(), comment);
+
+		if (createdComment == null) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		} else {
+			res.setStatus(HttpServletResponse.SC_CREATED);
+		}
+
+		return createdComment;
 	}
 
 	@PutMapping("comments/{commentId}")
-	public Comment update(Principal principal, HttpServletRequest req, HttpServletResponse res, 
-	                      @PathVariable("commentId") int commentId, @RequestBody Comment comment) {
-	    Comment updatedComment = commentService.update(commentId, principal.getName(), comment);
-	    if (updatedComment == null) {
-	        res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-	    } else {
-	        res.setStatus(HttpServletResponse.SC_OK);
-	    }
-	    return updatedComment;
+	public Comment update(Principal principal, HttpServletRequest req, HttpServletResponse res,
+			@PathVariable("commentId") int commentId, @RequestBody Comment comment) {
+		Comment updatedComment = commentService.update(commentId, principal.getName(), comment);
+		if (updatedComment == null) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		} else {
+			res.setStatus(HttpServletResponse.SC_OK);
+		}
+		return updatedComment;
 	}
 
 	@PutMapping("comments/user/{commentId}/disable")
@@ -88,13 +88,4 @@ public class CommentController {
 
 	}
 
-
-	
 }
-
-
-
-	
-	
-
-

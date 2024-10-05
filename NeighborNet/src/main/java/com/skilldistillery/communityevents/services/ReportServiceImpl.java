@@ -39,7 +39,6 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public Report show(String username, int id) {
-
 		return null;
 	}
 
@@ -50,27 +49,23 @@ public class ReportServiceImpl implements ReportService {
 		List<Address> managedAddresses = addrRepo.findByStreetAndCityAndStateAndPostalCodeAndCountry(
 				address.getStreet().trim(), address.getCity().trim(), address.getState().trim(),
 				address.getPostalCode().trim(), address.getCountry().trim());
-		
+
 		// ReportCategory managedCategory = reportCategoryRepo.findById(int id);
-		
-		System.out.println();
-		System.out.println();
+
 		System.out.println();
 		System.out.println(report.getImageUrl());
 		System.out.println();
+
 		if (report.getImageUrl() == "") {
-			System.out.println("Empty Image URL!!!!!!!!!!!!!!!");
+			System.out.println("Empty Image URL!");
 			report.setImageUrl("https://www.edwardhopper.net/assets/img/paintings/nighthawks.jpg");
 		}
 		if (user != null) {
 			report.setUser(user);
 			report.setEnabled(true);
-			
-//			if (managedCategory != null) {
-//				
-//			}
+
 			reportCategoryRepo.saveAndFlush(report.getReportCategory());
-			
+
 			if (managedAddresses != null && !managedAddresses.isEmpty()) {
 				System.out.println("Address found (if) ");
 				System.out.println(managedAddresses);
@@ -98,7 +93,8 @@ public class ReportServiceImpl implements ReportService {
 			managedReport.setEnabled(updatedReport.getEnabled());
 			managedReport.setReportCategory(updatedReport.getReportCategory());
 			reportCategoryRepo.saveAndFlush(managedReport.getReportCategory());
-			reportRepo.saveAndFlush(managedReport);;
+			reportRepo.saveAndFlush(managedReport);
+			;
 		}
 		return managedReport;
 	}
@@ -118,7 +114,6 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public boolean destroy(String username, int id) {
-
 		return false;
 	}
 

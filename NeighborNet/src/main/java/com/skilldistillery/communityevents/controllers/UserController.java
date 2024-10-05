@@ -20,21 +20,19 @@ import jakarta.servlet.http.HttpServletResponse;
 @CrossOrigin({ "*", "http://localhost/" })
 public class UserController {
 
-		@Autowired
-		private UserService userService;
-		
-		@GetMapping("user/{id}")
-		public User show(Principal principal, 
-				HttpServletRequest req, HttpServletResponse res,
-				@PathVariable("id") int id) { 
-			
-			System.out.println("UserController");
-			
-			User user = userService.showUserById(id);
-			if (user == null) {
-				res.setStatus(404);
-			}
-			return user;
+	@Autowired
+	private UserService userService;
+
+	@GetMapping("user/{id}")
+	public User show(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id) {
+
+		System.out.println("UserController");
+
+		User user = userService.showUserById(id);
+		if (user == null) {
+			res.setStatus(404);
 		}
-	
+		return user;
+	}
+
 }
