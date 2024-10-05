@@ -28,7 +28,7 @@ export class LandingComponent implements OnInit {
   loggedInUser: User | null = null;
   newComment: Comment = new Comment();
   comments: Comment[] = [];
-  isCollapsed = false;
+  isCollapsed = true;
 
   reportTags: ReportTag[] = [];
   reportCategory: Reportcategory | null = null;
@@ -47,8 +47,8 @@ export class LandingComponent implements OnInit {
   }
 
   reload() {
-    // this.reportService.showAllEnabled().subscribe({
-    this.reportService.index().subscribe({
+     this.reportService.showAllEnabled().subscribe({
+    // this.reportService.index().subscribe({
       next: (reports) => {
         this.reports = reports.sort((a, b) => {
           return (

@@ -34,6 +34,7 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public Set<Report> index(String username) {
 //		return reportRepo.findByUser_Username(username);
+//		System.out.println("In ReportServiceImp - index()");
 		return reportRepo.findByUser_UsernameAndEnabledTrue(username);
 	}
 

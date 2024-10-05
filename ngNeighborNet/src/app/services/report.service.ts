@@ -82,16 +82,6 @@ export class ReportService {
     );
   }
 
-  // disableReport(report: Report): Observable<Report> {
-  //   return this.http.put<Report>(this.url).pipe(
-  //     catchError((err: any) => {
-  //       console.error(err);
-  //       return throwError(
-  //          () => new Error( 'ReportService.disableReport(): error disabling report: ' + err )
-  //       );
-  //     })
-  //   );
-
   disableReport(reportId: number): Observable<void> {
     console.log(reportId);
     return this.http
@@ -109,7 +99,6 @@ export class ReportService {
       );
   }
 
-  //    OG
   // update(report: Report): Observable<Report> {
   //   console.log("In report.service")
   //   return this.http.put<Report>(`${this.url}/${report.user.id}`, report, this.getHttpOptions()).pipe(
@@ -124,7 +113,6 @@ export class ReportService {
 
   update(report: Report): Observable<Report> {
     // return this.http.put<Report>(`${this.url}/${report.id}`, report, this.getHttpOptions()).pipe(
-
     console.log('In report.service');
     console.log(report);
     console.log(this.url + '/' + report.id);
