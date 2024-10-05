@@ -52,22 +52,23 @@
           class="card-footer d-flex justify-content-between align-items-center"
         >
           <!-- <div *ngIf="isReportOwner(report)"> -->
-          <button
-            type="button"
-            class="btn btn-outline-primary ms-2"
-            (click)="displayUpdateForm(report)"
-          >
-            Edit
-          </button>
+          <div>
+            <button
+              type="button"
+              class="btn btn-outline-primary ms-2"
+              (click)="displayUpdateForm(report)"
+            >
+              Edit
+            </button>
 
-          <button
-            type="button"
-            class="btn btn-outline-primary ms-2"
-            (click)="deleteReport(report.id)"
-          >
-            Remove
-          </button>
-          <!-- </div> -->
+            <button
+              type="button"
+              class="btn btn-outline-primary ms-2"
+              (click)="deleteReport(report.id)"
+            >
+              Remove
+            </button>
+          </div>
 
           <div>
             <!-- <button type="button" (click)="!isCollapsed" >Comment</button> -->
