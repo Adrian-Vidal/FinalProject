@@ -83,7 +83,7 @@ public class ReportController {
 	@GetMapping("reports")
 	public List<Report> showAllEnabledReports(HttpServletRequest req, HttpServletResponse res) {
 		List<Report> enabledReports = reportService.showAllEnabledReports();
-		return enabledReports; // May need to add principal
+		return enabledReports; 
 	}
 
 //  DELETE todos/{tid}
