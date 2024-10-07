@@ -1,20 +1,10 @@
-<!-- # <img src="./images/ExpenseTracker_piggy_bank_from_Gemini1.jpeg" alt="Expense Tracker logo" width="50"/> **Expense Tracker**  -->
-<!-- Above: inserts web app logo to the left of title) -->
+# <img src="./images/NeighborNet_logo_generated_Gemini1.jpeg" alt="NeighborNet logo" width="50"/> **NeighborNet** 
 
 # NeighborNet
 
-## **Overview**   
+<!-- ## **Overview**    -->
 
-Our NeighborNet project - allows a user to create an account, publish posts and events, and interact with their local community.
-
-
-<!-- 
-The project must include:
-
-Non-authenticated and authenticated views of data.
-Login authentication to access C.R.U.D. functionality.
-Full C.R.U.D. of user-generated data.
-A separate privilege level that can perform C.R.U.D. on data a non-privileged user cannot. -->
+Our NeighborNet project - allows a user to create an account, publish posts and events, and interact with their local community. The purpose of this project was to create a full-stack web application. We used Angular on the front-end, where HTTP requests are sent back to controllers in the Spring Boot project, where we also implemented Spring Security. 
 
 ## **Our Team**
 - Kevin
@@ -33,27 +23,21 @@ A separate privilege level that can perform C.R.U.D. on data a non-privileged us
   - https://www.postman.com/downloads/
 - **AWS Deployment:**  
   - Linked Here: 
+    - http://18.188.167.170:8080/NeighborNet/#/home
+    - http://3.137.134.246:8080/NeighborNet
+    - http://justdentondevelops.com/
 
-<!-- | HTTP Verb | URI                                         | Request Body                             | Response Body                                  | Response Codes  |
-|-----------|---------------------------------------------|------------------------------------------|------------------------------------------------|-----------------|
-| GET       | `/api/expenses`                             |                                          | List of all expenses                           | 200             |
-| GET       | `/api/expenses/{expenseId}`                 |                                          | Representation of a specific expense           | 200, 404        |
-| GET       | `/api/expenses/categories/{categoryId}`     |                                          | List of expenses for a specific category       | 200, 404        |
-| GET       | `/api/expenses/payments/{paymentMethodId}`  |                                          | List of expenses for a specific payment method | 200, 404        |
-| POST      | `/api/expenses`                             | Representation of a new _expense_        | Representation of the created expense          | 201, 400        |
-| PUT       | `/api/expenses/{expenseId}`                 | Representation of an updated _expense_   | Representation of the updated expense          | 200, 404, 400   |
-| DELETE    | `/api/expenses/{expenseId}`                 |                                          |                                                | 204, 404, 400   |
- -->
+
 ### Authenticate
 | HTTP Verb | URI                                         | Request Body                             | Response Body                                  | Response Codes  |
 |-----------|---------------------------------------------|------------------------------------------|------------------------------------------------|-----------------|
-| GET       | `/api/register`                             |                                          | Register a new user account                    | 200 , 400       |
+| GET       | `/api/register`                             |                                          | Register a new user account                    | 200, 400       |
 | GET       | `/api/authenticate`                         |                                          | Verify authorized user account                 | 200, 401        |
 
 ### User
 | HTTP Verb | URI                                         | Request Body                             | Response Body                                  | Response Codes  |
 |-----------|---------------------------------------------|------------------------------------------|------------------------------------------------|-----------------|
-| GET       | `/api/user/{id}`                            |                                          | View user with speceific ID                    | 200 , 400       |
+| GET       | `/api/user/{id}`                            |                                          | View user with specific ID                    | 200, 400       |
 
 ### Reports
 | HTTP Verb | URI                                         | Request Body                             | Response Body                                  | Response Codes  |
@@ -68,7 +52,7 @@ A separate privilege level that can perform C.R.U.D. on data a non-privileged us
 ### Report Tag
 | HTTP Verb | URI                                         | Request Body                             | Response Body                                  | Response Codes  |
 |-----------|---------------------------------------------|------------------------------------------|------------------------------------------------|-----------------|
-| GET       | `/api/tags/reports/{id}`                    |                                          | View report tag with speceific ID              | 200 , 400       |
+| GET       | `/api/tags/reports/{id}`                    |                                          | View report tag with specific ID              | 200, 400       |
 
 ### Comments
 | HTTP Verb | URI                                         | Request Body                             | Response Body                                  | Response Codes  |
@@ -81,9 +65,9 @@ A separate privilege level that can perform C.R.U.D. on data a non-privileged us
 | PUT       | `/api/comments/user/{commentId}/disable`    |                                          | Disable comment with specific ID               | 200, 404        |
 
 
-### **Methodologies Used:**
+<!-- ### **Methodologies Used:**
 - **RESTful Design**
-  - Java REST back-end: 
+  - Java REST back-end:  -->
 
 
 ## **Technologies Used**
@@ -96,7 +80,7 @@ A separate privilege level that can perform C.R.U.D. on data a non-privileged us
   - git, GitHub
   - Postman
 - **Frontend:**
-  - Visual Studio Code
+  - Angular
 
 
 ## **Lessons Learned** 
@@ -111,5 +95,4 @@ A separate privilege level that can perform C.R.U.D. on data a non-privileged us
 - **Git Branching**
   - Learned the importance of Git branching to ensure a smooth workflow by isolating new features from the main branch and minimizing conflicts during team collaboration
 
-## **Resources**
 
