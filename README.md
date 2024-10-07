@@ -1,8 +1,8 @@
 # <img src="./images/NeighborNet_logo_generated_Gemini1.jpeg" alt="NeighborNet logo" width="50"/> **NeighborNet** 
 
-# NeighborNet
+<!-- # NeighborNet -->
 
-<!-- ## **Overview**    -->
+## **Overview**
 
 Our NeighborNet project - allows a user to create an account, publish posts and events, and interact with their local community. The purpose of this project was to create a full-stack web application. We used Angular on the front-end, where HTTP requests are sent back to controllers in the Spring Boot project, where we also implemented Spring Security. 
 
@@ -49,11 +49,11 @@ Our NeighborNet project - allows a user to create an account, publish posts and 
 | DELETE    | `/api/reports/{rid}`                        |                                          | Delete report with specific ID                 | 204, 404, 400   |
 | PUT       | `/api/reports/user/{id}/disable`            |                                          | Disable report with specific ID                | 200, 404        |
 
-### Report Tag
+<!-- ### Report Tag
 | HTTP Verb | URI                                         | Request Body                             | Response Body                                  | Response Codes  |
 |-----------|---------------------------------------------|------------------------------------------|------------------------------------------------|-----------------|
 | GET       | `/api/tags/reports/{id}`                    |                                          | View report tag with specific ID              | 200, 400       |
-
+ -->
 ### Comments
 | HTTP Verb | URI                                         | Request Body                             | Response Body                                  | Response Codes  |
 |-----------|---------------------------------------------|------------------------------------------|------------------------------------------------|-----------------|
